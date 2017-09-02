@@ -42,7 +42,7 @@ int main()
 	{
 		//call analysis functions, display results, etc
 	}
-	} //
+	} 
 	_getch();
 	return 0;
 }
