@@ -58,6 +58,7 @@ namespace Project1 {
 
 
 
+
 	protected:
 
 	protected:
@@ -329,7 +330,7 @@ namespace Project1 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1196, 614);
+			this->ClientSize = System::Drawing::Size(1154, 614);
 			this->Controls->Add(this->checkBox4);
 			this->Controls->Add(this->checkBox3);
 			this->Controls->Add(this->checkBox2);
@@ -350,6 +351,8 @@ namespace Project1 {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->Name = L"MyForm";
 			this->Text = L"User Survey";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
