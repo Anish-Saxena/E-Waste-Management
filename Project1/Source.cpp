@@ -3,7 +3,10 @@
 #include<iomanip>
 #include<windows.h>
 #include<dos.h>
+#include "MyForm.h"
 using namespace std;
+using namespace System;
+using namespace System::Windows::Forms;
 void NewForm();       //function to feed data from users through forms
 void Segregate();     //function to sgregate form data about e-waste into categories of e-waste
 void DisplayInfo();   //function to display analysed data to users
@@ -36,7 +39,11 @@ int main()
 	{
 	case 1:
 	{
-		//call function for form based feed
+		Application::EnableVisualStyles();
+		Application::SetCompatibleTextRenderingDefault(false);
+
+		Project1::MyForm form;
+		Application::Run(%form);
 	}
 	case 2:
 	{
