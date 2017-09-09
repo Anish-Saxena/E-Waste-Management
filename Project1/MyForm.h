@@ -181,6 +181,7 @@ namespace Project1 {
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(217, 15);
+			this->textBox1->MaxLength = 100;
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(325, 20);
 			this->textBox1->TabIndex = 1;
