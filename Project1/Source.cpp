@@ -50,7 +50,7 @@ int main()
 	}
 	case 2:
 	{
-		//call analysis functions, display results, etc.		
+		//call analysis functions, display results, etc		
 	}
 	} 
 	_getch();
