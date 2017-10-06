@@ -7,7 +7,7 @@ namespace ManageData
 	{
 	public:
 		//All data is in kg
-		static const double gold, silver, copper, mercury,steel, aluminum, lithium;
+		static const double gold, silver, copper, mercury,steel, aluminum, lithium, lead;
 
 
 	};
