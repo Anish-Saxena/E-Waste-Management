@@ -136,8 +136,10 @@
   <ItemGroup>
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="ManageData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ManageData.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
