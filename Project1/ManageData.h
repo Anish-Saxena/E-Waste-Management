@@ -41,6 +41,8 @@ namespace ManageData
 	public:
 		//function checkdata()
 		//function assignvalue()
+		//function writedata()
+		//function aggregatesum()
 		//other functions
 	};
 
