@@ -8,6 +8,7 @@
 using namespace std;
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace ManageData;
 
 void NewForm();       //function to feed data from users through forms
 void Segregate();     //function to sgregate form data about e-waste into categories of e-waste
@@ -49,7 +50,7 @@ int main()
 	}
 	case 2:
 	{
-		//call analysis functions, display results, etc
+		//call analysis functions, display results, etc		
 	}
 	} 
 	_getch();

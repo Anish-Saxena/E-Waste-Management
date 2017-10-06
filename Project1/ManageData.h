@@ -1,10 +1,14 @@
 #pragma once
-// MathFuncsLib.h
+
 
 namespace ManageData
 {
 	class LaptopData
 	{
 	public:
-		
+		//All data is in kg
+		static const double gold, silver, copper, mercury,steel, aluminum, lithium;
+
+
+	};
 }
