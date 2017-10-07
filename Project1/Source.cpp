@@ -5,10 +5,12 @@
 #include<dos.h>
 #include "MyForm.h"
 #include "ManageData.h"
+#include "Analyze.h"
 using namespace std;
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace ManageData;
+using namespace Analyze;
 
 void NewForm();       //function to feed data from users through forms
 void Segregate();     //function to sgregate form data about e-waste into categories of e-waste
@@ -51,6 +53,7 @@ int main()
 	case 2:
 	{
 		//call analysis functions, display results, etc		
+		cout << GlobalData::gold; //Testing...
 	}
 	} 
 	_getch();

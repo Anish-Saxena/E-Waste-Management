@@ -1,5 +1,5 @@
 #include "ManageData.h"
-
+#include"Analyze.h"
 #include <stdexcept>
 
 using namespace std;
@@ -16,5 +16,8 @@ namespace ManageData
 	//FOR PC DATA:
 
 	//FOR TABLET DATA:
-	
+	double DataManip::test() //Testing...
+	{
+		return 5.5;
+	}
 }

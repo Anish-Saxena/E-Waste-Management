@@ -28,13 +28,9 @@ namespace ManageData
 		static const double gold, silver, copper, mercury, steel, aluminum, lead,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
-	//This class stores aggregate data values for one user before they're written to a file
-	class GlobalData
-	{
-	public:
-		static const double gold, silver, copper, mercury, steel, aluminum, lead,
-		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
-	};
+	
+	//Class for Peripherals
+
 	//This class contains data checking and value assigning functions
 	class DataManip
 	{
@@ -44,6 +40,7 @@ namespace ManageData
 		//function writedata()
 		//function aggregatesum()
 		//other functions
+		static double test(); //Testing...
 	};
 
 }
