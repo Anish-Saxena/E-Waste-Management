@@ -53,6 +53,7 @@ int main()
 		//call analysis functions, display results, etc	
 		cout << endl << endl;
 		Display::GeneralResults();
+
 	}
 	} 
 	_getch();

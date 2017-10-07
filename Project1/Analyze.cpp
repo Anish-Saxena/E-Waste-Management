@@ -3,10 +3,17 @@
 #include <stdexcept>
 #include<iostream>
 #include<iomanip>
+#include<conio.h>
 #include<Windows.h>
+#include<string.h>
 
 using namespace std;
 using namespace ManageData;
+
+void PrintWidth(const char* t, double x)
+{
+	cout<<  t << "\t\t" << x <<" kg"<< endl;
+}
 
 namespace Analyze
 {
@@ -31,7 +38,6 @@ namespace Analyze
 	}
 	void Display::GeneralResults()
 	{
-		Sleep(500);
 		cout << "The survey was taken by " << GlobalData::surveytakers << " users." << endl << endl;
 		Sleep(1000);
 		cout << "The total number of electronic gadgets shared are: " << GlobalData::totalshared << endl << endl;
@@ -43,6 +49,7 @@ namespace Analyze
 		cout << "The number of Personal computers shared is: " << GlobalData::pcshared << endl << endl;
 		Sleep(1000);
 		cout << "The number of Mobile Phones shared is: " << GlobalData::mobileshared << endl << endl;
+		Sleep(1000);
 		cout << "The average number of various electronic equipments owned per person are:" << endl << endl;
 		Sleep(1000);
 		//Now, I've assumed that each electronic item marked as shared is on average shared b/w 2 persons
@@ -52,7 +59,40 @@ namespace Analyze
 		Sleep(1000);
 		cout << "Personal Computers: " << std::setprecision(2) << ((float)GlobalData::pcnumber / (GlobalData::surveytakers+GlobalData::pcshared)) << endl << endl;
 		Sleep(1000);
-		cout << "Mobile Phones: " << std::setprecision(2) << ((float)GlobalData::mobilenumber / (GlobalData::surveytakers+GlobalData::mobileshared)) << endl << endl;
-		Sleep(1000);		
+		cout << "Mobile Phones: " << std::setprecision(2) << ((float)GlobalData::mobilenumber / (GlobalData::surveytakers+GlobalData::mobileshared)) << endl << endl;				
+		Sleep(1000);
+		cout << "Let us now see how much of each substance, be it metal, glass, ceramics, etc., is approximately present (in total) in this E-waste:" << endl << endl;
+		Sleep(1000);
+		cout << "Press any key to continue to the next screen" << endl;
+		_getch();
+		ComponentBreakup();
+	}
+	void Display::ComponentBreakup()
+	{
+		system("CLS");
+		cout << "The amount of each substance in kg is as follows: " << endl << endl;
+		Sleep(1000);
+		cout << "Trace elements by their amount in E-waste:" << endl << endl;
+		Sleep(1000);
+		PrintWidth("Gold", GlobalData::gold);		
+		PrintWidth("Mercury", GlobalData::mercury);
+		PrintWidth("Lead", GlobalData::lead);
+		PrintWidth("Nickel", GlobalData::nickel);
+		Sleep(1000);
+		cout << endl << "Fairly abundant elements by their amount in E-waste:" << endl << endl;
+		PrintWidth("Silver", GlobalData::silver);
+		PrintWidth("Silicon", GlobalData::silicon);
+		PrintWidth("Carbon", GlobalData::carbon);
+		PrintWidth("Lithium", GlobalData::lithium);
+		Sleep(1000);
+		cout << endl << "Very Abundant elements by their amount in E-waste: " << endl << endl;
+		PrintWidth("Steel", GlobalData::steel);
+		PrintWidth("Plastics", GlobalData::plastics);
+		PrintWidth("Ceramics", GlobalData::ceramics);
+		PrintWidth("Aluminum", GlobalData::aluminum);
+		PrintWidth("Copper", GlobalData::copper);
+		PrintWidth("Electrolyte", GlobalData::electrolyte);
+		PrintWidth("Magnesium", GlobalData::magnesium);
+		PrintWidth("Glass", GlobalData::glass);
 	}
 }
