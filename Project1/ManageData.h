@@ -7,25 +7,25 @@ namespace ManageData
 	class LaptopData
 	{
 	public:		
-		static const double gold, silver, copper, mercury,steel, aluminum, lead,
+		static const double gold, silver, copper, mercury,steel, aluminum, lead, ceramics,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
 	class MobileData
 	{
 	public:
-		static const double gold, silver, copper, mercury, steel, aluminum, lead,
+		static const double gold, silver, copper, mercury, steel, aluminum, lead, ceramics,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
 	class TabletData
 	{
 	public:
-		static const double gold, silver, copper, mercury, steel, aluminum, lead,
+		static const double gold, silver, copper, mercury, steel, aluminum, lead, ceramics,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
 	class PCData
 	{
 	public:
-		static const double gold, silver, copper, mercury, steel, aluminum, lead,
+		static const double gold, silver, copper, mercury, steel, aluminum, lead, ceramics,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
 	

@@ -6,7 +6,13 @@ namespace Analyze
 	class GlobalData
 	{
 	public:
-		static double gold, silver, copper, mercury, steel, aluminum, lead,
+		static double gold, silver, copper, mercury, steel, aluminum, lead, ceramics,
 		lithium, nickel, magnesium, carbon, electrolyte, plastics, glass, silicon;
 	};
+	class BestProcess
+	{
+	public:
+		
+	};
+	class 
 }
