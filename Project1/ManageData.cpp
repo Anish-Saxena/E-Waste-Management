@@ -18,9 +18,5 @@ namespace ManageData
 	//FOR PC DATA:
 
 	//FOR TABLET DATA:
-
-	double DataManip::test() //Testing...
-	{
-		return 5.5;
-	}
+	
 }

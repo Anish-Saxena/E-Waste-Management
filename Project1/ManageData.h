@@ -39,8 +39,7 @@ namespace ManageData
 		//function assignvalue()
 		//function writedata()
 		//function aggregatesum()
-		//other functions
-		static double test(); //Testing...
+		//other functions		
 	};
 
 }
