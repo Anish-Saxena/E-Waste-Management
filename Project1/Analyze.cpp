@@ -126,10 +126,16 @@ namespace Analyze
 		cout<<"The metal fractions separated from e-waste during preprocessing can be further processed using";
 		cout << " hydrometallurgical, pyrometallurgical, electrometallurgical, biometallurgical processes, and their";
 		cout << " combinations. The hydrometallurgical and pyrometallurgical processes are the major routes for";
-		cout << "processing of e-waste. These routes may be followed by electrometallurgical/electrochemical processes";
-		cout << "(for example electrorefining or electrowinning) for selected metal separation and recovery.";
-		cout << "";
-		cout << "";
+		cout << " processing of E-waste. These routes may be followed by electrometallurgical/electrochemical processes";
+		cout << " (for example electrorefining or electrowinning) for selected metal separation and recovery.";
+		cout << " Currently, there are only limited laboratory studies for e-waste processing through biometallurgical routes,";
+		cout << " e.g., bioleaching of metals from e-waste. Nevertheless, this route has a potential for further development.";
+		cout << " This project focusses on efficient treatment of E-waste using hydrometallurgical and pyrometallurgical processes." << endl << endl;
+		cout << " The preprocessing of E-waste is not always required for pyrometallurgical routes.";
+		cout << " However for hydrometallurgical routes, preprocessing is required to separate metal fractions from other fractions.";
+		cout << " This will enhance the efficiency of each step associated with hydrometallurgical routes.";
+		cout << " Each route has advantages and disadvantages and this project will try to select the best combinations of both routes to both reduce costs";
+		cout << " and have minimum carbon footprintt as well, so as to creat as much efficient design as possible." << endl << endl;
 
 	}
 }
