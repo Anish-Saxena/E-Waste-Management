@@ -121,4 +121,15 @@ namespace Analyze
 		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
 		cout << "Disposalt\t------>\tLandfills" << endl;
 	}
+	void Display::ProcessingMetals()
+	{
+		cout<<"The metal fractions separated from e-waste during preprocessing can be further processed using";
+		cout << " hydrometallurgical, pyrometallurgical, electrometallurgical, biometallurgical processes, and their";
+		cout << " combinations. The hydrometallurgical and pyrometallurgical processes are the major routes for";
+		cout << "processing of e-waste. These routes may be followed by electrometallurgical/electrochemical processes";
+		cout << "(for example electrorefining or electrowinning) for selected metal separation and recovery.";
+		cout << "";
+		cout << "";
+
+	}
 }

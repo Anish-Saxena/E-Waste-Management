@@ -22,6 +22,7 @@ namespace Analyze
 		static void GeneralResults();		
 		static void ComponentBreakup();
 		static void PreProcessing();
+		static void ProcessingMetals();
 	};
 	
 }
