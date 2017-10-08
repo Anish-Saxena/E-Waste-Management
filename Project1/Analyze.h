@@ -21,6 +21,7 @@ namespace Analyze
 	public:
 		static void GeneralResults();		
 		static void ComponentBreakup();
+		static void PreProcessing();
 	};
 	
 }

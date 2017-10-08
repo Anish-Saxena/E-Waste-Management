@@ -11,8 +11,8 @@ using namespace std;
 using namespace ManageData;
 
 void PrintWidth(const char* t, double x)
-{
-	cout<<  t << "\t\t" << x <<" kg"<< endl;
+{	
+	cout << t << "\t\t" << x << " kg" << endl;
 }
 
 namespace Analyze
@@ -61,15 +61,12 @@ namespace Analyze
 		Sleep(1000);
 		cout << "Mobile Phones: " << std::setprecision(2) << ((float)GlobalData::mobilenumber / (GlobalData::surveytakers+GlobalData::mobileshared)) << endl << endl;				
 		Sleep(1000);
-		cout << "Let us now see how much of each substance, be it metal, glass, ceramics, etc., is approximately present (in total) in this E-waste:" << endl << endl;
-		Sleep(1000);
-		cout << "Press any key to continue to the next screen" << endl;
-		_getch();
-		ComponentBreakup();
+		
 	}
 	void Display::ComponentBreakup()
 	{
-		system("CLS");
+		cout << "Let us now see how much of each substance, be it metal, glass, ceramics, etc., is approximately present (in total) in this E-waste:" << endl << endl;
+		Sleep(1000);
 		cout << "The amount of each substance in kg is as follows: " << endl << endl;
 		Sleep(1000);
 		cout << "Trace elements by their amount in E-waste:" << endl << endl;
@@ -94,5 +91,30 @@ namespace Analyze
 		PrintWidth("Electrolyte", GlobalData::electrolyte);
 		PrintWidth("Magnesium", GlobalData::magnesium);
 		PrintWidth("Glass", GlobalData::glass);
+	}
+	void Display::PreProcessing()
+	{
+		cout << "Preprocessing of e-waste is one of the most important steps in the E-waste treatment chain." << endl << endl;
+		Sleep(1000);
+		cout << " The non-usable components are dismantled at the collection facilities prior to sending to the treatment plant.";
+		cout << " Mechanical processing is an integrated part of this stage where E-waste scrap is shredded into pieces using hammer mills.";
+		cout << " Metals and non-metals are separated during this stage using techniques similar to that used in the";
+		cout<<"	mineral dressing, e.g., screening, magnetic, eddy current and density separation techniques" << endl << endl;
+		Sleep(1000);
+		cout << "Since this project aims to manage the E-waste from the time it is collected, the first crucial step, Preprocessing, has been illustrated. It involves the following steps:" << endl << endl;
+		Sleep(1000);
+		cout << "Sorting and Dismantling\t------>\tSeperation of Re-usable parts" << endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Mechanical Processing\t------>\tSeperation of wirings metals and plastics"<<endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Vibrating Screen" << endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Magnetic Seperation\t------>\tSeperation of Ferrous metals" << endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Eddy current seperation\t------>\tSeperation of Non-Ferrous metals" << endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Density Seperation\t------>\tSeperation of Plastics" << endl;
+		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		cout << "Disposalt\t------>\tLandfills" << endl;
 	}
 }
