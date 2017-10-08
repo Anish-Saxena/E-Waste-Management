@@ -27,6 +27,9 @@
     <ClCompile Include="Analyze.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Screens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Analyze.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Screens.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

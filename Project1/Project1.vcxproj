@@ -135,12 +135,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Screens.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="ManageData.cpp" />
     <ClCompile Include="Analyze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Analyze.h" />
+    <ClInclude Include="Screens.h" />
     <ClInclude Include="ManageData.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
