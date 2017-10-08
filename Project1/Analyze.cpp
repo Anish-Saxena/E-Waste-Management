@@ -6,6 +6,7 @@
 #include<conio.h>
 #include<Windows.h>
 #include<string.h>
+#include<string>
 
 using namespace std;
 using namespace ManageData;
@@ -21,6 +22,8 @@ namespace Analyze
 	//assigning hard coded values for testing purposes to the variables to showcase Analyze functions. Values represent 
 	//about 15 laptops, 25 mobile phones-tablets and 5-10 computers worth of E-waste
 
+	//test csv file format: name,age,address, mobiles disposed, laptops disposed, tablets disposed, pcs disposed, are mobiles shared?, are laptops shared?,are tablets shared?,are pcs shared? 
+	
 	//All data is in kg
 
 	double GlobalData::gold = 0.0194, GlobalData::aluminum = 7.452, GlobalData::carbon = 0.945, GlobalData::copper = 2.541, GlobalData::electrolyte = 1.512, 
@@ -30,6 +33,7 @@ namespace Analyze
 	int GlobalData::surveytakers = 21, GlobalData::laptopnumber = 16, GlobalData::mobilenumber = 24, GlobalData::pcnumber = 7, GlobalData::tabletnumber=7;
 	
 	int GlobalData::laptopshared = 3, GlobalData::mobileshared = 2, GlobalData::tabletshared = 4, GlobalData::pcshared = 5;
+
 	int GlobalData::totalshared = GlobalData::laptopshared + GlobalData::mobileshared + GlobalData::pcshared + GlobalData::tabletshared;
 
 	void BestProcess::Metals()

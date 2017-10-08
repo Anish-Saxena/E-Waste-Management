@@ -6,6 +6,7 @@
 #include "MyForm.h"
 #include "ManageData.h"
 #include "Analyze.h"
+#include<string>
 
 using namespace std;
 using namespace System;
@@ -16,7 +17,7 @@ using namespace Analyze;
 int main()
 {
 	//Welcome Screen
-	/*system("color 31");
+	system("color 31");
 	cout << setw(45) << "Welcome!" << endl << endl << endl;
 	Sleep(1000);
 	cout << setw(55) << "ESC101 Advanced Track Project" << endl << endl << endl;
@@ -32,7 +33,7 @@ int main()
 	Sleep(1000);
 	cout << "Press any key to continue" << endl;
 	_getch();
-	system("CLS");*/
+	system("CLS");
 	int choice;
 	cout << setw(50) << "What would you like to do?" << endl << endl << endl;
 	cout << "1. Take survey of user(s)" << endl << endl << endl;
