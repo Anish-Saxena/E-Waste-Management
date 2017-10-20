@@ -35,6 +35,7 @@ namespace ManageData
 	class DataManip
 	{
 	public:
+		static void ChecknSum();
 		//function checkdata()
 		//function assignvalue()
 		//function writedata()

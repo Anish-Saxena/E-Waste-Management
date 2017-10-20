@@ -2,10 +2,12 @@
 #include<conio.h>
 #include<windows.h>
 #include"Screens.h"
+#include"ManageData.h"
 
 using namespace std;
 using namespace System;
 using namespace Welcome;
+using namespace ManageData;
 
 int main()
 {

@@ -30,9 +30,9 @@ namespace Analyze
 	GlobalData::glass = 10.11, GlobalData::lead = 0.051, GlobalData::lithium = 0.255, GlobalData::magnesium = 17.8, GlobalData::mercury = 0.0068, GlobalData::ceramics=5.435,
 	GlobalData::nickel = 0.0291, GlobalData::plastics = 8.11, GlobalData::silicon = 0.41, GlobalData::silver = 0.175, GlobalData::steel = 1.04;
 
-	int GlobalData::surveytakers = 21, GlobalData::laptopnumber = 16, GlobalData::mobilenumber = 24, GlobalData::pcnumber = 7, GlobalData::tabletnumber=7;
+	int GlobalData::surveytakers, GlobalData::laptopnumber, GlobalData::mobilenumber=0, GlobalData::pcnumber, GlobalData::tabletnumber;
 	
-	int GlobalData::laptopshared = 3, GlobalData::mobileshared = 2, GlobalData::tabletshared = 4, GlobalData::pcshared = 5;
+	int GlobalData::laptopshared, GlobalData::mobileshared, GlobalData::tabletshared, GlobalData::pcshared;
 
 	int GlobalData::totalshared = GlobalData::laptopshared + GlobalData::mobileshared + GlobalData::pcshared + GlobalData::tabletshared;
 
