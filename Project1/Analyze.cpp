@@ -18,23 +18,23 @@ void PrintWidth(const char* t, double x)
 
 namespace Analyze
 {
-	//Testing phase (7th Oct 2017), say the given data values are obtained after ManageData functions act on user surveys, 
-	//assigning hard coded values for testing purposes to the variables to showcase Analyze functions. Values represent 
-	//about 15 laptops, 25 mobile phones-tablets and 5-10 computers worth of E-waste
+	//Testing phase (7th Oct 2017), say the given data values are obtained after ManageData functions act on user surveys,		//obsolete
+	//assigning hard coded values for testing purposes to the variables to showcase Analyze functions. Values represent			//obsolete
+	//about 15 laptops, 25 mobile phones-tablets and 5-10 computers worth of E-waste											//obsolete
 
 	//test csv file format: name,age,address, mobiles disposed, laptops disposed, tablets disposed, pcs disposed, are mobiles shared?, are laptops shared?,are tablets shared?,are pcs shared? 
 	
-	//All data is in kg
+	//All data is in kg	
 
-	double GlobalData::gold = 0.0194, GlobalData::aluminum = 7.452, GlobalData::carbon = 0.945, GlobalData::copper = 2.541, GlobalData::electrolyte = 1.512, 
-	GlobalData::glass = 10.11, GlobalData::lead = 0.051, GlobalData::lithium = 0.255, GlobalData::magnesium = 17.8, GlobalData::mercury = 0.0068, GlobalData::ceramics=5.435,
-	GlobalData::nickel = 0.0291, GlobalData::plastics = 8.11, GlobalData::silicon = 0.41, GlobalData::silver = 0.175, GlobalData::steel = 1.04;
+	double GlobalData::gold = 0, GlobalData::silver=0, GlobalData::copper=0, GlobalData::mercury=0, GlobalData::steel=0, GlobalData::aluminum=0, GlobalData::lead=0,
+	GlobalData::ceramics=0, GlobalData::lithium=0, GlobalData::nickel=0, GlobalData::magnesium=0, GlobalData::carbon=0, GlobalData::electrolyte=0, GlobalData::plastics=0, 
+	GlobalData::glass=0, GlobalData::silicon=0;
 
-	int GlobalData::surveytakers, GlobalData::laptopnumber, GlobalData::mobilenumber=0, GlobalData::pcnumber, GlobalData::tabletnumber;
-	
-	int GlobalData::laptopshared, GlobalData::mobileshared, GlobalData::tabletshared, GlobalData::pcshared;
+	int GlobalData::surveytakers = 0, GlobalData::mobilenumber[2] = { 0,0 }, GlobalData::laptopnumber[2] = { 0,0 }, GlobalData::tabletnumber[2] = { 0,0 }, GlobalData::pcnumber[2] = { 0,0 };
 
-	int GlobalData::totalshared = GlobalData::laptopshared + GlobalData::mobileshared + GlobalData::pcshared + GlobalData::tabletshared;
+	int GlobalData::headphonenumber[2] = { 0,0 }, GlobalData::printernumber[2] = { 0,0 }, GlobalData::joysticknumber[2] = { 0,0 }, GlobalData::scannernumber[2] = { 0,0 }, GlobalData::webcamnumber[2] = { 0,0 }, GlobalData::smartwatchnumber[2] = { 0,0 };
+
+	int GlobalData::totalshared = 0, GlobalData::mobileshared[2] = { 0,0 }, GlobalData::laptopshared[2] = { 0,0 }, GlobalData::tabletshared[2] = { 0,0 }, GlobalData::pcshared[2] = { 0,0 };
 
 	void BestProcess::Metals()
 	{
@@ -57,13 +57,13 @@ namespace Analyze
 		cout << "The average number of various electronic equipments owned per person are:" << endl << endl;
 		Sleep(1000);
 		//Now, I've assumed that each electronic item marked as shared is on average shared b/w 2 persons
-		cout << "Laptops: " << std::setprecision(2) << ((float)GlobalData::laptopnumber / (GlobalData::surveytakers+GlobalData::laptopshared)) << endl << endl;
+		cout << "Laptops: " << std::setprecision(2) << ((float)GlobalData::laptopnumber[0] / (GlobalData::surveytakers+GlobalData::laptopshared[0])) << endl << endl;
 		Sleep(1000);
-		cout << "Tablets: " << std::setprecision(2) << ((float)GlobalData::tabletnumber / (GlobalData::surveytakers+GlobalData::tabletshared)) << endl << endl;
+		cout << "Tablets: " << std::setprecision(2) << ((float)GlobalData::tabletnumber[0] / (GlobalData::surveytakers+GlobalData::tabletshared[0])) << endl << endl;
 		Sleep(1000);
-		cout << "Personal Computers: " << std::setprecision(2) << ((float)GlobalData::pcnumber / (GlobalData::surveytakers+GlobalData::pcshared)) << endl << endl;
+		cout << "Personal Computers: " << std::setprecision(2) << ((float)GlobalData::pcnumber[0] / (GlobalData::surveytakers+GlobalData::pcshared[0])) << endl << endl;
 		Sleep(1000);
-		cout << "Mobile Phones: " << std::setprecision(2) << ((float)GlobalData::mobilenumber / (GlobalData::surveytakers+GlobalData::mobileshared)) << endl << endl;				
+		cout << "Mobile Phones: " << std::setprecision(2) << ((float)GlobalData::mobilenumber[0] / (GlobalData::surveytakers+GlobalData::mobileshared[0])) << endl << endl;				
 		Sleep(1000);
 		
 	}

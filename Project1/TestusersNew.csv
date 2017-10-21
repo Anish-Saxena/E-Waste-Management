@@ -5,4 +5,7 @@
 "test user2";44;"street name, some more names, numbers123,city-pin3456.";1;1;1;1;0;1;0;1;0;1;0;0;1;0;1;1;1;1;0;0;0;1;1;0;1;0;1;0
 "test user3";15;"street name, some more names, numbers123,city-pin3456.";2;1;1;0;0;0;1;0;1;1;1;0;1;1;1;0;1;0;0;0;1;0;1;0;1;0;1;0
 "test user4";23;"street name, some more names, numbers123,city-pin3456.";1;2;0;1;0;1;0;0;1;0;0;0;1;1;1;1;1;0;0;1;0;0;1;0;1;0;0;1
-"test user5",36,"street name, some more names, numbers123,city-pin3456.",1,1,1,1,0,0,0,1,0,1,0,1,1,0,1,1,0,0,0,0,0,0,1,0,0,0,0,1
+"test user5";36;"street name, some more names, numbers123,city-pin3456.";1;1;1;1;0;0;1;1;0;1;0;1;1;0;1;1;0;0;0;0;0;0;1;0;0;0;0;1
+"test user6";47;"street name, some more names, numbers123,city-pin3456.";2;1;0;1;1;0;0;1;1;1;0;1;1;0;1;0;1;0;0;0;1;0;1;0;0;0;1;0
+"test user7";19;"street name, some more names, numbers123,city-pin3456.";2;1;1;0;0;0;0;0;1;0;1;0;1;1;1;1;0;1;0;0;0;1;1;0;1;0;0;0
+"test user8";25;"street name, some more names, numbers123,city-pin3456.";2;1;1;1;0;0;0;0;1;1;1;0;1;1;1;1;0;1;0;0;0;1;0;0;0;1;1;0

@@ -44,13 +44,54 @@ namespace ManageData
 			f >> x;
 			f >> a;
 			getline(f, s, ';');
-			f >> x;			
-			GlobalData::mobilenumber += x;
-			f >> a;
-			f >> x;			
-			GlobalData::laptopnumber += x;
-			getline(f, s, '\n');			
+			int i;
+			for (i = 0; i < 2; i++)
+			{
+				f >> x;
+				GlobalData::mobilenumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::laptopnumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::tabletnumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::pcnumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::mobileshared[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::laptopshared[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::tabletshared[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::pcshared[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::headphonenumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::printernumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::joysticknumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::scannernumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::webcamnumber[i] += x;
+				f >> a;
+				f >> x;
+				GlobalData::smartwatchnumber[i] += x;
+				f >> a;									
+			}
+					
 		}
-		cout << GlobalData::mobilenumber << endl << GlobalData::laptopnumber;
+		cout << GlobalData::mobilenumber[0] << endl << GlobalData::laptopnumber[0];
 	}
 }
