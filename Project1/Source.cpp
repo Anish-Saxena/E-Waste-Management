@@ -7,7 +7,6 @@
 using namespace std;
 using namespace System;
 using namespace Welcome;
-using namespace ManageData;
 
 int main()
 {
