@@ -35,16 +35,16 @@ namespace ManageData
 		f.open("TestUsersNew.csv", ios::in);
 		string s;
 		char a;
-		int x;		
+		int x, i;
 		getline(f, s, '\n');
 		getline(f, s, '\n');
 		while (!f.eof())
 		{
+			GlobalData::surveytakers++;
 			getline(f, s, ';');
 			f >> x;
 			f >> a;
-			getline(f, s, ';');
-			int i;
+			getline(f, s, ';');			
 			for (i = 0; i < 2; i++)
 			{
 				f >> x;
@@ -89,9 +89,14 @@ namespace ManageData
 				f >> x;
 				GlobalData::smartwatchnumber[i] += x;
 				f >> a;									
-			}
-					
+			}					
+		}	
+		for (i = 0; i < 2; i++)
+		{
+			GlobalData::totalshared[i] = GlobalData::mobileshared[i] + GlobalData::laptopshared[i] + GlobalData::tabletshared[i] + GlobalData::pcshared[i];
+			GlobalData::totalgadgets[i] = GlobalData::mobilenumber[i] + GlobalData::laptopnumber[i] + GlobalData::tabletnumber[i] + GlobalData::pcnumber[i];
+			GlobalData::totalperipherals[i] = GlobalData::headphonenumber[i] + GlobalData::scannernumber[i] + GlobalData::printernumber[i] +
+												GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
 		}
-		cout << GlobalData::mobilenumber[0] << endl << GlobalData::laptopnumber[0];
 	}
 }

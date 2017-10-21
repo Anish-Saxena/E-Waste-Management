@@ -57,6 +57,7 @@ namespace Welcome
 	void AnalysisnDisplay()
 	{
 		int option;
+		DataManip::ChecknSum();
 		Sleep(100);
 		system("CLS");
 		cout << "What would you like to see?" << endl << endl;
@@ -65,9 +66,11 @@ namespace Welcome
 		cout << "3. Display how the E-waste should be processed prior to dedicated treatment of each substance/ group of substances" << endl << endl;
 		//more options to follow
 		cin >> option;
-		int increment;
-		for (; option > 0; (option>0 ? option += increment : 0))
+
+		int u=option;
+		for (; option >0; option++)
 		{
+			u = option;
 			switch (option)
 			{
 			case 1:
@@ -75,7 +78,8 @@ namespace Welcome
 				system("CLS");
 				Display::GeneralResults();
 				cout << endl << endl << "Would you like to continue to \"Subtance wise breakup of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
-				cin >> increment;
+				cin >> u;
+				if (u < 1)	option = -1;
 				Sleep(100);
 				break;
 			}
@@ -84,7 +88,8 @@ namespace Welcome
 				system("CLS");
 				Display::ComponentBreakup();
 				cout << endl << endl << "Would you like to continue to \"Pre-processing of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
-				cin >> increment;
+				cin >> u;
+				if (u < 1)	option = -1;
 				Sleep(100);
 				break;
 			}
@@ -92,7 +97,7 @@ namespace Welcome
 			{
 				system("CLS");
 				Display::PreProcessing();
-				option = 0;
+				option = -1;
 				_getche();
 				break;
 			}

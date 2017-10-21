@@ -2,14 +2,10 @@
 #include<conio.h>
 #include<windows.h>
 #include"Screens.h"
-#include"ManageData.h"
-#include"Analyze.h"
 
 using namespace std;
 using namespace System;
 using namespace Welcome;
-using namespace ManageData;
-using namespace Analyze;
 
 int main()
 {
@@ -31,10 +27,7 @@ int main()
 		AnalysisnDisplay();
 		break;
 	}
-	}/*
-	DataManip::ChecknSum();
-	cout << endl << GlobalData::tabletnumber[0];
-	_getche();*/
+	}
 	system("CLS");
 	cout << "Press any key to exit" << endl;
 	_getch();
