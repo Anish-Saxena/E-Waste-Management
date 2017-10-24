@@ -52,6 +52,13 @@ namespace Welcome
 		Application::SetCompatibleTextRenderingDefault(false);
 		Project1::MyForm form;
 		Application::Run(%form);
+		cout << endl << endl;
+		system("Pause");
+		cout << endl << endl << "Would you like to now go to analysis and display section? Press 1 for yes" << endl << endl;
+		int x;
+		cin >> x;
+		if (x == 1)	AnalysisnDisplay();
+		_getche();
 	}
 
 	void AnalysisnDisplay()

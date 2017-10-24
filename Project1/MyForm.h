@@ -910,8 +910,7 @@ private: System::Void InsertData();
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	InsertData();
-	Form::Close();
-	Application::Exit();
+	Form::Close();	
 }
 
 private: System::Void checkBox4_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {

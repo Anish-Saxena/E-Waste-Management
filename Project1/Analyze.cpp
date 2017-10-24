@@ -100,7 +100,7 @@ namespace Analyze
 		for (i = 0; i < 16; i++)
 		{
 			Sleep(100);
-			printf("%-30s%lf kg\n", substance[i].c_str(), GlobalData::GD[i]);
+			printf("%-30s%.6lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
 		}		
 	}
 	void Display::PreProcessing()
@@ -115,17 +115,48 @@ namespace Analyze
 		cout << "Since this project aims to manage the E-waste from the time it is collected, the first crucial step, Preprocessing, has been illustrated. It involves the following steps:" << endl << endl;
 		Sleep(1000);
 		cout << "Sorting and Dismantling\t------>\tSeperation of Re-usable parts" << endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		int i;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Mechanical Processing\t------>\tSeperation of wirings metals and plastics"<<endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Vibrating Screen" << endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Magnetic Seperation\t------>\tSeperation of Ferrous metals" << endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Eddy current seperation\t------>\tSeperation of Non-Ferrous metals" << endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Density Seperation\t------>\tSeperation of Plastics" << endl;
-		cout << "\t|\n\t|\n\t|\n\t\\/" << endl;
+		for (i = 0; i<10; ++i)
+		{
+			cout << "\t" << (char)0xB3;
+			cout << '\n';
+		}
+		cout << "\t\\/\n";
 		cout << "Disposalt\t------>\tLandfills" << endl;
 	}
 	void Display::ProcessingMetals()
@@ -142,7 +173,7 @@ namespace Analyze
 		cout << " However for hydrometallurgical routes, preprocessing is required to separate metal fractions from other fractions.";
 		cout << " This will enhance the efficiency of each step associated with hydrometallurgical routes.";
 		cout << " Each route has advantages and disadvantages and this project will try to select the best combinations of both routes to both reduce costs";
-		cout << " and have minimum carbon footprintt as well, so as to creat as much efficient design as possible." << endl << endl;
+		cout << " and have minimum carbon footprint as well, so as to creat as much efficient design as possible." << endl << endl;
 
 	}
 }
