@@ -11,7 +11,7 @@ using namespace Welcome;
 int main()
 {
 	//Welcome Screen
-	system("color B2");	
+	system("color B2");
 	Welcomescreen();
 	int choice = Choice(choice);
 	switch (choice)

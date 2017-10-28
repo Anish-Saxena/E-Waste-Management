@@ -32,6 +32,10 @@ namespace Analyze
 	int GlobalData::totalshared[2] = { 0,0 }, GlobalData::totalgadgets[2] = { 0,0 }, GlobalData::totalperipherals[2] = { 0,0 },
 	GlobalData::mobileshared[2] = { 0,0 }, GlobalData::laptopshared[2] = { 0,0 }, GlobalData::tabletshared[2] = { 0,0 }, GlobalData::pcshared[2] = { 0,0 };
 
+	double GlobalData::preciousmetal[2] = { 0,0 }, GlobalData::metal[2] = { 0,0 }, GlobalData::nonmetal[2] = { 0,0 }, GlobalData::glassnceramics[2] = { 0,0 };
+
+	double GlobalData::totalewaste[2] = { 0,0 };
+
 	void BestProcess::Metals()
 	{
 		;
@@ -45,19 +49,19 @@ namespace Analyze
 		for (i = 0; i < 2; i++)
 		{
 			Sleep(1000);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::laptopnumber[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::tabletnumber[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::pcnumber[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::mobilenumber[i] << endl << endl; ++gi;
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::laptopnumber[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::tabletnumber[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::pcnumber[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::mobilenumber[i] << endl << endl; ++gi;	Sleep(100);
 			Sleep(1000); gi = 0;
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of " << ord[i] << " electronic gadgets are: " << GlobalData::totalgadgets[i] << endl << endl;
 			cout << "_____________________________________________" << endl;
 			Sleep(1000);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::laptopshared[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::tabletshared[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::pcshared[i] << endl << endl; ++gi;
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::mobileshared[i] << endl << endl; ++gi;
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::laptopshared[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::tabletshared[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::pcshared[i] << endl << endl; ++gi;	Sleep(100);
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::mobileshared[i] << endl << endl; ++gi;	Sleep(100);
 			Sleep(1000); gi = 0;
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of "<<ord[i]<<" electronic gadgets shared are: " << GlobalData::totalshared[i] << endl << endl;
@@ -67,18 +71,18 @@ namespace Analyze
 			cout << "_____________________________________________" << endl;
 			Sleep(1000);
 			//I've assumed that each electronic item marked as shared is on average shared b/w 2 persons
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::laptopnumber[i] / (GlobalData::surveytakers + GlobalData::laptopshared[i])) << endl << endl; ++gi;
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::tabletnumber[i] / (GlobalData::surveytakers + GlobalData::tabletshared[i])) << endl << endl; ++gi;
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::pcnumber[i] / (GlobalData::surveytakers + GlobalData::pcshared[i])) << endl << endl; ++gi;
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::mobilenumber[i] / (GlobalData::surveytakers + GlobalData::mobileshared[i])) << endl << endl; ++gi;
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::laptopnumber[i] / (GlobalData::surveytakers + GlobalData::laptopshared[i])) << endl << endl; ++gi;	Sleep(100);
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::tabletnumber[i] / (GlobalData::surveytakers + GlobalData::tabletshared[i])) << endl << endl; ++gi;	Sleep(100);
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::pcnumber[i] / (GlobalData::surveytakers + GlobalData::pcshared[i])) << endl << endl; ++gi;	Sleep(100);
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::mobilenumber[i] / (GlobalData::surveytakers + GlobalData::mobileshared[i])) << endl << endl; ++gi;	Sleep(100);
 			Sleep(1000); gi = 0;
 			cout << "_____________________________________________" << endl;
-			cout << "The number of " << ord[i] << " Headphones are " << GlobalData::headphonenumber[i] << endl << endl;
-			cout << "The number of " << ord[i] << " Scanners are " << GlobalData::scannernumber[i] << endl << endl;
-			cout << "The number of " << ord[i] << " Prineter are " << GlobalData::printernumber[i] << endl << endl;
-			cout << "The number of " << ord[i] << " Joysticks are " << GlobalData::joysticknumber[i] << endl << endl;
-			cout << "The number of " << ord[i] << " Webcams are " << GlobalData::webcamnumber[i] << endl << endl;
-			cout << "The number of " << ord[i] << " Smartwatches are " << GlobalData::smartwatchnumber[i] << endl << endl;
+			cout << "The number of " << ord[i] << " Headphones are " << GlobalData::headphonenumber[i] << endl << endl;	Sleep(100);
+			cout << "The number of " << ord[i] << " Scanners are " << GlobalData::scannernumber[i] << endl << endl;	Sleep(100);
+			cout << "The number of " << ord[i] << " Prineter are " << GlobalData::printernumber[i] << endl << endl;	Sleep(100);
+			cout << "The number of " << ord[i] << " Joysticks are " << GlobalData::joysticknumber[i] << endl << endl;	Sleep(100);
+			cout << "The number of " << ord[i] << " Webcams are " << GlobalData::webcamnumber[i] << endl << endl;	Sleep(100);
+			cout << "The number of " << ord[i] << " Smartwatches are " << GlobalData::smartwatchnumber[i] << endl << endl;	Sleep(100);
 			Sleep(1000);
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of " << ord[i] << " peripherals are: " << GlobalData::totalperipherals[i] << endl << endl;			
@@ -102,6 +106,13 @@ namespace Analyze
 			Sleep(100);
 			printf("%-30s%.6lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
 		}		
+		printf("\n%.2lf kg of total E-waste has been produced collectively in this survey", GlobalData::totalewaste[1]);
+		cout << endl << endl << "The E-Waste contains: " << endl << endl;		
+		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::metal[1], (GlobalData::metal[1] * 100 / GlobalData::totalewaste[1]), 37);	Sleep(100);
+		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[1] * 100 / GlobalData::totalewaste[1]), 37);	Sleep(100);
+		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[1] * 100 / GlobalData::totalewaste[1]), 37);	Sleep(100);
+		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n",GlobalData::glassnceramics[1], (GlobalData::glassnceramics[1] * 100 / GlobalData::totalewaste[1]), 37);	Sleep(100);
+		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::GD[3], (GlobalData::GD[3] * 100 / GlobalData::totalewaste[1]), 37);	Sleep(100);
 	}
 	void Display::PreProcessing()
 	{
