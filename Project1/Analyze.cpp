@@ -187,11 +187,15 @@ namespace Analyze
 		if (i == 1)	Display::MetalProcessing();
 		else if (i == 2)	Display::NonMetalProcessing();
 	}
-
-
-
+	
 
 	void BestProcess::Metals()
+	{
+		;
+	}
+
+
+	void BestProcess::NonMetals()
 	{
 		;
 	}
@@ -314,5 +318,10 @@ namespace Analyze
 		}
 	}
 
+	
+	void BestProcess::DefineProcess()
+	{
+		;
+	}
 
 }

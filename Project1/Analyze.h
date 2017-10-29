@@ -1,4 +1,7 @@
 #pragma once
+#include<string>
+
+using namespace std;
 
 namespace Analyze
 {
@@ -18,16 +21,35 @@ namespace Analyze
 
 		static int totalgadgets[2], totalperipherals[2], totalshared[2]; //var[0] for total of owned, var[1] for total of Disposed		
 	};
+
+
 	class HelperFunctions
 	{
 	public:
 		static void WhatLevel(char);
 	};
+
+
+	struct Process
+	{
+		static char type;
+		static int stage;
+		static string information;
+		static double economicfactor;
+		static double environmentalfactor;
+		static double inputfactor;
+	};
+
+
 	class BestProcess
 	{
 	public:
+		static void DefineProcess();
 		static void Metals();
+		static void NonMetals();
 	};
+
+
 	class Display
 	{
 	public:
