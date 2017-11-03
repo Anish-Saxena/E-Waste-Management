@@ -50,13 +50,13 @@ namespace ManageData
 	{
 	public:
 		static const double SWD[16];
-	};		
-	class JoystickData 
+	};
+	class JoystickData
 	{
 	public:
 		static const double JD[16];
 	};
-	class WebcamData 
+	class WebcamData
 	{
 	public:
 		static const double WD[16];

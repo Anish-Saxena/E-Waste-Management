@@ -26,7 +26,7 @@ namespace ManageData
 
 	//FOR MOBILE DATA:	
 	const double MobileData::MD[16] = { 0.000210 ,0.0001 ,0.0153 ,0.025,0.021,0.010,0.003 ,0.00005,0.005,0.072 ,0.0012 ,0.0002,0.035,0.015,0.0001 ,0.005 };
-	
+
 	//FOR PC DATA:
 	const double PCData::PCD[16] = { 0.001075 ,0.001412 ,0.1234 ,0.735 ,0.214 ,0.053,0.013 ,0.002425,0.040,0.361,0.0067,0.001218,0.331,0.617,0.075,0.012 };
 
@@ -69,7 +69,7 @@ namespace ManageData
 			getline(f, s, ';');
 			f >> x;
 			f >> a;
-			getline(f, s, ';');			
+			getline(f, s, ';');
 			for (i = 0; i < 2; i++)
 			{
 				f >> x;
@@ -113,15 +113,15 @@ namespace ManageData
 				f >> a;
 				f >> x;
 				GlobalData::smartwatchnumber[i] += x;
-				f >> a;									
-			}					
-		}	
+				f >> a;
+			}
+		}
 		for (i = 0; i < 2; i++)
 		{
 			GlobalData::totalshared[i] = GlobalData::mobileshared[i] + GlobalData::laptopshared[i] + GlobalData::tabletshared[i] + GlobalData::pcshared[i];
 			GlobalData::totalgadgets[i] = GlobalData::mobilenumber[i] + GlobalData::laptopnumber[i] + GlobalData::tabletnumber[i] + GlobalData::pcnumber[i];
 			GlobalData::totalperipherals[i] = GlobalData::headphonenumber[i] + GlobalData::scannernumber[i] + GlobalData::printernumber[i] +
-												GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
+				GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
 		}
 	}
 	void DataManip::AggregateSum()
@@ -133,6 +133,21 @@ namespace ManageData
 				TabletData::TD[i] * GlobalData::tabletnumber[1] + PCData::PCD[i] * GlobalData::pcnumber[1] + HeadphoneData::HD[i] * GlobalData::headphonenumber[1] +
 				ScannerData::SD[i] * GlobalData::scannernumber[1] + PrinterData::PD[i] * GlobalData::printernumber[1] + JoystickData::JD[i] * GlobalData::joysticknumber[1] +
 				WebcamData::WD[i] * GlobalData::webcamnumber[1] + SmartwatchData::SWD[i] * GlobalData::smartwatchnumber[1];
+
+			GlobalData::totalewaste += GlobalData::GD[i];
 		}
+
+		GlobalData::metal[1] = GlobalData::GD[0] + GlobalData::GD[1] + GlobalData::GD[2] + GlobalData::GD[5] + GlobalData::GD[6] + GlobalData::GD[7] +
+			GlobalData::GD[10] + GlobalData::GD[11] + GlobalData::GD[12] + GlobalData::GD[13];
+		GlobalData::nonmetal[1] = GlobalData::GD[3] + GlobalData::GD[4] + GlobalData::GD[8] + GlobalData::GD[9] + GlobalData::GD[14] + GlobalData::GD[15];
+		GlobalData::glassnceramics[1] = GlobalData::GD[4] + GlobalData::GD[9] + GlobalData::GD[15];
+		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];
+		GlobalData::plastics[1] = GlobalData::GD[3];
+
+		GlobalData::metal[0] = GlobalData::metal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::nonmetal[0] = GlobalData::nonmetal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::preciousmetal[0] = GlobalData::preciousmetal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::glassnceramics[0] = GlobalData::glassnceramics[1] * 100 / GlobalData::totalewaste;
+		GlobalData::plastics[0] = GlobalData::plastics[1] * 100 / GlobalData::totalewaste;
 	}
 }

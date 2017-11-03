@@ -133,7 +133,7 @@ namespace Project1 {
 	private: System::Windows::Forms::CheckBox^  checkBox16;
 	private: System::Windows::Forms::CheckBox^  checkBox17;
 	private: System::Windows::Forms::CheckBox^  checkBox18;
-private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button2;
 
 
 
@@ -878,53 +878,53 @@ private: System::Windows::Forms::Button^  button2;
 	}
 	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label4_Click_1(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void listView1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void listBox4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void listBox3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void checkBox2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void label14_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void checkBox5_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void checkBox7_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-}
+	private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void label4_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void listView1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void label6_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void listBox4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void label8_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void listBox3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void checkBox2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void label14_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void checkBox5_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void checkBox7_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
 
-private: System::Void InsertData();
+	private: System::Void InsertData();
 
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	InsertData();
-	Form::Close();	
+		InsertData();
+		Form::Close();
+	}
+
+	private: System::Void checkBox4_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void checkBox11_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	}
+
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		InsertData();
+		this->Hide();
+		MyForm^ newf = gcnew MyForm;
+		newf->Show();
+	}
+
+	};
 }
-
-private: System::Void checkBox4_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void checkBox11_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-}
-
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	
-	InsertData();	
-	this->Hide();
-	MyForm^ newf = gcnew MyForm;
-	newf->Show();		
-}
-
-};
-} 

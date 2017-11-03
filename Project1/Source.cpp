@@ -11,7 +11,7 @@ using namespace Welcome;
 int main()
 {
 	//Welcome Screen
-	system("color B2");	
+	system("color B2");
 	Welcomescreen();
 	int choice = Choice(choice);
 	switch (choice)
@@ -19,7 +19,7 @@ int main()
 	case 1:
 	{
 		//Display survey form
-		RunForm();		
+		RunForm();
 		break;
 	}
 	case 2:

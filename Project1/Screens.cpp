@@ -65,16 +65,18 @@ namespace Welcome
 	{
 		int option;
 		DataManip::ChecknSum();
+		DataManip::AggregateSum();
 		Sleep(100);
 		system("CLS");
 		cout << "What would you like to see?" << endl << endl;
 		cout << "1. The General results from the survey regarding quantity of E-waste generated" << endl << endl;
 		cout << "2. The substance wise breakup of E-waste generated" << endl << endl;
 		cout << "3. Display how the E-waste should be processed prior to dedicated treatment of each substance/ group of substances" << endl << endl;
+		cout << "4. Display the best processes required to treat the given E-waste" << endl << endl;
 		//more options to follow
 		cin >> option;
 
-		int u=option;
+		int u = option;
 		for (; option >0; option++)
 		{
 			u = option;
@@ -104,8 +106,18 @@ namespace Welcome
 			{
 				system("CLS");
 				Display::PreProcessing();
-				option = -1;
+				cout << endl << endl << "Would you like to continue to \"Processing of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
+				cin >> u;
+				if (u < 1)	option = -1;
+				Sleep(100);
+				break;
+			}
+			case 4:
+			{
+				system("CLS");
+				Display::GeneralProcessing();
 				_getche();
+				option = -1;
 				break;
 			}
 			}
