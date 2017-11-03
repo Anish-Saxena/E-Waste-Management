@@ -8,6 +8,7 @@
 #include<string.h>
 #include<string>
 #include<stdio.h>
+#include<math.h>
 
 using namespace std;
 using namespace ManageData;
@@ -329,13 +330,50 @@ namespace Analyze
 	}
 
 	
-	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, char type, int stage)
+	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit, double normalize[])	//start init nd cit from 0
 	{
-		;
+		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
+		
+		double ce = (s.efficiency*(1 + init*s.economicfactors[0])) / (init + 1);
+		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
+		double cc = s.cost*(1 + cit);
+
+		if (ce > s.maxefficiency||cc>s.maxcost)
+		{
+			economicpoints = -1;
+			environmentalpoints = -1;
+			relativeprocesspoints = -1;
+			return;		//edit this as per return type
+		}
+
+		double sidetreatment;
+		switch (s.othertypes.typeof)
+		{
+		case 'B':
+		{
+			sidetreatment = 50;
+			break;
+		}
+		case 'P':
+		{
+			sidetreatment = 200;
+			break;
+		}
+		case 'H':
+		{
+			sidetreatment = 200;
+			break;
+		}
+		default: sidetreatment = 0;
+		}
+
+		economicpoints = (pow(ce, 3)*samount*typecost) / cc;
+		environmentalpoints = ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount);	
+		relativeprocesspoints = sidetreatment*(tamount - samount)*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
+		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
 	}
 
 	
-
 	void BestProcess::DefineProcess()
 	{
 		//Now defining processes for metals
@@ -347,7 +385,9 @@ namespace Analyze
 		Metals[0].category = 0;
 		Metals[0].type = 'B';
 		Metals[0].cost = 350000;
+		Metals[0].maxcost = 1500000;
 		Metals[0].efficiency = 0.95;
+		Metals[0].maxefficiency = 0.99;
 		Metals[0].economicfactors[0] = 1.1;
 		Metals[0].economicfactors[1] = 0.9;
 		Metals[0].amountinput[0] = 20;
@@ -366,7 +406,9 @@ namespace Analyze
 		Metals[1].type = 'P';
 		Metals[1].category = 0;
 		Metals[1].cost = 250000;
+		Metals[1].maxcost = 1200000;
 		Metals[1].efficiency = 0.97;
+		Metals[1].maxefficiency = 0.99;
 		Metals[1].economicfactors[0] = 0.9;
 		Metals[1].economicfactors[1] = 0.85;
 		Metals[1].amountinput[0] = 0.3;
@@ -385,7 +427,9 @@ namespace Analyze
 		Metals[2].type = 'P';
 		Metals[2].category = 0;
 		Metals[2].cost = 150000;
+		Metals[2].maxcost = 1000000;
 		Metals[2].efficiency = 0.85;
+		Metals[2].maxefficiency = 0.90;
 		Metals[2].economicfactors[0] = 0.95;
 		Metals[2].economicfactors[1] = 0.8;
 		Metals[2].amountinput[0] = 0.5;

@@ -27,7 +27,7 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
-		static void PointCalc(struct Process, double tamount, double samount, char type, int stage);
+		static void PointCalc(struct Process, double , double , double, char , int, int, int, double*);
 	};
 
 	class BestProcess
@@ -43,7 +43,9 @@ namespace Analyze
 	{
 		string information;			//general info about the process
 		double cost;					//cost of running the process (in Rs.)
+		double maxcost;				//maximum allowed cost for process
 		double efficiency;			//efficiency in processing the specific e-waste type from one form to another (in fraction)
+		double maxefficiency;		//the max efficiency achievable through the given process
 		double economicfactors[2];	//var[0] for returns to scale (input->input*2 then output?) and var[1] for economies of scale (cost->cost*2 then output?)
 									//var[0] relates scale of process with constant efficiency and var[1] relates efficiency of process with constant scale
 		double amountinput[2];		//var[0] for specific substance type's amount, var[1] for amount of all of E-waste (in kg)
@@ -65,7 +67,9 @@ namespace Analyze
 		{
 			information = "NA";
 			cost = 0;
+			maxcost = 0;
 			efficiency = 0;
+			maxefficiency = 0;
 			economicfactors[0] = 0;
 			economicfactors[1] = 0;
 			amountinput[0] = 0;
