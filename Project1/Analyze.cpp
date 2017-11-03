@@ -323,58 +323,7 @@ namespace Analyze
 			cout << std::fixed << std::setprecision(2) << GlobalData::metal[0] << "% detected" << endl << endl;
 			break;
 		}
-		case 'N':
-		{
-			cout << "Non Metals comprise Plastics, Ceramics, Carbon, Glass, Electrolytes and Silicon. The threshold for non metal presence level by weight percentage are as follows:" << endl << endl;
-			cout << "1. High : if level is >=50%" << endl;
-			cout << "1. Normal : if level is <50% and >=40%" << endl;
-			cout << "1. Low : if level is <40%" << endl;
-			cout << "The level of Metals in the given survey is:\n\n";
 
-			if (GlobalData::nonmetal[0] >= 50)
-				cout << "HIGH: ";
-			else if (GlobalData::nonmetal[0] < 50 && GlobalData::nonmetal[0] >= 40)
-				cout << "NORMAL: ";
-			else
-				cout << "LOW: ";
-			cout << std::fixed << std::setprecision(2) << GlobalData::nonmetal[0] << "% detected" << endl << endl;
-			break;
-		}
-		case 'P':
-		{
-			cout << "The threshold for plastics presence level by weight percentage are as follows:" << endl << endl;
-			cout << "1. High : if level is >=20%" << endl;
-			cout << "1. Normal : if level is <20% and >=12%" << endl;
-			cout << "1. Low : if level is <12%" << endl;
-			cout << "The level of Metals in the given survey is:\n\n";
-
-			if (GlobalData::plastics[0] >= 20)
-				cout << "HIGH: ";
-			else if (GlobalData::plastics[0] < 20 && GlobalData::plastics[0] >= 12)
-				cout << "NORMAL: ";
-			else
-				cout << "LOW: ";
-			cout << std::fixed << std::setprecision(2) << GlobalData::plastics[0] << "% detected" << endl << endl;
-			break;
-		}
-		case 'G':
-		{
-			cout << "Glass and Ceramics comprise Ceramics, Glass and Silicon. The threshold for Glass and Ceramics presence level presence level by weight percentage are as follows:" << endl << endl;
-			cout << "1. High : if level is >=30%" << endl;
-			cout << "1. Normal : if level is <30% and >=25%" << endl;
-			cout << "1. Low : if level is <25%" << endl;
-			cout << "The level of Metals in the given survey is:\n\n";
-
-
-			if (GlobalData::glassnceramics[0] >= 20)
-				cout << "HIGH: ";
-			else if (GlobalData::glassnceramics[0] < 20 && GlobalData::glassnceramics[0] >= 12)
-				cout << "NORMAL: ";
-			else
-				cout << "LOW: ";
-			cout << std::fixed << std::setprecision(2) << GlobalData::glassnceramics[0] << "% detected" << endl << endl;
-			break;
-		}
 		}
 	}
 
