@@ -76,7 +76,7 @@ namespace Welcome
 		//more options to follow
 		cin >> option;
 
-		int u=option;
+		int u = option;
 		for (; option >0; option++)
 		{
 			u = option;

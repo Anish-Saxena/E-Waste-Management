@@ -19,7 +19,7 @@ int main()
 	case 1:
 	{
 		//Display survey form
-		RunForm();		
+		RunForm();
 		break;
 	}
 	case 2:

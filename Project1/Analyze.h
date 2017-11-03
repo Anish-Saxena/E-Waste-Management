@@ -27,6 +27,7 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
+
 	};
 
 
@@ -41,6 +42,7 @@ namespace Analyze
 	};
 
 
+
 	class BestProcess
 	{
 	public:
@@ -53,12 +55,12 @@ namespace Analyze
 	class Display
 	{
 	public:
-		static void GeneralResults();		
+		static void GeneralResults();
 		static void ComponentBreakup();
 		static void PreProcessing();
 		static void GeneralProcessing();
 		static void MetalProcessing();
 		static void NonMetalProcessing();
 	};
-	
+
 }
