@@ -27,28 +27,16 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
+		static void PointCalc(struct Process, double tamount, double samount, char type, int stage);
 
 	};
-
-
-	struct Process
-	{
-		static char type;
-		static int stage;
-		static string information;
-		static double economicfactor;
-		static double environmentalfactor;
-		static double inputfactor;
-	};
-
-
 
 	class BestProcess
 	{
 	public:
 		static void DefineProcess();
 		static void Metals();
-		static void NonMetals();
+		static void NonMetals();		
 	};
 
 

@@ -126,42 +126,42 @@ namespace Analyze
 		Sleep(1000);
 		cout << "Sorting and Dismantling\t------>\tSeperation of Re-usable parts" << endl;
 		int i;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
 		}
 		cout << "\t\\/\n";
 		cout << "Mechanical Processing\t------>\tSeperation of wirings metals and plastics" << endl;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
 		}
 		cout << "\t\\/\n";
 		cout << "Vibrating Screen" << endl;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
 		}
 		cout << "\t\\/\n";
 		cout << "Magnetic Seperation\t------>\tSeperation of Ferrous metals" << endl;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
 		}
 		cout << "\t\\/\n";
 		cout << "Eddy current seperation\t------>\tSeperation of Non-Ferrous metals" << endl;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
 		}
 		cout << "\t\\/\n";
 		cout << "Density Seperation\t------>\tSeperation of Plastics" << endl;
-		for (i = 0; i<10; ++i)
+		for (i = 0; i < 10; ++i)
 		{
 			cout << "\t" << (char)0xB3;
 			cout << '\n';
@@ -192,6 +192,7 @@ namespace Analyze
 		if (i == 1)	Display::MetalProcessing();
 		else if (i == 2)	Display::NonMetalProcessing();
 	}
+
 
 	void BestProcess::Metals()
 	{
@@ -327,9 +328,109 @@ namespace Analyze
 		}
 	}
 
+
 	void BestProcess::DefineProcess()
 	{
-		;
-	}
+		//Defining the structure which'll provide skeleton for all process formats
+		struct Process
+		{
+			  string information;			//general info about the process
+			  double cost;					//cost of running the process (in Rs.)
+			  double efficiency;			//efficiency in processing the specific e-waste type from one form to another (in fraction)
+			  double economicfactors[2];	//var[0] for returns to scale (input->input*2 then output?) and var[1] for economies of scale (cost->cost*2 then output?)
+												//var[0] relates scale of process with constant efficiency and var[1] relates efficiency of process with constant scale
+			  double amountinput[2];		//var[0] for specific substance type's amount, var[1] for amount of all of E-waste (in kg)
+			  int category;				//0 for metals and 1 for nonmetals
+			  double carbonfootprint[2];	//var[0] for footprint of the process, var[1] for mining the product instad of recycling it in kgs of CO2 equivalents
+			  char type;					//type of e-waste treated by the given process
+												//types: B is for base metals, P is for precious metals, H is for hazardous heavy metals
+			  int stagefrom;				//what stage the given process works from in case of specific e-waste
+			  int stageto;					//what stage the given process takes the specific e-waste to
+												//stages: for metals: 1->Purification or Leaching, 2->Extraction or recovery, 3->Refining
+			  struct OT
+			{
+				  char typeof;
+				  int stagefrom;
+				  int stageto;
+			}othertypes;
+			Process()
+			{
+				information = "NA";
+				cost = 0;
+				efficiency = 0;
+				economicfactors[0] = 0;
+				economicfactors[1] = 0;
+				amountinput[0] = 0;
+				amountinput[1] = 0;
+				carbonfootprint[0] = 0;
+				carbonfootprint[1] = 0;
+				type = 'Z';
+				stagefrom = -5;
+				stageto = -4;
+				othertypes.stagefrom = -10;
+				othertypes.stageto = -5;
+				othertypes.typeof = 'Z';
+			}
+		};
+		//Now defining processes for metals
+		Process Metals[3];
 
+		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
+
+		Metals[0].information = "Ion Exchange process, more info soon.";
+		Metals[0].category = 0;
+		Metals[0].type = 'B';
+		Metals[0].cost = 350000;
+		Metals[0].efficiency = 0.95;
+		Metals[0].economicfactors[0] = 1.1;
+		Metals[0].economicfactors[1] = 0.9;
+		Metals[0].amountinput[0] = 20;
+		Metals[0].amountinput[1] = 60;
+		Metals[0].carbonfootprint[0] = 5000;
+		Metals[0].carbonfootprint[1] = 6500;		
+		Metals[0].stagefrom = 2;
+		Metals[0].stageto = 3;
+		Metals[0].othertypes.stagefrom = 1;
+		Metals[0].othertypes.stageto = 2;
+		Metals[0].othertypes.typeof = 'P';
+
+		//Process 1: Adsorption, for precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
+
+		Metals[1].information = "Adsorption process, more info soon.";
+		Metals[1].type = 'P';
+		Metals[1].category = 0;
+		Metals[1].cost = 250000;
+		Metals[1].efficiency = 0.97;
+		Metals[1].economicfactors[0] = 0.9;
+		Metals[1].economicfactors[1] = 0.85;
+		Metals[1].amountinput[0] = 0.3;
+		Metals[1].amountinput[1] = 50;
+		Metals[1].carbonfootprint[0] = 2500;
+		Metals[1].carbonfootprint[1] = 8000;		
+		Metals[1].stagefrom = 2;
+		Metals[1].stageto = 3;
+		Metals[1].othertypes.stagefrom = -1;
+		Metals[1].othertypes.stageto = -1;
+		Metals[1].othertypes.typeof = 'Z';
+
+		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
+
+		Metals[2].information = "Vat Leaching, more info soon.";
+		Metals[2].type = 'P';
+		Metals[2].category = 0;
+		Metals[2].cost = 150000;
+		Metals[2].efficiency = 0.85;
+		Metals[2].economicfactors[0] = 0.95;
+		Metals[2].economicfactors[1] = 0.8;
+		Metals[2].amountinput[0] = 0.5;
+		Metals[2].amountinput[1] = 200;
+		Metals[2].carbonfootprint[0] = 1500;
+		Metals[2].carbonfootprint[1] = 13000;
+		Metals[2].stagefrom = 1;
+		Metals[2].stageto = 2;
+		Metals[2].othertypes.stagefrom = 1;
+		Metals[2].othertypes.stageto = 2;
+		Metals[2].othertypes.typeof = 'B';
+	}
+	
 }
