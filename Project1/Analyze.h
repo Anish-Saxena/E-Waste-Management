@@ -27,6 +27,7 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
+
 	};
 
 
@@ -39,6 +40,7 @@ namespace Analyze
 		static double environmentalfactor;
 		static double inputfactor;
 	};
+
 
 
 	class BestProcess

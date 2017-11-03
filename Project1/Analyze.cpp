@@ -31,6 +31,7 @@ namespace Analyze
 	double GlobalData::totalewaste = 0;
 
 
+
 	void Display::GeneralResults()
 	{
 		string ord[2] = { "Owned","Disposed" }, ltpm[4] = { "Laptops","Tablets","Personal Computers","Mobile Phones" };
@@ -90,13 +91,16 @@ namespace Analyze
 		cout << "Let us now see how much of each substance, be it metal, glass, ceramics, etc., is approximately present (in total) in this E-waste:" << endl << endl;
 		cout << "The amount of each substance in kg is as follows: " << endl << endl;
 		cout << "Elements by their amount in E-waste:" << endl << endl;
+
 		string substance[16] = { "Gold","Mercury","Copper","Plastics","Ceramics","Steel","Lithium","Lead","Carbon","Glass","Silver","Nickel","Aluminum","Magnesium","Electrolyte","Silicon" };
+
 		int i;
 		Sleep(1000);
 		for (i = 0; i < 16; i++)
 		{
 			Sleep(100);
 			printf("%-30s%.6lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
+
 		}
 		printf("\n%.4lf kg of total E-waste has been produced collectively in this survey", GlobalData::totalewaste);
 		cout << endl << endl << "The E-Waste contains: " << endl << endl;
@@ -104,6 +108,7 @@ namespace Analyze
 		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
+
 		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	Sleep(100);
 	}
 
@@ -188,7 +193,6 @@ namespace Analyze
 		else if (i == 2)	Display::NonMetalProcessing();
 	}
 
-
 	void BestProcess::Metals()
 	{
 		;
@@ -203,6 +207,7 @@ namespace Analyze
 
 	void Display::MetalProcessing()
 	{
+
 		cout << "The metal fractions separated from e-waste during preprocessing can be further processed using";
 		cout << " hydrometallurgical, pyrometallurgical, electrometallurgical, biometallurgical processes, and their";
 		cout << " combinations. The hydrometallurgical and pyrometallurgical processes are the major routes for";
@@ -255,6 +260,7 @@ namespace Analyze
 			cout << "1. Low : if level is <45%" << endl;
 			cout << "The level of Metals in the given survey is:\n\n";
 
+
 			if (GlobalData::metal[0] >= 55)
 				cout << "HIGH: ";
 			else if (GlobalData::metal[0] < 55 && GlobalData::metal[0] >= 45)
@@ -306,6 +312,60 @@ namespace Analyze
 			cout << "1. Low : if level is <25%" << endl;
 			cout << "The level of Metals in the given survey is:\n\n";
 
+
+
+			if (GlobalData::metal[0] >= 55)
+				cout << "HIGH: ";
+			else if (GlobalData::metal[0] < 55 && GlobalData::metal[0] >= 45)
+				cout << "NORMAL: ";
+			else
+				cout << "LOW: ";
+			cout << std::fixed << std::setprecision(2) << GlobalData::metal[0] << "% detected" << endl << endl;
+			break;
+		}
+		case 'N':
+		{
+			cout << "Non Metals comprise Plastics, Ceramics, Carbon, Glass, Electrolytes and Silicon. The threshold for non metal presence level by weight percentage are as follows:" << endl << endl;
+			cout << "1. High : if level is >=50%" << endl;
+			cout << "1. Normal : if level is <50% and >=40%" << endl;
+			cout << "1. Low : if level is <40%" << endl;
+			cout << "The level of Metals in the given survey is:\n\n";
+
+			if (GlobalData::nonmetal[0] >= 50)
+				cout << "HIGH: ";
+			else if (GlobalData::nonmetal[0] < 50 && GlobalData::nonmetal[0] >= 40)
+				cout << "NORMAL: ";
+			else
+				cout << "LOW: ";
+			cout << std::fixed << std::setprecision(2) << GlobalData::nonmetal[0] << "% detected" << endl << endl;
+			break;
+		}
+		case 'P':
+		{
+			cout << "The threshold for plastics presence level by weight percentage are as follows:" << endl << endl;
+			cout << "1. High : if level is >=20%" << endl;
+			cout << "1. Normal : if level is <20% and >=12%" << endl;
+			cout << "1. Low : if level is <12%" << endl;
+			cout << "The level of Metals in the given survey is:\n\n";
+
+			if (GlobalData::plastics[0] >= 20)
+				cout << "HIGH: ";
+			else if (GlobalData::plastics[0] < 20 && GlobalData::plastics[0] >= 12)
+				cout << "NORMAL: ";
+			else
+				cout << "LOW: ";
+			cout << std::fixed << std::setprecision(2) << GlobalData::plastics[0] << "% detected" << endl << endl;
+			break;
+		}
+		case 'G':
+		{
+			cout << "Glass and Ceramics comprise Ceramics, Glass and Silicon. The threshold for Glass and Ceramics presence level presence level by weight percentage are as follows:" << endl << endl;
+			cout << "1. High : if level is >=30%" << endl;
+			cout << "1. Normal : if level is <30% and >=25%" << endl;
+			cout << "1. Low : if level is <25%" << endl;
+			cout << "The level of Metals in the given survey is:\n\n";
+
+
 			if (GlobalData::glassnceramics[0] >= 20)
 				cout << "HIGH: ";
 			else if (GlobalData::glassnceramics[0] < 20 && GlobalData::glassnceramics[0] >= 12)
@@ -317,7 +377,6 @@ namespace Analyze
 		}
 		}
 	}
-
 
 	void BestProcess::DefineProcess()
 	{

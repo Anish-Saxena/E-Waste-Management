@@ -141,7 +141,9 @@ namespace ManageData
 			GlobalData::GD[10] + GlobalData::GD[11] + GlobalData::GD[12] + GlobalData::GD[13];
 		GlobalData::nonmetal[1] = GlobalData::GD[3] + GlobalData::GD[4] + GlobalData::GD[8] + GlobalData::GD[9] + GlobalData::GD[14] + GlobalData::GD[15];
 		GlobalData::glassnceramics[1] = GlobalData::GD[4] + GlobalData::GD[9] + GlobalData::GD[15];
-		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];
+
+		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];		
+
 		GlobalData::plastics[1] = GlobalData::GD[3];
 
 		GlobalData::metal[0] = GlobalData::metal[1] * 100 / GlobalData::totalewaste;
