@@ -128,15 +128,16 @@ namespace Welcome
 	void Settings()
 	{
 		int inuser;
+		system("CLS");
 		cout << "Note: the settings are runtime and hence temporary, so that one can evaluate various scenarios without affecting actual data. Still, be careful." << endl << endl;
 		cout << "Do you want to extrapolate current data by taking current survey users as a modal class for the whole targetted population and multiplying them with a factor of your choice?" << endl<<endl;
-		cout << "Press 1 for yes" << endl;
+		cout << "Press 1 for yes" << endl<<endl;
 		cin >> inuser;
-		cout << endl << "Enter the integral factor you want to multiply the current data with:\t";
+		cout << endl <<endl << "Enter the integral factor you want to multiply the current data with:\t";
 		cin >> inuser;
 		GlobalData::SettingFactor(inuser);
 		Sleep(1000);
-		cout << "Done!" << endl << endl;
+		cout << endl << endl <<"Done!" << endl << endl;
 		cout << "Press any key to move on to analysis and display" << endl;
 		_getche();
 		AnalysisnDisplay();
