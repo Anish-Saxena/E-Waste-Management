@@ -200,7 +200,12 @@ namespace Analyze
 
 	void BestProcess::Metals()
 	{
-		;
+		//Start with precious metals
+		double samount, tamount, typecost, type, stage, init, cit;
+		samount = GlobalData::preciousmetal[1];
+		tamount = GlobalData::totalewaste;
+		typecost = TypeCost::preciousm;
+		type = 'P';
 	}
 
 
@@ -221,12 +226,21 @@ namespace Analyze
 		cout << " Currently, there are only limited laboratory studies for e-waste processing through biometallurgical routes,";
 		cout << " e.g., bioleaching of metals from e-waste. Nevertheless, this route has a potential for further development.";
 		cout << " This project focusses on efficient treatment of E-waste using hydrometallurgical and pyrometallurgical processes." << endl << endl;
-
+		Sleep(1000);
 		cout << " The preprocessing of E-waste is not always required for pyrometallurgical routes.";
 		cout << " However for hydrometallurgical routes, preprocessing is required to separate metal fractions from other fractions.";
 		cout << " This will enhance the efficiency of each step associated with hydrometallurgical routes.";
 		cout << " Each route has advantages and disadvantages and this project will try to select the best combinations of both routes to both reduce costs";
 		cout << " and have minimum carbon footprint as well, so as to create as much efficient design as possible." << endl << endl;
+		Sleep(1000);
+		cout << "Before delving into the in-depth analysis, some of the parameters must be specified by the administrator who is is calling for this analysis";
+		cout << " as per the economic and environmental situation of the locality the survey was taken in. These parameters will be fundamental to determining";
+		cout << "The best way to manage the E-waste at hand." << endl << endl;
+		Sleep(1000);
+		cout << "It is assumed that the cost of setting up the E-waste management plant would be born by the locality and hence, it is advised to carefully read the approximate costs";
+		cout << " associated with various plant sizes as per the E-waste amount, and select what level of economic liberty this software can take when assessing your case" << endl << endl;
+		cout << "Small plants: for total E-waste upto about 200kg, from about 60-80 users typically, carries an economic cost of about Rs. 20,00,000 per annum or about Rs. 2500 per month";
+		//^LOOK AT IT
 	}
 
 
@@ -370,7 +384,7 @@ namespace Analyze
 	}
 
 	
-	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit, double normalize[])	//start init nd cit from 0
+	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init nd cit from 0
 	{
 		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
 		
@@ -386,22 +400,25 @@ namespace Analyze
 			return;		//edit this as per return type
 		}
 
-		double sidetreatment;
+		double sidetreatment, sideamount;
 		switch (s.othertypes.typeof)
 		{
 		case 'B':
 		{
 			sidetreatment = 50;
+			sideamount = GlobalData::basemetal[1];
 			break;
 		}
 		case 'P':
 		{
 			sidetreatment = 200;
+			sideamount = GlobalData::preciousmetal[1];
 			break;
 		}
 		case 'H':
 		{
 			sidetreatment = 200;
+			sideamount = GlobalData::hazardousmetal[1];
 			break;
 		}
 		default: sidetreatment = 0;
@@ -409,7 +426,7 @@ namespace Analyze
 
 		economicpoints = (pow(ce, 3)*samount*typecost) / cc;
 		environmentalpoints = ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount);	
-		relativeprocesspoints = sidetreatment*(tamount - samount)*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
+		relativeprocesspoints = sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
 		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
 	}
 
@@ -454,7 +471,7 @@ namespace Analyze
 		Metals[1].amountinput[0] = 1.2;
 		Metals[1].amountinput[1] = 200;
 		Metals[1].carbonfootprint[0] = 2500;
-		Metals[1].carbonfootprint[1] = 8000;		
+		Metals[1].carbonfootprint[1] = 15000;		
 		Metals[1].stagefrom = 2;
 		Metals[1].stageto = 3;
 		Metals[1].othertypes.stagefrom = -1;

@@ -29,7 +29,7 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
-		static void PointCalc(struct Process, double , double , double, char , int, int, int, double*);
+		static void PointCalc(struct Process, double , double , double, char , int, int, int);
 	};
 
 	class BestProcess
