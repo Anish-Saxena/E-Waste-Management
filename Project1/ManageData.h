@@ -72,7 +72,7 @@ namespace ManageData
 	{
 	public:
 		static void ChecknSum();
-		static void AggregateSum();
+		static void AggregateSum();		
 		//function checkdata()
 		//function assignvalue()
 		//function writedata()		

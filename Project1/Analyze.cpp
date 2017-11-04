@@ -88,7 +88,7 @@ namespace Analyze
 	}
 
 
-	void Display::ComponentBreakup()
+	void Display::ComponentBreakup(int *flag)
 	{
 		cout << "Let us now see how much of each substance, be it metal, glass, ceramics, etc., is approximately present (in total) in this E-waste:" << endl << endl;
 		cout << "The amount of each substance in kg is as follows: " << endl << endl;
@@ -112,8 +112,26 @@ namespace Analyze
 		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
-
 		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	Sleep(100);
+		cout << "Press any key to continue." << endl;
+		_getche();
+		system("CLS");
+		printf("Now, %d users dump %.4lf kg of E-Waste every two years, or about %.4lf kg of E-waste on average every 4 day, since 4 days is the normal cycle of treating",GlobalData::surveytakers,GlobalData::totalewaste,GlobalData::totalewaste/182.5);
+		printf(" batch of E-waste in a regular treatment plant.\n\n");
+		cout << "Obviously, the plant works on a cycle basis of approximately 4 days each, to conduct all the processes involved for all substances present.";
+		cout << " Given the plant gets a steady stream of regularly collected E-waste, it will run for about 360 cycles in our survey period of 2 years." << endl;
+		HelperFunctions::ConvertperCycle();
+		*flag = 0;
+		cout << "Hence, the amount of E-waste produced in the given survey per cycle is as follows:\n\n";
+		printf("\n%.4lf kg of total E-waste has been produced collectively in this survey per cycle", GlobalData::totalewaste);
+		cout << endl << endl << "The E-Waste contains: " << endl << endl;
+		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	Sleep(100);
 	}
 
 
@@ -237,9 +255,13 @@ namespace Analyze
 		cout << " as per the economic and environmental situation of the locality the survey was taken in. These parameters will be fundamental to determining";
 		cout << "The best way to manage the E-waste at hand." << endl << endl;
 		Sleep(1000);
-		cout << "It is assumed that the cost of setting up the E-waste management plant would be born by the locality and hence, it is advised to carefully read the approximate costs";
-		cout << " associated with various plant sizes as per the E-waste amount, and select what level of economic liberty this software can take when assessing your case" << endl << endl;
-		cout << "Small plants: for total E-waste upto about 200kg, from about 60-80 users typically, carries an economic cost of about Rs. 20,00,000 per annum or about Rs. 2500 per month";
+		cout << "It is assumed that the cost of running the E-waste management plant would be born by the locality (through addition in maintainance costs or taxes) ";
+		cout<<"and hence, it is advised to carefully read the approximate costs";
+		cout << " associated with various plant sizes as per the E-waste amount, and select what level of economic liberty this software can take when assessing your case." << endl << endl;
+		cout << "Small plants:\n\nFor total E-waste upto about 200kg per day, from about 25,000 users typically (per year), carries an economic cost of about Rs. 30,00,000 per annum for 10 years\n\n";
+		cout << "The residents will pay about that cost Rs. 650 per month.";
+		cout << endl << endl;
+		cout << "Medium sized plants";
 		//^LOOK AT IT
 	}
 
@@ -383,6 +405,19 @@ namespace Analyze
 		}
 	}
 
+
+	void HelperFunctions::ConvertperCycle()
+	{
+		GlobalData::metal[1] = GlobalData::metal[1] / 180.0;
+		GlobalData::nonmetal[1] = GlobalData::nonmetal[1] / 180.0;
+		GlobalData::glassnceramics[1] = GlobalData::glassnceramics[1] / 180.0;
+		GlobalData::plastics[1] = GlobalData::plastics[1] / 180.0;
+		GlobalData::basemetal[1] = GlobalData::basemetal[1] / 180.0;
+		GlobalData::preciousmetal[1] = GlobalData::preciousmetal[1] / 180.0;
+		GlobalData::hazardousmetal[1] = GlobalData::hazardousmetal[1] / 180.0;
+		GlobalData::totalewaste = GlobalData::totalewaste / 180.0;
+	}
+
 	
 	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init nd cit from 0
 	{
@@ -390,7 +425,13 @@ namespace Analyze
 		
 		double ce = (s.efficiency*(1 + init*s.economicfactors[0])) / (init + 1);
 		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
-		double cc = s.cost*(1 + cit);
+		double cc;
+		if (init >=19)
+			cc = s.cost*(1 + cit)*(1 + init / 10.0);
+		else if (init > 5 && init < 19)
+			cc = s.cost*(1 + cit)*(1 + init*0.1537 - init*init*0.0034);
+		else
+			cc = s.cost*(1 + cit)*(1 + init / 6.67);
 
 		if (ce > s.maxefficiency||cc>s.maxcost)
 		{
@@ -441,16 +482,16 @@ namespace Analyze
 		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
 		Metals[0].category = 0;
 		Metals[0].type = 'B';
-		Metals[0].cost = 350000;
-		Metals[0].maxcost = 1500000;
+		Metals[0].cost = 175000;
+		Metals[0].maxcost = 1200000;
 		Metals[0].efficiency = 0.92;
 		Metals[0].maxefficiency = 0.99;
 		Metals[0].economicfactors[0] = 1.05;
 		Metals[0].economicfactors[1] = 1.05;
-		Metals[0].amountinput[0] = 50;
-		Metals[0].amountinput[1] = 200;
-		Metals[0].carbonfootprint[0] = 35000;
-		Metals[0].carbonfootprint[1] = 65000;		
+		Metals[0].amountinput[0] = 100;
+		Metals[0].amountinput[1] = 400;
+		Metals[0].carbonfootprint[0] = 55000;
+		Metals[0].carbonfootprint[1] = 80000;		
 		Metals[0].stagefrom = 2;
 		Metals[0].stageto = 3;
 		Metals[0].othertypes.stagefrom = 2;
@@ -462,12 +503,12 @@ namespace Analyze
 		Metals[1].information = "Adsorption process, Hydrometallury, more info soon.";
 		Metals[1].category = 0;
 		Metals[1].type = 'P';		
-		Metals[1].cost = 250000;
-		Metals[1].maxcost = 1200000;
+		Metals[1].cost = 125000;
+		Metals[1].maxcost = 900000;
 		Metals[1].efficiency = 0.97;
 		Metals[1].maxefficiency = 0.99;
-		Metals[1].economicfactors[0] = 0.9;
-		Metals[1].economicfactors[1] = 0.85;
+		Metals[1].economicfactors[0] = 0.98;
+		Metals[1].economicfactors[1] = 1.05;
 		Metals[1].amountinput[0] = 1.2;
 		Metals[1].amountinput[1] = 200;
 		Metals[1].carbonfootprint[0] = 2500;
@@ -483,13 +524,13 @@ namespace Analyze
 		Metals[2].information = "Vat Leaching, Hydrometallurgy, more info soon.";
 		Metals[2].type = 'P';
 		Metals[2].category = 0;
-		Metals[2].cost = 150000;
-		Metals[2].maxcost = 1000000;
+		Metals[2].cost = 75000;
+		Metals[2].maxcost = 600000;
 		Metals[2].efficiency = 0.85;
 		Metals[2].maxefficiency = 0.90;
 		Metals[2].economicfactors[0] = 0.95;
 		Metals[2].economicfactors[1] = 0.8;
-		Metals[2].amountinput[0] = 1.0;
+		Metals[2].amountinput[0] = 1.5;
 		Metals[2].amountinput[1] = 200;
 		Metals[2].carbonfootprint[0] = 1500;
 		Metals[2].carbonfootprint[1] = 13000;
@@ -504,13 +545,13 @@ namespace Analyze
 		Metals[3].information = "Caustic Leaching, Hydrometallurgy, more info soon.";
 		Metals[3].type = 'P';
 		Metals[3].category = 0;
-		Metals[3].cost = 80000;
-		Metals[3].maxcost = 500000;
+		Metals[3].cost = 60000;
+		Metals[3].maxcost = 420000;
 		Metals[3].efficiency = 0.80;
 		Metals[3].maxefficiency = 0.90;
 		Metals[3].economicfactors[0] = 0.90;
 		Metals[3].economicfactors[1] = 0.50;
-		Metals[3].amountinput[0] = 0.5;
+		Metals[3].amountinput[0] = 1.0;
 		Metals[3].amountinput[1] = 100;
 		Metals[3].carbonfootprint[0] = 2000;
 		Metals[3].carbonfootprint[1] = 5500;
@@ -525,8 +566,8 @@ namespace Analyze
 		Metals[4].information = "Autoclave leaching, Hydrometallurgy, more info soon.";
 		Metals[4].type = 'P';
 		Metals[4].category = 0;
-		Metals[4].cost = 400000;
-		Metals[4].maxcost = 1200000;
+		Metals[4].cost = 200000;
+		Metals[4].maxcost = 1000000;
 		Metals[4].efficiency = 0.95;
 		Metals[4].maxefficiency = 0.999;
 		Metals[4].economicfactors[0] = 1.005;
@@ -546,13 +587,13 @@ namespace Analyze
 		Metals[5].information = "Shaft furnace calcination, pyrometallurgy, more info soon.";
 		Metals[5].type = 'B';
 		Metals[5].category = 0;
-		Metals[5].cost = 200000;
-		Metals[5].maxcost = 600000;
+		Metals[5].cost = 100000;
+		Metals[5].maxcost = 500000;
 		Metals[5].efficiency = 0.97;
 		Metals[5].maxefficiency = 0.9999;
 		Metals[5].economicfactors[0] = 1.05;
 		Metals[5].economicfactors[1] = 1;
-		Metals[5].amountinput[0] = 50;
+		Metals[5].amountinput[0] = 75;
 		Metals[5].amountinput[1] = 150;
 		Metals[5].carbonfootprint[0] = 25000;
 		Metals[5].carbonfootprint[1] = 65000;
@@ -567,14 +608,14 @@ namespace Analyze
 		Metals[6].information = "Fluidized bed reactor, pyrometallurgy, more info soon.";
 		Metals[6].type = 'B';
 		Metals[6].category = 0;
-		Metals[6].cost = 320000;
-		Metals[6].maxcost = 960000;
-		Metals[6].efficiency = 0.98;
+		Metals[6].cost = 160000;
+		Metals[6].maxcost = 760000;
+		Metals[6].efficiency = 0.975;
 		Metals[6].maxefficiency = 0.9999;
 		Metals[6].economicfactors[0] = 1.01;
 		Metals[6].economicfactors[1] = 1.01;
-		Metals[6].amountinput[0] = 40;
-		Metals[6].amountinput[1] = 80;
+		Metals[6].amountinput[0] = 80;
+		Metals[6].amountinput[1] = 175;
 		Metals[6].carbonfootprint[0] = 40000;
 		Metals[6].carbonfootprint[1] = 50000;
 		Metals[6].stagefrom = 1;
@@ -583,5 +624,66 @@ namespace Analyze
 		Metals[6].othertypes.stageto = 2;
 		Metals[6].othertypes.typeof = 'H';
 	}
-	
+
+
+	void GlobalData::SettingFactor(int factor)
+	{
+		GlobalData::surveytakers = GlobalData::surveytakers*factor;
+		int i;
+		for (i = 0; i < 2; i++)
+		{
+			 
+			GlobalData::mobilenumber[i] *=factor;
+			 
+			 
+			GlobalData::laptopnumber[i] *= factor;
+			 
+			 
+			GlobalData::tabletnumber[i] *=factor;
+			 
+			 
+			GlobalData::pcnumber[i] *=factor;
+			 
+			 
+			GlobalData::mobileshared[i] *=factor;
+			 
+			 
+			GlobalData::laptopshared[i] *=factor;
+			 
+			 
+			GlobalData::tabletshared[i] *=factor;
+			 
+			 
+			GlobalData::pcshared[i] *=factor;
+			 
+			 
+			GlobalData::headphonenumber[i] *=factor;
+			 
+			 
+			GlobalData::printernumber[i] *=factor;
+			 
+			 
+			GlobalData::joysticknumber[i] *=factor;
+			 
+			 
+			GlobalData::scannernumber[i] *=factor;
+			 
+			 
+			GlobalData::webcamnumber[i] *=factor;
+			 
+			 
+			GlobalData::smartwatchnumber[i] *=factor;
+			 
+		}
+
+		for (i = 0; i < 2; i++)
+		{
+			GlobalData::totalshared[i] = GlobalData::mobileshared[i] + GlobalData::laptopshared[i] + GlobalData::tabletshared[i] + GlobalData::pcshared[i];
+			GlobalData::totalgadgets[i] = GlobalData::mobilenumber[i] + GlobalData::laptopnumber[i] + GlobalData::tabletnumber[i] + GlobalData::pcnumber[i];
+			GlobalData::totalperipherals[i] = GlobalData::headphonenumber[i] + GlobalData::scannernumber[i] + GlobalData::printernumber[i] +
+				GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
+		}
+		GlobalData::totalewaste = 0;
+		DataManip::AggregateSum();
+	}
 }

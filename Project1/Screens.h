@@ -6,4 +6,5 @@ namespace Welcome
 	int Choice(int c);
 	void RunForm();
 	void AnalysisnDisplay();
+	void Settings();
 }

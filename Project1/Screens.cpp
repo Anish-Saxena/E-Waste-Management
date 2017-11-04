@@ -42,6 +42,7 @@ namespace Welcome
 		cout << setw(50) << "What would you like to do?" << endl << endl << endl;
 		cout << "1. Take survey of user(s)" << endl << endl << endl;
 		cout << "2. Analyze currently present data and see the results" << endl << endl << endl;
+		cout << "3. Settings (Advanced)" << endl << endl << endl;
 		cin >> c;
 		return c;
 	}
@@ -54,6 +55,8 @@ namespace Welcome
 		Application::Run(%form);
 		cout << endl << endl;
 		system("Pause");
+		DataManip::ChecknSum();
+		DataManip::AggregateSum();
 		cout << endl << endl << "Would you like to now go to analysis and display section? Press 1 for yes" << endl << endl;
 		int x;
 		cin >> x;
@@ -63,9 +66,7 @@ namespace Welcome
 
 	void AnalysisnDisplay()
 	{
-		int option;
-		DataManip::ChecknSum();
-		DataManip::AggregateSum();
+		int option;		
 		Sleep(100);
 		system("CLS");
 		cout << "What would you like to see?" << endl << endl;
@@ -75,11 +76,11 @@ namespace Welcome
 		cout << "4. Display the best processes required to treat the given E-waste" << endl << endl;
 		//more options to follow
 		cin >> option;
-
-		int u = option;
+		int u = option, flag=1;
 		for (; option >0; option++)
 		{
 			u = option;
+			if (option >= 3 && flag != 0)	HelperFunctions::ConvertperCycle();
 			switch (option)
 			{
 			case 1:
@@ -95,7 +96,7 @@ namespace Welcome
 			case 2:
 			{
 				system("CLS");
-				Display::ComponentBreakup();
+				Display::ComponentBreakup(&flag);
 				cout << endl << endl << "Would you like to continue to \"Pre-processing of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
 				cin >> u;
 				if (u < 1)	option = -1;
@@ -122,6 +123,23 @@ namespace Welcome
 			}
 			}
 		}
+	}
+
+	void Settings()
+	{
+		int inuser;
+		cout << "Note: the settings are runtime and hence temporary, so that one can evaluate various scenarios without affecting actual data. Still, be careful." << endl << endl;
+		cout << "Do you want to extrapolate current data by taking current survey users as a modal class for the whole targetted population and multiplying them with a factor of your choice?" << endl<<endl;
+		cout << "Press 1 for yes" << endl;
+		cin >> inuser;
+		cout << endl << "Enter the integral factor you want to multiply the current data with:\t";
+		cin >> inuser;
+		GlobalData::SettingFactor(inuser);
+		Sleep(1000);
+		cout << "Done!" << endl << endl;
+		cout << "Press any key to move on to analysis and display" << endl;
+		_getche();
+		AnalysisnDisplay();
 	}
 
 }

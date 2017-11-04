@@ -158,4 +158,5 @@ namespace ManageData
 		GlobalData::glassnceramics[0] = GlobalData::glassnceramics[1] * 100 / GlobalData::totalewaste;
 		GlobalData::plastics[0] = GlobalData::plastics[1] * 100 / GlobalData::totalewaste;
 	}
+	
 }
