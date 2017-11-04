@@ -61,6 +61,12 @@ namespace ManageData
 	public:
 		static const double WD[16];
 	};
+	//Class for storing typical cost of various types of substance
+	class TypeCost
+	{
+	public:
+		static const double basem, preciousm, hazardousm;	//more to be added
+	};
 	//This class contains data checking and value assigning functions
 	class DataManip
 	{

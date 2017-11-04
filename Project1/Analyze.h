@@ -13,7 +13,9 @@ namespace Analyze
 
 		static int surveytakers, laptopnumber[2], mobilenumber[2], tabletnumber[2], pcnumber[2]; //var[0] for Owned, var[1] for Disposed
 
-		static double totalewaste, plastics[2], preciousmetal[2], metal[2], nonmetal[2], glassnceramics[2];	 //var[0] for percentage, var[1] for total, of given substance
+		static double totalewaste, plastics[2], metal[2], nonmetal[2], glassnceramics[2];	 //var[0] for percentage, var[1] for total, of given substance
+
+		static double basemetal[2], preciousmetal[2], hazardousmetal[2];					//var[0] for percentage, var[1] for total, of given substance
 
 		static int headphonenumber[2], printernumber[2], joysticknumber[2], scannernumber[2], webcamnumber[2], smartwatchnumber[2]; //var[0] for Owned, var[1] for Disposed	
 

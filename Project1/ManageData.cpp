@@ -53,6 +53,8 @@ namespace ManageData
 	//FOR SMARTWATCH DATA:
 	const double SmartwatchData::SWD[16] = { 0.000210 ,0.0001,0.0153,0.040,0.005,0.005,0.002,0.00004 ,0.004 ,0.02 ,0.001,0.0001 ,0.005,0.01,0.0001 ,0.004 };
 
+	//For Typcosts:
+	const double TypeCost::basem = 0, TypeCost::preciousm = 0, TypeCost::hazardousm = 0;
 	//DataManip
 	void DataManip::ChecknSum() //primitive version for testing
 	{
@@ -138,17 +140,21 @@ namespace ManageData
 		}
 
 		GlobalData::metal[1] = GlobalData::GD[0] + GlobalData::GD[1] + GlobalData::GD[2] + GlobalData::GD[5] + GlobalData::GD[6] + GlobalData::GD[7] +
-			GlobalData::GD[10] + GlobalData::GD[11] + GlobalData::GD[12] + GlobalData::GD[13];
+		GlobalData::GD[10] + GlobalData::GD[11] + GlobalData::GD[12] + GlobalData::GD[13];
 		GlobalData::nonmetal[1] = GlobalData::GD[3] + GlobalData::GD[4] + GlobalData::GD[8] + GlobalData::GD[9] + GlobalData::GD[14] + GlobalData::GD[15];
 		GlobalData::glassnceramics[1] = GlobalData::GD[4] + GlobalData::GD[9] + GlobalData::GD[15];
 
-		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];		
+		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];	
+		GlobalData::basemetal[1] = GlobalData::GD[2] + GlobalData::GD[5] + GlobalData::GD[6] + GlobalData::GD[12] + GlobalData::GD[13];
+		GlobalData::hazardousmetal[1] = GlobalData::metal[1] - GlobalData::basemetal[1] - GlobalData::preciousmetal[1];
 
 		GlobalData::plastics[1] = GlobalData::GD[3];
 
 		GlobalData::metal[0] = GlobalData::metal[1] * 100 / GlobalData::totalewaste;
-		GlobalData::nonmetal[0] = GlobalData::nonmetal[1] * 100 / GlobalData::totalewaste;
 		GlobalData::preciousmetal[0] = GlobalData::preciousmetal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::basemetal[0] = GlobalData::basemetal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::hazardousmetal[0] = GlobalData::hazardousmetal[1] * 100 / GlobalData::totalewaste;
+		GlobalData::nonmetal[0] = GlobalData::nonmetal[1] * 100 / GlobalData::totalewaste;		
 		GlobalData::glassnceramics[0] = GlobalData::glassnceramics[1] * 100 / GlobalData::totalewaste;
 		GlobalData::plastics[0] = GlobalData::plastics[1] * 100 / GlobalData::totalewaste;
 	}

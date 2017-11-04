@@ -27,7 +27,8 @@ namespace Analyze
 	int GlobalData::totalshared[2] = { 0,0 }, GlobalData::totalgadgets[2] = { 0,0 }, GlobalData::totalperipherals[2] = { 0,0 },
 		GlobalData::mobileshared[2] = { 0,0 }, GlobalData::laptopshared[2] = { 0,0 }, GlobalData::tabletshared[2] = { 0,0 }, GlobalData::pcshared[2] = { 0,0 };
 
-	double GlobalData::preciousmetal[2] = { 0,0 }, GlobalData::metal[2] = { 0,0 }, GlobalData::nonmetal[2] = { 0,0 }, GlobalData::glassnceramics[2] = { 0,0 }, GlobalData::plastics[2] = { 0,0 };
+	double GlobalData::preciousmetal[2] = { 0,0 }, GlobalData::metal[2] = { 0,0 }, GlobalData::nonmetal[2] = { 0,0 }, GlobalData::glassnceramics[2] = { 0,0 },
+		 GlobalData::plastics[2] = { 0,0 }, GlobalData::basemetal[2] = { 0,0 }, GlobalData::hazardousmetal[2] = { 0,0 };
 
 	double GlobalData::totalewaste = 0;
 
@@ -107,6 +108,8 @@ namespace Analyze
 		cout << endl << endl << "The E-Waste contains: " << endl << endl;
 		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
 		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
 
@@ -178,11 +181,11 @@ namespace Analyze
 		cout << endl << endl;	Sleep(1000);
 		cout << "Let's now analyze the contents of given E-waste:\n\n";
 		cout << "Checking the level of various substances in given E-waste:\n\n";
-		char MNPRG[] = { 'M','N','P','R','G' };
+		char MNPRGBH[] = { 'M','N','P','R','G','B','H' };
 		int i = 0;
-		while (i < 5)
+		while (i < 7)
 		{
-			HelperFunctions::WhatLevel(MNPRG[i]);	Sleep(1000);
+			HelperFunctions::WhatLevel(MNPRGBH[i]);	Sleep(1000);
 			i++;
 		}
 		cout << "Knowing about presence levels of various substance, it's time to move on to determine best of course of action for specific type of substances, keeping in mind the 3 conditions." << endl;
@@ -316,16 +319,53 @@ namespace Analyze
 
 
 
-			if (GlobalData::metal[0] >= 55)
+			if (GlobalData::glassnceramics[0] >= 30)
 				cout << "HIGH: ";
-			else if (GlobalData::metal[0] < 55 && GlobalData::metal[0] >= 45)
+			else if (GlobalData::glassnceramics[0] < 30 && GlobalData::glassnceramics[0] >= 25)
 				cout << "NORMAL: ";
 			else
 				cout << "LOW: ";
-			cout << std::fixed << std::setprecision(2) << GlobalData::metal[0] << "% detected" << endl << endl;
+			cout << std::fixed << std::setprecision(2) << GlobalData::glassnceramics[0] << "% detected" << endl << endl;
 			break;
 		}
+		case 'B':
+		{
+			cout << "Base Metals comprise Copper, Steel, Lithium, Aluminum and Magnesium. The threshold for Base Metal presence level presence level by weight percentage are as follows:" << endl << endl;
+			cout << "1. High : if level is >=50%" << endl;
+			cout << "1. Normal : if level is <50% and >=45%" << endl;
+			cout << "1. Low : if level is <45%" << endl;
+			cout << "The level of Metals in the given survey is:\n\n";
 
+
+
+			if (GlobalData::basemetal[0] >= 50)
+				cout << "HIGH: ";
+			else if (GlobalData::basemetal[0] < 50 && GlobalData::basemetal[0] >= 45)
+				cout << "NORMAL: ";
+			else
+				cout << "LOW: ";
+			cout << std::fixed << std::setprecision(2) << GlobalData::basemetal[0] << "% detected" << endl << endl;
+			break;
+		}
+		case 'H':
+		{
+			cout << "Hazardous Metals comprise Mercury, Lead and Nickel. The threshold for Hazardous Metal presence level presence level by weight percentage are as follows:" << endl << endl;
+			cout << "1. High : if level is >=0.25%" << endl;
+			cout << "1. Normal : if level is <0.25% and >=0.05%" << endl;
+			cout << "1. Low : if level is <0.05%" << endl;
+			cout << "The level of Metals in the given survey is:\n\n";
+
+
+
+			if (GlobalData::hazardousmetal[0] >= 0.25)
+				cout << "HIGH: ";
+			else if (GlobalData::hazardousmetal[0] < 0.25 && GlobalData::hazardousmetal[0] >= 0.05)
+				cout << "NORMAL: ";
+			else
+				cout << "LOW: ";
+			cout << std::fixed << std::setprecision(2) << GlobalData::hazardousmetal[0] << "% detected" << endl << endl;
+			break;
+		}
 		}
 	}
 
@@ -377,42 +417,42 @@ namespace Analyze
 	void BestProcess::DefineProcess()
 	{
 		//Now defining processes for metals
-		Process Metals[3];
+		Process Metals[7];
 
 		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
 
-		Metals[0].information = "Ion Exchange process, more info soon.";
+		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
 		Metals[0].category = 0;
 		Metals[0].type = 'B';
 		Metals[0].cost = 350000;
 		Metals[0].maxcost = 1500000;
-		Metals[0].efficiency = 0.95;
+		Metals[0].efficiency = 0.92;
 		Metals[0].maxefficiency = 0.99;
-		Metals[0].economicfactors[0] = 1.1;
-		Metals[0].economicfactors[1] = 0.9;
-		Metals[0].amountinput[0] = 20;
-		Metals[0].amountinput[1] = 60;
-		Metals[0].carbonfootprint[0] = 5000;
-		Metals[0].carbonfootprint[1] = 6500;		
+		Metals[0].economicfactors[0] = 1.05;
+		Metals[0].economicfactors[1] = 1.05;
+		Metals[0].amountinput[0] = 50;
+		Metals[0].amountinput[1] = 200;
+		Metals[0].carbonfootprint[0] = 35000;
+		Metals[0].carbonfootprint[1] = 65000;		
 		Metals[0].stagefrom = 2;
 		Metals[0].stageto = 3;
-		Metals[0].othertypes.stagefrom = 1;
-		Metals[0].othertypes.stageto = 2;
+		Metals[0].othertypes.stagefrom = 2;
+		Metals[0].othertypes.stageto = 3;
 		Metals[0].othertypes.typeof = 'P';
 
-		//Process 1: Adsorption, for precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
+		//Process 1: Adsorption, for Precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
 
-		Metals[1].information = "Adsorption process, more info soon.";
-		Metals[1].type = 'P';
+		Metals[1].information = "Adsorption process, Hydrometallury, more info soon.";
 		Metals[1].category = 0;
+		Metals[1].type = 'P';		
 		Metals[1].cost = 250000;
 		Metals[1].maxcost = 1200000;
 		Metals[1].efficiency = 0.97;
 		Metals[1].maxefficiency = 0.99;
 		Metals[1].economicfactors[0] = 0.9;
 		Metals[1].economicfactors[1] = 0.85;
-		Metals[1].amountinput[0] = 0.3;
-		Metals[1].amountinput[1] = 50;
+		Metals[1].amountinput[0] = 1.2;
+		Metals[1].amountinput[1] = 200;
 		Metals[1].carbonfootprint[0] = 2500;
 		Metals[1].carbonfootprint[1] = 8000;		
 		Metals[1].stagefrom = 2;
@@ -423,7 +463,7 @@ namespace Analyze
 
 		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
 
-		Metals[2].information = "Vat Leaching, more info soon.";
+		Metals[2].information = "Vat Leaching, Hydrometallurgy, more info soon.";
 		Metals[2].type = 'P';
 		Metals[2].category = 0;
 		Metals[2].cost = 150000;
@@ -432,7 +472,7 @@ namespace Analyze
 		Metals[2].maxefficiency = 0.90;
 		Metals[2].economicfactors[0] = 0.95;
 		Metals[2].economicfactors[1] = 0.8;
-		Metals[2].amountinput[0] = 0.5;
+		Metals[2].amountinput[0] = 1.0;
 		Metals[2].amountinput[1] = 200;
 		Metals[2].carbonfootprint[0] = 1500;
 		Metals[2].carbonfootprint[1] = 13000;
@@ -441,6 +481,90 @@ namespace Analyze
 		Metals[2].othertypes.stagefrom = 1;
 		Metals[2].othertypes.stageto = 2;
 		Metals[2].othertypes.typeof = 'B';
+
+		//Process 3: Caustic Leaching, for Precious metals, to get them from leaching to extraction phase, doesn't act on other types of E-waste
+
+		Metals[3].information = "Caustic Leaching, Hydrometallurgy, more info soon.";
+		Metals[3].type = 'P';
+		Metals[3].category = 0;
+		Metals[3].cost = 80000;
+		Metals[3].maxcost = 500000;
+		Metals[3].efficiency = 0.80;
+		Metals[3].maxefficiency = 0.90;
+		Metals[3].economicfactors[0] = 0.90;
+		Metals[3].economicfactors[1] = 0.50;
+		Metals[3].amountinput[0] = 0.5;
+		Metals[3].amountinput[1] = 100;
+		Metals[3].carbonfootprint[0] = 2000;
+		Metals[3].carbonfootprint[1] = 5500;
+		Metals[3].stagefrom = 1;
+		Metals[3].stageto = 2;
+		Metals[3].othertypes.stagefrom = -1;
+		Metals[3].othertypes.stageto = -1;
+		Metals[3].othertypes.typeof = 'Z';
+
+		//Process 4: Autoclave leaching, for precious metals, to get them from leaching to extraction phase, also makes hazardous metals go from leaching to extraction
+
+		Metals[4].information = "Autoclave leaching, Hydrometallurgy, more info soon.";
+		Metals[4].type = 'P';
+		Metals[4].category = 0;
+		Metals[4].cost = 400000;
+		Metals[4].maxcost = 1200000;
+		Metals[4].efficiency = 0.95;
+		Metals[4].maxefficiency = 0.999;
+		Metals[4].economicfactors[0] = 1.005;
+		Metals[4].economicfactors[1] = 1.005;
+		Metals[4].amountinput[0] = 1.0;
+		Metals[4].amountinput[1] = 100;
+		Metals[4].carbonfootprint[0] = 4000;
+		Metals[4].carbonfootprint[1] = 13000;
+		Metals[4].stagefrom = 1;
+		Metals[4].stageto = 2;
+		Metals[4].othertypes.stagefrom = 1;
+		Metals[4].othertypes.stageto = 2;
+		Metals[4].othertypes.typeof = 'H';
+
+		//Process 5: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
+
+		Metals[5].information = "Shaft furnace calcination, pyrometallurgy, more info soon.";
+		Metals[5].type = 'B';
+		Metals[5].category = 0;
+		Metals[5].cost = 200000;
+		Metals[5].maxcost = 600000;
+		Metals[5].efficiency = 0.97;
+		Metals[5].maxefficiency = 0.9999;
+		Metals[5].economicfactors[0] = 1.05;
+		Metals[5].economicfactors[1] = 1;
+		Metals[5].amountinput[0] = 50;
+		Metals[5].amountinput[1] = 150;
+		Metals[5].carbonfootprint[0] = 25000;
+		Metals[5].carbonfootprint[1] = 65000;
+		Metals[5].stagefrom = 1;
+		Metals[5].stageto = 2;
+		Metals[5].othertypes.stagefrom = 1;
+		Metals[5].othertypes.stageto = 2;
+		Metals[5].othertypes.typeof = 'H';
+
+		//Process 6: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
+
+		Metals[6].information = "Fluidized bed reactor, pyrometallurgy, more info soon.";
+		Metals[6].type = 'B';
+		Metals[6].category = 0;
+		Metals[6].cost = 320000;
+		Metals[6].maxcost = 960000;
+		Metals[6].efficiency = 0.98;
+		Metals[6].maxefficiency = 0.9999;
+		Metals[6].economicfactors[0] = 1.01;
+		Metals[6].economicfactors[1] = 1.01;
+		Metals[6].amountinput[0] = 40;
+		Metals[6].amountinput[1] = 80;
+		Metals[6].carbonfootprint[0] = 40000;
+		Metals[6].carbonfootprint[1] = 50000;
+		Metals[6].stagefrom = 1;
+		Metals[6].stageto = 2;
+		Metals[6].othertypes.stagefrom = 1;
+		Metals[6].othertypes.stageto = 2;
+		Metals[6].othertypes.typeof = 'H';
 	}
 	
 }
