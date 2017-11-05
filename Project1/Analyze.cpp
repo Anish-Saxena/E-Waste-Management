@@ -278,11 +278,14 @@ namespace Analyze
 
 	void BestProcess::Metals(int level)
 	{
+		system("CLS");
+		cout << "Please wait, analysing..." << endl;
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		
+		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 		//Now defining processes for metals
 
-		Process Metals[18];
+		Process Metals[21];
 		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
 		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
 		Metals[0].category = 0;
@@ -642,63 +645,311 @@ namespace Analyze
 		Metals[17].othertypes.stageto = -1;
 		Metals[17].othertypes.typeof = 'Z';
 
+		//Process 18: Electrorefining process: for precious metals, to get them from refining phase to done!, also makes hazardous metals go from refining to done!
+
+		Metals[18].information = "Electrorefining Process, electrometallurgy, more info soon.";
+		Metals[18].type = 'P';
+		Metals[18].category = 0;
+		Metals[18].cost = 900000;
+		Metals[18].efficiency = 0.98;
+		Metals[18].maxefficiency = 0.99999;
+		Metals[18].economicfactors[0] = 1.01;
+		Metals[18].economicfactors[1] = 1.006;
+		Metals[18].amountinput[0] = 2;
+		Metals[18].amountinput[1] = 400;
+		Metals[18].carbonfootprint[0] = 40000;
+		Metals[18].carbonfootprint[1] = 100000;
+		Metals[18].stagefrom = 3;
+		Metals[18].stageto = 4;
+		Metals[18].othertypes.stagefrom = 3;
+		Metals[18].othertypes.stageto = 4;
+		Metals[18].othertypes.typeof = 'H';
+
+		//Process 19: Noranda process: for precious metals, to get them from refining phase to done1, also makes hazardous metals go from refining to done!
+
+		Metals[19].information = "Noranda Process, pyrometallurgy, more info soon.";
+		Metals[19].type = 'P';
+		Metals[19].category = 0;
+		Metals[19].cost = 800000;
+		Metals[19].efficiency = 0.94;
+		Metals[19].maxefficiency = 0.99;
+		Metals[19].economicfactors[0] = 1.01;
+		Metals[19].economicfactors[1] = 1.1;
+		Metals[19].amountinput[0] = 120;
+		Metals[19].amountinput[1] = 240;
+		Metals[19].carbonfootprint[0] = 45000;
+		Metals[19].carbonfootprint[1] = 90000;
+		Metals[19].stagefrom = 3;
+		Metals[19].stageto = 4;
+		Metals[19].othertypes.stagefrom = 3;
+		Metals[19].othertypes.stageto = 4;
+		Metals[19].othertypes.typeof = 'H';
+
+		//Process 20: Veit Process: for base metals, to get them from refining to done!, doesn't act onother types of E-waste
+
+		Metals[20].information = "Veit Process, hydrometallurgy, more info soon.";
+		Metals[20].type = 'B';
+		Metals[20].category = 0;
+		Metals[20].cost = 400000;
+		Metals[20].efficiency = 0.92;
+		Metals[20].maxefficiency = 0.98;
+		Metals[20].economicfactors[0] = 1.01;
+		Metals[20].economicfactors[1] = 1.12;
+		Metals[20].amountinput[0] = 150;
+		Metals[20].amountinput[1] = 400;
+		Metals[20].carbonfootprint[0] = 55000;
+		Metals[20].carbonfootprint[1] = 75000;
+		Metals[20].stagefrom = 3;
+		Metals[20].stageto = 4;
+		Metals[20].othertypes.stagefrom = -1;
+		Metals[20].othertypes.stageto = -1;
+		Metals[20].othertypes.typeof = 'Z';
+
+		//Refining of hazardous metals is done along with their recovery, software will take care of that
+
+
+		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		//Analysis part
 
 		double samount, tamount, typecost;
-		char type;
-		int init, tempcit, cit, stage, category, i, k;
+		int init, tempcit, cit, i;
+								
+		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
+		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
+		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
 
-		//Start with precious metals
-
-		samount = GlobalData::preciousmetal[1];
-		tamount = GlobalData::totalewaste;
-		typecost = TypeCost::preciousm;
-		type = 'P';
-		stage = 1;
-		category = 0;
-				
-		double points[3];
-		k = 0;
-
-		for (i = 0; i < 7; i++)
+		for (i = 0; i < 3; i++)
 		{
-			if (Metals[i].category != category || Metals[i].type != type)
-			{
-				continue;
-			}
+			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
+			pointsp1[i] = 0;	pointsp2[i] = 0;	pointsp3[i] = 0;
+			pointsh1[i] = 0;	pointsh2[i] = 0;	pointsh3[i] = 0;
 
-			init = HelperFunctions::GetInit(Metals[i], samount, tamount);
-			tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
-
-			switch (level)
-			{
-			case 1:
-			{
-				cit = tempcit;
-				break;
-			}
-			case 2:
-			{
-				cit = tempcit / 2;
-				break;
-			}
-			case 3:
-			{
-				cit = 0;
-				break;
-			}
-			}
-
-			if (Metals[i].stagefrom == 1)
-			{
-				points[k] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, type, stage, init, cit);
-				k++;
-			}
+			whatib1[i] = -1;	whatib2[i] = -1;	whatib3[i] = -1;
+			whatip1[i] = -1;	whatip2[i] = -1;	whatip3[i] = -1;
+			whatih1[i] = -1;	whatih2[i] = -1;	whatih3[i] = -1;
 
 		}
+		tamount = GlobalData::totalewaste;
 
+		for (i = 0; i < 21; i++)
+		{
+			if (Metals[i].category != 0)	continue;
+			cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+			switch(Metals[i].type)
+			{
+			case 'P':
+			{
+				cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+
+				samount = GlobalData::preciousmetal[1];
+				typecost = TypeCost::preciousm;
+
+				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+
+				switch (level)
+				{
+				case 1:
+				{
+					cit = tempcit;
+					break;
+				}
+				case 2:
+				{
+					cit = tempcit / 2;
+					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+
+					break;
+				}
+				case 3:
+				{
+					cit = 0;
+					break;
+				}
+				}
+				switch (Metals[i].stagefrom)
+				{
+				case 1:
+				{
+					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit);
+					whatip1[p1] = i;
+					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+
+					p1++;
+					break;
+				}
+				case 2:
+				{
+					pointsp2[p2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 2, init, cit);
+					whatip2[p2] = i;
+					p2++;
+					break;
+				}
+				case 3:
+				{
+					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit);
+					whatip3[p3] = i;
+					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+
+					p3++;
+					break;
+				}
+				}
+				break;
+			}
+			case 'H':
+			{
+				samount = GlobalData::hazardousmetal[1];
+				typecost = TypeCost::hazardousm;
+
+				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+
+				switch (level)
+				{
+				case 1:
+				{
+					cit = tempcit;
+					break;
+				}
+				case 2:
+				{
+					cit = tempcit / 2;
+					break;
+				}
+				case 3:
+				{
+					cit = 0;
+					break;
+				}
+				}
+				switch (Metals[i].stagefrom)
+				{
+				case 1:
+				{
+					pointsh1[h1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 1, init, cit);
+					whatih1[h1] = i;
+					h1++;					
+					break;
+				}
+				case 2:
+				{
+					pointsh2[h2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 2, init, cit);
+					whatih2[h2] = i;
+					h2++;
+					break;
+				}
+				case 3:
+				{
+					pointsh3[h3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 3, init, cit);
+					whatih3[h3] = i;
+					h3++;
+					break;
+				}
+				}
+				break;
+			}
+			case 'B':
+			{
+				samount = GlobalData::basemetal[1];
+				typecost = TypeCost::basem;
+
+				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+
+				switch (level)
+				{
+				case 1:
+				{
+					cit = tempcit;
+					break;
+				}
+				case 2:
+				{
+					cit = tempcit / 2;
+					break;
+				}
+				case 3:
+				{
+					cit = 0;
+					break;
+				}
+				}
+				switch (Metals[i].stagefrom)
+				{
+				case 1:
+				{
+					pointsb1[b1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 1, init, cit);
+					whatib1[b1] = i;
+					b1++;
+					break;
+				}
+				case 2:
+				{
+					pointsb2[b2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 2, init, cit);
+					whatib2[b2] = i;
+					b2++;
+					break;
+				}
+				case 3:
+				{
+					pointsb3[b3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 3, init, cit);
+					whatib3[b3] = i;
+					b3++;
+					break;
+				}
+				}
+				break;
+			}
+			}
+		}
+
+		cout << endl << endl << pointsp1[1];
+		/*int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
+		maxip1 = HelperFunctions::Maxpoints(pointsp1);
+		maxip2 = HelperFunctions::Maxpoints(pointsp2);
+		maxip3 = HelperFunctions::Maxpoints(pointsp3);
+		maxih1 = HelperFunctions::Maxpoints(pointsh1);
+		maxih2 = HelperFunctions::Maxpoints(pointsh2);
+		maxih3 = HelperFunctions::Maxpoints(pointsh3);
+		maxib1 = HelperFunctions::Maxpoints(pointsb1);
+		maxib2 = HelperFunctions::Maxpoints(pointsb2);
+		maxib3 = HelperFunctions::Maxpoints(pointsb3);
+
+		int processip1, processip2, processip3, processih1, processih2, processih3, processib1, processib2, processib3;
+		processip1 = whatip1[maxip1];
+		processip2 = whatip2[maxip2];
+		processip3 = whatip3[maxip3];
+		processih1 = whatih1[maxih1];
+		processih2 = whatih2[maxih2];
+		processih3 = whatih3[maxih3];
+		processib1 = whatib1[maxib1];
+		processib2 = whatib2[maxib2];
+		processib3 = whatib3[maxib3];*/
+
+
+//double x = HelperFunctions::PointCalc(Metals[5], GlobalData::totalewaste, GlobalData::preciousmetal[1], TypeCost::preciousm, 'P', 1, 40, 2);
+//cout << endl << endl << endl << x;
+
+
+		cout << endl << endl;
+		Sleep(1000);
+		cout << "Done!";
+		cout << "Processing can be broken down into three 3 stages:\n\n";
+		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
+		Sleep(1000);
+		cout << "Also, the metals can be divied into, as before:\n\n1. Precious metals\n2. Base metals\n3. Hazardous heavy metals\n\n";
+		Sleep(1000);
+		cout << "After analysis, the software has come up with the following plan to treat metals in E-waste:\n\n\n";
+		cout << "Press any key to view the plan.";
+		_getche();
+		system("CLS");
+		cout << "STAGE 1: PURIFICATION OR LEACHING\n\nSuggested routes are as follows:\n\n";
+		cout << "FOR PRECIOUS METALS:\n\n";
+		//cout << Metals[processip1].information;
+		cout << endl << endl;
 	}
 
 
@@ -764,7 +1015,7 @@ namespace Analyze
 		cin >> level;
 		//Call best process functions.
 		Sleep(100);		
-		
+		BestProcess::Metals(level);
 	}
 
 		
@@ -1028,6 +1279,22 @@ namespace Analyze
 			ce = ce*(1 + cit*p.economicfactors[1]) / (cit + 1);			
 		}
 		return (cit - 1);
+	}
+
+	int HelperFunctions::Maxpoints(double a[])
+	{
+		int i;
+		double max = a[0];
+		int whati = 0;
+		for (i = 1; i < 3; i++)
+		{
+			if (max < a[i])
+			{
+				max = a[i];
+				whati = i;
+			}
+		}
+		return whati;
 	}
 	
 }

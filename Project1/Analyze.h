@@ -35,6 +35,7 @@ namespace Analyze
 		static int GetInit(struct Process, double, double);
 		static int GetOverrideCit(struct Process, int);
 		static double PointCalc(struct Process, double , double , double, char , int, int, int);
+		static int Maxpoints(double a[]);
 	};
 
 	class BestProcess
