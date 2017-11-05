@@ -32,14 +32,15 @@ namespace Analyze
 	public:
 		static void WhatLevel(char);
 		static void ConvertperCycle();
-		static void PointCalc(struct Process, double , double , double, char , int, int, int);
+		static int GetInit(struct Process, double, double);
+		static int GetOverrideCit(struct Process, int);
+		static double PointCalc(struct Process, double , double , double, char , int, int, int);
 	};
 
 	class BestProcess
 	{
-	public:
-		static void DefineProcess();
-		static void Metals();
+	public:		
+		static void Metals(int level);
 		static void NonMetals();		
 	};
 
@@ -47,12 +48,12 @@ namespace Analyze
 	struct Process
 	{
 		string information;			//general info about the process
-		double cost;					//cost of running the process (in Rs.)
-		double maxcost;				//maximum allowed cost for process
+
+		double cost;				//cost of running the process (in Rs.)		
 		double efficiency;			//efficiency in processing the specific e-waste type from one form to another (in fraction)
 		double maxefficiency;		//the max efficiency achievable through the given process
 		double economicfactors[2];	//var[0] for returns to scale (input->input*2 then output?) and var[1] for economies of scale (cost->cost*2 then output?)
-									//var[0] relates scale of process with constant efficiency and var[1] relates efficiency of process with constant scale
+									//var[0] relates variable scale of process with constant efficiency and var[1] relates variable efficiency of process with constant scale
 		double amountinput[2];		//var[0] for specific substance type's amount, var[1] for amount of all of E-waste (in kg)
 		int category;				//0 for metals and 1 for nonmetals
 		double carbonfootprint[2];	//var[0] for footprint of the process, var[1] for mining the product instad of recycling it in kgs of CO2 equivalents
@@ -71,8 +72,7 @@ namespace Analyze
 		Process()
 		{
 			information = "NA";
-			cost = 0;
-			maxcost = 0;
+			cost = 0;			
 			efficiency = 0;
 			maxefficiency = 0;
 			economicfactors[0] = 0;
@@ -89,7 +89,7 @@ namespace Analyze
 			othertypes.typeof = 'Z';
 		}
 	};
-
+	
 	class Display
 	{
 	public:
@@ -97,8 +97,7 @@ namespace Analyze
 		static void ComponentBreakup(int *flag);
 		static void PreProcessing();
 		static void GeneralProcessing();
-		static void MetalProcessing();
-		static void NonMetalProcessing();
+		static void Processing();
 	};
 
 }

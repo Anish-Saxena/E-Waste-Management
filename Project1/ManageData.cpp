@@ -54,7 +54,7 @@ namespace ManageData
 	const double SmartwatchData::SWD[16] = { 0.000210 ,0.0001,0.0153,0.040,0.005,0.005,0.002,0.00004 ,0.004 ,0.02 ,0.001,0.0001 ,0.005,0.01,0.0001 ,0.004 };
 
 	//For Typcosts:
-	const double TypeCost::basem = 0, TypeCost::preciousm = 0, TypeCost::hazardousm = 0;
+	const double TypeCost::basem = 195,	TypeCost::preciousm = 421000, TypeCost::hazardousm = 3550;	//per kg
 	//DataManip
 	void DataManip::ChecknSum() //primitive version for testing
 	{

@@ -33,6 +33,67 @@ namespace Analyze
 	double GlobalData::totalewaste = 0;
 
 
+	void GlobalData::SettingFactor(int factor)
+	{
+		GlobalData::surveytakers = GlobalData::surveytakers*factor;
+		int i;
+		for (i = 0; i < 2; i++)
+		{
+
+			GlobalData::mobilenumber[i] *= factor;
+
+
+			GlobalData::laptopnumber[i] *= factor;
+
+
+			GlobalData::tabletnumber[i] *= factor;
+
+
+			GlobalData::pcnumber[i] *= factor;
+
+
+			GlobalData::mobileshared[i] *= factor;
+
+
+			GlobalData::laptopshared[i] *= factor;
+
+
+			GlobalData::tabletshared[i] *= factor;
+
+
+			GlobalData::pcshared[i] *= factor;
+
+
+			GlobalData::headphonenumber[i] *= factor;
+
+
+			GlobalData::printernumber[i] *= factor;
+
+
+			GlobalData::joysticknumber[i] *= factor;
+
+
+			GlobalData::scannernumber[i] *= factor;
+
+
+			GlobalData::webcamnumber[i] *= factor;
+
+
+			GlobalData::smartwatchnumber[i] *= factor;
+
+		}
+
+		for (i = 0; i < 2; i++)
+		{
+			GlobalData::totalshared[i] = GlobalData::mobileshared[i] + GlobalData::laptopshared[i] + GlobalData::tabletshared[i] + GlobalData::pcshared[i];
+			GlobalData::totalgadgets[i] = GlobalData::mobilenumber[i] + GlobalData::laptopnumber[i] + GlobalData::tabletnumber[i] + GlobalData::pcnumber[i];
+			GlobalData::totalperipherals[i] = GlobalData::headphonenumber[i] + GlobalData::scannernumber[i] + GlobalData::printernumber[i] +
+				GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
+		}
+		GlobalData::totalewaste = 0;
+		DataManip::AggregateSum();
+	}
+
 
 	void Display::GeneralResults()
 	{
@@ -101,7 +162,7 @@ namespace Analyze
 		for (i = 0; i < 16; i++)
 		{
 			Sleep(100);
-			printf("%-30s%.6lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
+			printf("%-30s%6.3lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
 
 		}
 		printf("\n%.4lf kg of total E-waste has been produced collectively in this survey", GlobalData::totalewaste);
@@ -207,23 +268,215 @@ namespace Analyze
 			i++;
 		}
 		cout << "Knowing about presence levels of various substance, it's time to move on to determine best of course of action for specific type of substances, keeping in mind the 3 conditions." << endl;
-		cout << "Hence, for what type of materials would you like to see the best processes?" << endl << endl;
-		cout << "1. Metals\n2. Non Metals" << endl << endl;
-		cin >> i;
+		cout << "\nPress any key to move on the specific processing section.\n\n";
+		_getche();
+		Sleep(100);
 		system("CLS");
-		if (i == 1)	Display::MetalProcessing();
-		else if (i == 2)	Display::NonMetalProcessing();
+		Display::Processing();		
 	}
 
 
-	void BestProcess::Metals()
+	void BestProcess::Metals(int level)
 	{
+		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		//Now defining processes for metals
+
+		Process Metals[7];
+		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
+		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
+		Metals[0].category = 0;
+		Metals[0].type = 'B';
+		Metals[0].cost = 750000;		
+		Metals[0].efficiency = 0.92;
+		Metals[0].maxefficiency = 0.99;
+		Metals[0].economicfactors[0] = 1.05;
+		Metals[0].economicfactors[1] = 1.05;
+		Metals[0].amountinput[0] = 100;
+		Metals[0].amountinput[1] = 250;
+		Metals[0].carbonfootprint[0] = 55000;
+		Metals[0].carbonfootprint[1] = 80000;
+		Metals[0].stagefrom = 2;
+		Metals[0].stageto = 3;
+		Metals[0].othertypes.stagefrom = 2;
+		Metals[0].othertypes.stageto = 3;
+		Metals[0].othertypes.typeof = 'P';
+
+		//Process 1: Adsorption, for Precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
+
+		Metals[1].information = "Adsorption process, Hydrometallury, more info soon.";
+		Metals[1].category = 0;
+		Metals[1].type = 'P';
+		Metals[1].cost = 500000;		
+		Metals[1].efficiency = 0.97;
+		Metals[1].maxefficiency = 0.99;
+		Metals[1].economicfactors[0] = 0.98;
+		Metals[1].economicfactors[1] = 1.05;
+		Metals[1].amountinput[0] = 1.5;
+		Metals[1].amountinput[1] = 250;
+		Metals[1].carbonfootprint[0] = 2500;
+		Metals[1].carbonfootprint[1] = 15000;
+		Metals[1].stagefrom = 2;
+		Metals[1].stageto = 3;
+		Metals[1].othertypes.stagefrom = -1;
+		Metals[1].othertypes.stageto = -1;
+		Metals[1].othertypes.typeof = 'Z';
+
+		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
+
+		Metals[2].information = "Vat Leaching, Hydrometallurgy, more info soon.";
+		Metals[2].type = 'P';
+		Metals[2].category = 0;
+		Metals[2].cost = 320000;		
+		Metals[2].efficiency = 0.85;
+		Metals[2].maxefficiency = 0.90;
+		Metals[2].economicfactors[0] = 0.95;
+		Metals[2].economicfactors[1] = 1.05;
+		Metals[2].amountinput[0] = 1.2;
+		Metals[2].amountinput[1] = 200;
+		Metals[2].carbonfootprint[0] = 1500;
+		Metals[2].carbonfootprint[1] = 13000;
+		Metals[2].stagefrom = 1;
+		Metals[2].stageto = 2;
+		Metals[2].othertypes.stagefrom = 1;
+		Metals[2].othertypes.stageto = 2;
+		Metals[2].othertypes.typeof = 'B';
+
+		//Process 3: Caustic Leaching, for Precious metals, to get them from leaching to extraction phase, doesn't act on other types of E-waste
+
+		Metals[3].information = "Caustic Leaching, Hydrometallurgy, more info soon.";
+		Metals[3].type = 'P';
+		Metals[3].category = 0;
+		Metals[3].cost = 270000;		
+		Metals[3].efficiency = 0.80;
+		Metals[3].maxefficiency = 0.90;
+		Metals[3].economicfactors[0] = 0.90;
+		Metals[3].economicfactors[1] = 1;
+		Metals[3].amountinput[0] = 1.0;
+		Metals[3].amountinput[1] = 100;
+		Metals[3].carbonfootprint[0] = 2000;
+		Metals[3].carbonfootprint[1] = 5500;
+		Metals[3].stagefrom = 1;
+		Metals[3].stageto = 2;
+		Metals[3].othertypes.stagefrom = -1;
+		Metals[3].othertypes.stageto = -1;
+		Metals[3].othertypes.typeof = 'Z';
+
+		//Process 4: Autoclave leaching, for precious metals, to get them from leaching to extraction phase, also makes hazardous metals go from leaching to extraction
+
+		Metals[4].information = "Autoclave leaching, Hydrometallurgy, more info soon.";
+		Metals[4].type = 'P';
+		Metals[4].category = 0;
+		Metals[4].cost = 975000;		
+		Metals[4].efficiency = 0.95;
+		Metals[4].maxefficiency = 0.999;
+		Metals[4].economicfactors[0] = 1.005;
+		Metals[4].economicfactors[1] = 1.05;
+		Metals[4].amountinput[0] = 1.5;
+		Metals[4].amountinput[1] = 250;
+		Metals[4].carbonfootprint[0] = 4000;
+		Metals[4].carbonfootprint[1] = 13000;
+		Metals[4].stagefrom = 1;
+		Metals[4].stageto = 2;
+		Metals[4].othertypes.stagefrom = 1;
+		Metals[4].othertypes.stageto = 2;
+		Metals[4].othertypes.typeof = 'H';
+
+		//Process 5: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
+
+		Metals[5].information = "Shaft furnace calcination, pyrometallurgy, more info soon.";
+		Metals[5].type = 'B';
+		Metals[5].category = 0;
+		Metals[5].cost = 500000;		
+		Metals[5].efficiency = 0.97;
+		Metals[5].maxefficiency = 0.9999;
+		Metals[5].economicfactors[0] = 1.05;
+		Metals[5].economicfactors[1] = 1;
+		Metals[5].amountinput[0] = 120;
+		Metals[5].amountinput[1] = 300;
+		Metals[5].carbonfootprint[0] = 25000;
+		Metals[5].carbonfootprint[1] = 65000;
+		Metals[5].stagefrom = 1;
+		Metals[5].stageto = 2;
+		Metals[5].othertypes.stagefrom = 1;
+		Metals[5].othertypes.stageto = 2;
+		Metals[5].othertypes.typeof = 'H';
+
+		//Process 6: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
+
+		Metals[6].information = "Fluidized bed reactor, pyrometallurgy, more info soon.";
+		Metals[6].type = 'B';
+		Metals[6].category = 0;
+		Metals[6].cost = 620000;		
+		Metals[6].efficiency = 0.975;
+		Metals[6].maxefficiency = 0.9999;
+		Metals[6].economicfactors[0] = 1.01;
+		Metals[6].economicfactors[1] = 1.01;
+		Metals[6].amountinput[0] = 150;
+		Metals[6].amountinput[1] = 375;
+		Metals[6].carbonfootprint[0] = 40000;
+		Metals[6].carbonfootprint[1] = 50000;
+		Metals[6].stagefrom = 1;
+		Metals[6].stageto = 2;
+		Metals[6].othertypes.stagefrom = 1;
+		Metals[6].othertypes.stageto = 2;
+		Metals[6].othertypes.typeof = 'H';
+
+		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		//Analysis part
+
+		double samount, tamount, typecost;
+		char type;
+		int init, tempcit, cit, stage, category, i, k;
+
 		//Start with precious metals
-		double samount, tamount, typecost, type, stage, init, cit;
+
 		samount = GlobalData::preciousmetal[1];
 		tamount = GlobalData::totalewaste;
 		typecost = TypeCost::preciousm;
 		type = 'P';
+		stage = 1;
+				
+		double points[3];
+		k = 0;
+
+		for (i = 0; i < 7; i++)
+		{
+			if (Metals[i].category != category || Metals[i].type != type)
+			{
+				continue;
+			}
+
+			init = HelperFunctions::GetInit(Metals[i], samount, tamount);
+			tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+
+			switch (level)
+			{
+			case 1:
+			{
+				cit = tempcit;
+				break;
+			}
+			case 2:
+			{
+				cit = tempcit / 2;
+				break;
+			}
+			case 3:
+			{
+				cit = 0;
+				break;
+			}
+			}
+
+			if (Metals[i].stagefrom == 1)
+			{
+				points[k] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, type, stage, init, cit);
+				k++;
+			}
+
+		}
 	}
 
 
@@ -233,9 +486,9 @@ namespace Analyze
 	}
 
 
-	void Display::MetalProcessing()
+	void Display::Processing()
 	{
-
+		int level;
 		cout << "The metal fractions separated from e-waste during preprocessing can be further processed using";
 		cout << " hydrometallurgical, pyrometallurgical, electrometallurgical, biometallurgical processes, and their";
 		cout << " combinations. The hydrometallurgical and pyrometallurgical processes are the major routes for";
@@ -253,8 +506,9 @@ namespace Analyze
 		Sleep(1000);
 		cout << "Before delving into the in-depth analysis, some of the parameters must be specified by the administrator who is is calling for this analysis";
 		cout << " as per the economic and environmental situation of the locality the survey was taken in. These parameters will be fundamental to determining";
-		cout << "The best way to manage the E-waste at hand." << endl << endl;
+		cout << " the best way to manage the E-waste at hand." << endl << endl;
 		Sleep(1000);
+		cout << "Press any key to continue." << endl << endl;	_getche();	system("CLS");
 		cout << "It is assumed that the cost of opening up and running the E-waste management plant would be born by the locality (through addition in maintainance costs or taxes) ";
 		cout<<"and hence, it is advised to carefully read the approximate costs";
 		cout << " associated with various plant sizes as per the E-waste amount, and select what level of economic liberty this software can take when assessing your case.";
@@ -271,29 +525,75 @@ namespace Analyze
 		cout << "Each Resident will pay about Rs. 250 per annum";
 		cout << endl << endl;
 		Sleep(100);
-		cout << "Please note that these are approximate values only, exact values will be determined during subsequent steps. So what kind of economic liberty do you want to give to this software?" << endl << endl;
+		cout << "Please note that these are approximate values only, exact values will be determined during subsequent steps.\n\nSo what kind of economic liberty do you want to give to this software?" << endl << endl;
 		Sleep(100);
-		cout << "1. Complete economic liberty: \n\nThe software will focus on improving efficiency and assume it has almost unlimited resources, subject to only development constraints themselves. ";
-		cout << "This will certainly produce most efficient solutions. But keep in mind that the cost can increase significantly, at times even more than 10 times the original!";
+		cout << "1. Complete economic liberty: \n\nImplies high priority for environment. The software will focus on improving efficiency and assume it has almost unlimited economic resources, subject to only development constraints themselves. ";
+		cout << "This will certainly produce most efficient solutions. Carbon footprint would be least. But keep in mind that the cost can increase significantly, at times even more than 10 times the original!";
 		cout << endl << endl << endl;
 		Sleep(100);
-		cout << "2. Constrained economic liberty:\n\nThe software will make sure the costs do not sky rocket while efficiency is also maintained. It will provide a well-balanced solution. Recommended in most cases.";
+		cout << "2. Constrained economic liberty:\n\nImplies moderate priority for environment. The software will make sure the costs do not sky rocket while efficiency is also maintained. It will provide a well-balanced solution. Recommended in most cases.";
 		cout << endl << endl << endl;
 		Sleep(100);
-		cout << "3. No economic liberty:\n\nThe software will try to make sure all the E-waste is treated, without worrying much about the efficiency. The cost will clearly be least, but bear in mind ";
-		cout << "this method will never provide most eco-friendly solutions. To be used only when budget is tight.";
-		cout << endl << endl;
-		Sleep(100);
-		//^LOOK AT IT
+		cout << "3. No economic liberty:\n\nImplies low prioirty for environment. The software will try to make sure all the E-waste is treated, without worrying much about the efficiency. The cost will clearly be least, but bear in mind ";
+		cout << "this method will never provide most eco-friendly solutions. Carbon footprint would be on the higher side.To be used only when budget is tight.";
+		cout << endl << endl<<endl;
+		cout << "What is your choice?\t";
+		cin >> level;
+		//Call best process functions.
+		Sleep(100);		
+		
 	}
 
-
-	void Display::NonMetalProcessing()
+		
+	double HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init and cit from 0
 	{
-		;
+		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
+		
+		double ce = (s.efficiency*(1 + init + 0.01*init*s.economicfactors[0])) / (init + 1);
+		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
+		double cc;
+		if (init > 80)
+			cc = s.cost*(1 + cit)*(1 + init / 2.61);
+		else if (init >=19)
+			cc = s.cost*(1 + cit)*(1 + init / 5.42);
+		else if (init > 5 && init < 19)
+			cc = s.cost*(1 + cit)*(1 + init*0.2916 - init*init*0.00694);
+		else
+			cc = s.cost*(1 + cit)*(1 + init / 4);
+
+		double sidetreatment, sideamount;
+		switch (s.othertypes.typeof)
+		{
+		case 'B':
+		{
+			sidetreatment = 50;
+			sideamount = GlobalData::basemetal[1];
+			break;
+		}
+		case 'P':
+		{
+			sidetreatment = 200;
+			sideamount = GlobalData::preciousmetal[1];
+			break;
+		}
+		case 'H':
+		{
+			sidetreatment = 200;
+			sideamount = GlobalData::hazardousmetal[1];
+			break;
+		}
+		default: sidetreatment = 0;
+		}
+
+		economicpoints = (pow(ce, 3)*samount*typecost) / cc;
+		environmentalpoints = ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount);	
+		relativeprocesspoints = sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
+		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
+
+		return totalpoints;
 	}
 
-
+	
 	void HelperFunctions::WhatLevel(char i)
 	{
 		switch (i)
@@ -440,274 +740,37 @@ namespace Analyze
 		GlobalData::totalewaste = GlobalData::totalewaste / 182.5;
 	}
 
+
+	int HelperFunctions::GetInit(struct Process p, double samount, double tamount)
+	{
+		int init = 0;
+		double psamount, ptamount;
+		psamount = p.amountinput[0];
+		ptamount = p.amountinput[1];
+		while (samount > psamount || tamount > ptamount)
+		{
+			init++;
+			psamount = p.amountinput[0] *(init + 1);
+			ptamount = p.amountinput[1] *(init + 1);			
+		}
+		return init;
+	}
+
+
+	int HelperFunctions::GetOverrideCit(struct Process p, int init)
+	{
+		int cit = 0;
+
+		if (p.economicfactors[1] == 1)	return cit;
+
+		double ce=p.efficiency;
+		while (p.maxefficiency >= ce && cit <= 20)		//20 times the original cost is a manual override to limit program from going actually unlimited resources
+		{			
+			cit++;
+			ce = (p.efficiency*(1 + init + 0.01*init*p.economicfactors[0])) / (init + 1);
+			ce = ce*(1 + cit*p.economicfactors[1]) / (cit + 1);			
+		}
+		return (cit - 1);
+	}
 	
-	void HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init nd cit from 0
-	{
-		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
-		
-		double ce = (s.efficiency*(1 + init*s.economicfactors[0])) / (init + 1);
-		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
-		double cc;
-		if (init > 80)
-			cc = s.cost*(1 + cit)*(1 + init / 2.61);
-		else if (init >=19)
-			cc = s.cost*(1 + cit)*(1 + init / 5.42);
-		else if (init > 5 && init < 19)
-			cc = s.cost*(1 + cit)*(1 + init*0.2916 - init*init*0.00694);
-		else
-			cc = s.cost*(1 + cit)*(1 + init / 4);
-
-		if (ce > s.maxefficiency||cc>s.maxcost)
-		{
-			economicpoints = -1;
-			environmentalpoints = -1;
-			relativeprocesspoints = -1;
-			return;		//edit this as per return type
-		}
-
-		double sidetreatment, sideamount;
-		switch (s.othertypes.typeof)
-		{
-		case 'B':
-		{
-			sidetreatment = 50;
-			sideamount = GlobalData::basemetal[1];
-			break;
-		}
-		case 'P':
-		{
-			sidetreatment = 200;
-			sideamount = GlobalData::preciousmetal[1];
-			break;
-		}
-		case 'H':
-		{
-			sidetreatment = 200;
-			sideamount = GlobalData::hazardousmetal[1];
-			break;
-		}
-		default: sidetreatment = 0;
-		}
-
-		economicpoints = (pow(ce, 3)*samount*typecost) / cc;
-		environmentalpoints = ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount);	
-		relativeprocesspoints = sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
-		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
-	}
-
-	
-	void BestProcess::DefineProcess()
-	{
-		//Now defining processes for metals
-		Process Metals[7];
-
-		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
-
-		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
-		Metals[0].category = 0;
-		Metals[0].type = 'B';
-		Metals[0].cost = 750000;
-		Metals[0].maxcost = 3500000;
-		Metals[0].efficiency = 0.92;
-		Metals[0].maxefficiency = 0.99;
-		Metals[0].economicfactors[0] = 1.05;
-		Metals[0].economicfactors[1] = 1.05;
-		Metals[0].amountinput[0] = 100;
-		Metals[0].amountinput[1] = 250;
-		Metals[0].carbonfootprint[0] = 55000;
-		Metals[0].carbonfootprint[1] = 80000;		
-		Metals[0].stagefrom = 2;
-		Metals[0].stageto = 3;
-		Metals[0].othertypes.stagefrom = 2;
-		Metals[0].othertypes.stageto = 3;
-		Metals[0].othertypes.typeof = 'P';
-
-		//Process 1: Adsorption, for Precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
-
-		Metals[1].information = "Adsorption process, Hydrometallury, more info soon.";
-		Metals[1].category = 0;
-		Metals[1].type = 'P';		
-		Metals[1].cost = 500000;
-		Metals[1].maxcost = 3200000;
-		Metals[1].efficiency = 0.97;
-		Metals[1].maxefficiency = 0.99;
-		Metals[1].economicfactors[0] = 0.98;
-		Metals[1].economicfactors[1] = 1.05;
-		Metals[1].amountinput[0] = 1.5;
-		Metals[1].amountinput[1] = 250;
-		Metals[1].carbonfootprint[0] = 2500;
-		Metals[1].carbonfootprint[1] = 15000;		
-		Metals[1].stagefrom = 2;
-		Metals[1].stageto = 3;
-		Metals[1].othertypes.stagefrom = -1;
-		Metals[1].othertypes.stageto = -1;
-		Metals[1].othertypes.typeof = 'Z';
-
-		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
-
-		Metals[2].information = "Vat Leaching, Hydrometallurgy, more info soon.";
-		Metals[2].type = 'P';
-		Metals[2].category = 0;
-		Metals[2].cost = 320000;
-		Metals[2].maxcost = 1500000;
-		Metals[2].efficiency = 0.85;
-		Metals[2].maxefficiency = 0.90;
-		Metals[2].economicfactors[0] = 0.95;
-		Metals[2].economicfactors[1] = 0.8;
-		Metals[2].amountinput[0] = 1.2;
-		Metals[2].amountinput[1] = 200;
-		Metals[2].carbonfootprint[0] = 1500;
-		Metals[2].carbonfootprint[1] = 13000;
-		Metals[2].stagefrom = 1;
-		Metals[2].stageto = 2;
-		Metals[2].othertypes.stagefrom = 1;
-		Metals[2].othertypes.stageto = 2;
-		Metals[2].othertypes.typeof = 'B';
-
-		//Process 3: Caustic Leaching, for Precious metals, to get them from leaching to extraction phase, doesn't act on other types of E-waste
-
-		Metals[3].information = "Caustic Leaching, Hydrometallurgy, more info soon.";
-		Metals[3].type = 'P';
-		Metals[3].category = 0;
-		Metals[3].cost = 270000;
-		Metals[3].maxcost = 2100000;
-		Metals[3].efficiency = 0.80;
-		Metals[3].maxefficiency = 0.90;
-		Metals[3].economicfactors[0] = 0.90;
-		Metals[3].economicfactors[1] = 0.50;
-		Metals[3].amountinput[0] = 1.0;
-		Metals[3].amountinput[1] = 100;
-		Metals[3].carbonfootprint[0] = 2000;
-		Metals[3].carbonfootprint[1] = 5500;
-		Metals[3].stagefrom = 1;
-		Metals[3].stageto = 2;
-		Metals[3].othertypes.stagefrom = -1;
-		Metals[3].othertypes.stageto = -1;
-		Metals[3].othertypes.typeof = 'Z';
-
-		//Process 4: Autoclave leaching, for precious metals, to get them from leaching to extraction phase, also makes hazardous metals go from leaching to extraction
-
-		Metals[4].information = "Autoclave leaching, Hydrometallurgy, more info soon.";
-		Metals[4].type = 'P';
-		Metals[4].category = 0;
-		Metals[4].cost = 975000;
-		Metals[4].maxcost = 5000000;
-		Metals[4].efficiency = 0.95;
-		Metals[4].maxefficiency = 0.999;
-		Metals[4].economicfactors[0] = 1.005;
-		Metals[4].economicfactors[1] = 1.005;
-		Metals[4].amountinput[0] = 1.5;
-		Metals[4].amountinput[1] = 250;
-		Metals[4].carbonfootprint[0] = 4000;
-		Metals[4].carbonfootprint[1] = 13000;
-		Metals[4].stagefrom = 1;
-		Metals[4].stageto = 2;
-		Metals[4].othertypes.stagefrom = 1;
-		Metals[4].othertypes.stageto = 2;
-		Metals[4].othertypes.typeof = 'H';
-
-		//Process 5: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
-
-		Metals[5].information = "Shaft furnace calcination, pyrometallurgy, more info soon.";
-		Metals[5].type = 'B';
-		Metals[5].category = 0;
-		Metals[5].cost = 500000;
-		Metals[5].maxcost = 2500000;
-		Metals[5].efficiency = 0.97;
-		Metals[5].maxefficiency = 0.9999;
-		Metals[5].economicfactors[0] = 1.05;
-		Metals[5].economicfactors[1] = 1;
-		Metals[5].amountinput[0] = 120;
-		Metals[5].amountinput[1] = 300;
-		Metals[5].carbonfootprint[0] = 25000;
-		Metals[5].carbonfootprint[1] = 65000;
-		Metals[5].stagefrom = 1;
-		Metals[5].stageto = 2;
-		Metals[5].othertypes.stagefrom = 1;
-		Metals[5].othertypes.stageto = 2;
-		Metals[5].othertypes.typeof = 'H';
-
-		//Process 6: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
-
-		Metals[6].information = "Fluidized bed reactor, pyrometallurgy, more info soon.";
-		Metals[6].type = 'B';
-		Metals[6].category = 0;
-		Metals[6].cost = 620000;
-		Metals[6].maxcost = 4080000;
-		Metals[6].efficiency = 0.975;
-		Metals[6].maxefficiency = 0.9999;
-		Metals[6].economicfactors[0] = 1.01;
-		Metals[6].economicfactors[1] = 1.01;
-		Metals[6].amountinput[0] = 150;
-		Metals[6].amountinput[1] = 375;
-		Metals[6].carbonfootprint[0] = 40000;
-		Metals[6].carbonfootprint[1] = 50000;
-		Metals[6].stagefrom = 1;
-		Metals[6].stageto = 2;
-		Metals[6].othertypes.stagefrom = 1;
-		Metals[6].othertypes.stageto = 2;
-		Metals[6].othertypes.typeof = 'H';
-	}
-
-
-	void GlobalData::SettingFactor(int factor)
-	{
-		GlobalData::surveytakers = GlobalData::surveytakers*factor;
-		int i;
-		for (i = 0; i < 2; i++)
-		{
-			 
-			GlobalData::mobilenumber[i] *=factor;
-			 
-			 
-			GlobalData::laptopnumber[i] *= factor;
-			 
-			 
-			GlobalData::tabletnumber[i] *=factor;
-			 
-			 
-			GlobalData::pcnumber[i] *=factor;
-			 
-			 
-			GlobalData::mobileshared[i] *=factor;
-			 
-			 
-			GlobalData::laptopshared[i] *=factor;
-			 
-			 
-			GlobalData::tabletshared[i] *=factor;
-			 
-			 
-			GlobalData::pcshared[i] *=factor;
-			 
-			 
-			GlobalData::headphonenumber[i] *=factor;
-			 
-			 
-			GlobalData::printernumber[i] *=factor;
-			 
-			 
-			GlobalData::joysticknumber[i] *=factor;
-			 
-			 
-			GlobalData::scannernumber[i] *=factor;
-			 
-			 
-			GlobalData::webcamnumber[i] *=factor;
-			 
-			 
-			GlobalData::smartwatchnumber[i] *=factor;
-			 
-		}
-
-		for (i = 0; i < 2; i++)
-		{
-			GlobalData::totalshared[i] = GlobalData::mobileshared[i] + GlobalData::laptopshared[i] + GlobalData::tabletshared[i] + GlobalData::pcshared[i];
-			GlobalData::totalgadgets[i] = GlobalData::mobilenumber[i] + GlobalData::laptopnumber[i] + GlobalData::tabletnumber[i] + GlobalData::pcnumber[i];
-			GlobalData::totalperipherals[i] = GlobalData::headphonenumber[i] + GlobalData::scannernumber[i] + GlobalData::printernumber[i] +
-				GlobalData::smartwatchnumber[i] + GlobalData::joysticknumber[i] + GlobalData::webcamnumber[i];
-		}
-		GlobalData::totalewaste = 0;
-		DataManip::AggregateSum();
-	}
 }
