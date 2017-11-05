@@ -282,7 +282,7 @@ namespace Analyze
 		
 		//Now defining processes for metals
 
-		Process Metals[7];
+		Process Metals[18];
 		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
 		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
 		Metals[0].category = 0;
@@ -422,6 +422,226 @@ namespace Analyze
 		Metals[6].othertypes.stageto = 2;
 		Metals[6].othertypes.typeof = 'H';
 
+		//Process 7: Pyrolytic Extraction: for base metals, to get them from Purification to recovery, also makes hazardous metals go from purification to recovery
+
+		Metals[7].information = "Pyrolytic Extraction, pyrometallurgy, more info soon.";
+		Metals[7].type = 'B';
+		Metals[7].category = 0;
+		Metals[7].cost = 580000;
+		Metals[7].efficiency = 0.95;
+		Metals[7].maxefficiency = 0.99;
+		Metals[7].economicfactors[0] = 1.1;
+		Metals[7].economicfactors[1] = 1.08;
+		Metals[7].amountinput[0] = 100;
+		Metals[7].amountinput[1] = 250;
+		Metals[7].carbonfootprint[0] = 45000;
+		Metals[7].carbonfootprint[1] = 50000;
+		Metals[7].stagefrom = 1;
+		Metals[7].stageto = 2;
+		Metals[7].othertypes.stagefrom = 1;
+		Metals[7].othertypes.stageto = 2;
+		Metals[7].othertypes.typeof = 'H';
+
+		//Process 8: Parke's Process, for hazardous metals, to get them from Purification to recovery, also makes precious metals go from purification and recovery
+
+		Metals[8].information = "Parke's Process, pyrometallurgy, more info soon.";
+		Metals[8].type = 'H';
+		Metals[8].category = 0;
+		Metals[8].cost = 450000;
+		Metals[8].efficiency = 0.97;
+		Metals[8].maxefficiency = 0.9999;
+		Metals[8].economicfactors[0] = 1.05;
+		Metals[8].economicfactors[1] = 1.1;
+		Metals[8].amountinput[0] = 0.5;
+		Metals[8].amountinput[1] = 250;
+		Metals[8].carbonfootprint[0] = 60000;
+		Metals[8].carbonfootprint[1] = 80000;
+		Metals[8].stagefrom = 1;
+		Metals[8].stageto = 2;
+		Metals[8].othertypes.stagefrom = 1;
+		Metals[8].othertypes.stageto = 2;
+		Metals[8].othertypes.typeof = 'P';
+
+		//Process 9: Distillation process: for hazardous metals, to get them from Purification to recovery, doesn't act on other types of e-waste
+
+		Metals[9].information = "Distillation process, hydrometallurgy, more info soon.";
+		Metals[9].type = 'H';
+		Metals[9].category = 0;
+		Metals[9].cost = 400000;
+		Metals[9].efficiency = 0.92;
+		Metals[9].maxefficiency = 0.97;
+		Metals[9].economicfactors[0] = 1.01;
+		Metals[9].economicfactors[1] = 1.1;
+		Metals[9].amountinput[0] = 0.6;
+		Metals[9].amountinput[1] = 225;
+		Metals[9].carbonfootprint[0] = 50000;
+		Metals[9].carbonfootprint[1] = 75000;
+		Metals[9].stagefrom = 1;
+		Metals[9].stageto = 2;
+		Metals[9].othertypes.stagefrom = -1;
+		Metals[9].othertypes.stageto = -1;
+		Metals[9].othertypes.typeof = 'Z';
+
+		//Process 10: Extractive Roasting: for hazardous metals, to get them from Purification to recovery, also makes base metals go from purification to recovery
+
+		Metals[10].information = "Extractive Roasting, pyrometallurgy, more info soon.";
+		Metals[10].type = 'H';
+		Metals[10].category = 0;
+		Metals[10].cost = 600000;
+		Metals[10].efficiency = 0.75;
+		Metals[10].maxefficiency = 0.95;
+		Metals[10].economicfactors[0] = 1.1;
+		Metals[10].economicfactors[1] = 1.1;
+		Metals[10].amountinput[0] = 0.5;
+		Metals[10].amountinput[1] = 500;
+		Metals[10].carbonfootprint[0] = 50000;
+		Metals[10].carbonfootprint[1] = 80000;
+		Metals[10].stagefrom = 1;
+		Metals[10].stageto = 2;
+		Metals[10].othertypes.stagefrom = 1;
+		Metals[10].othertypes.stageto = 2;
+		Metals[10].othertypes.typeof = 'B';
+
+		//Process 11: Mertill-Crowe Process: for precious metals, to get them from Recovery to refining, doesn't act on other types of E-waste
+
+		Metals[11].information = "Merill-Crowe Process, hydrometallurgy, more info soon.";
+		Metals[11].type = 'P';
+		Metals[11].category = 0;
+		Metals[11].cost = 400000;
+		Metals[11].efficiency = 0.82;
+		Metals[11].maxefficiency = 0.96;
+		Metals[11].economicfactors[0] = 1.03;
+		Metals[11].economicfactors[1] = 1.07;
+		Metals[11].amountinput[0] = 1.5;
+		Metals[11].amountinput[1] = 250;
+		Metals[11].carbonfootprint[0] = 35000;
+		Metals[11].carbonfootprint[1] = 60000;
+		Metals[11].stagefrom = 2;
+		Metals[11].stageto = 3;
+		Metals[11].othertypes.stagefrom = -1;
+		Metals[11].othertypes.stageto = -1;
+		Metals[11].othertypes.typeof = 'Z';
+
+		//Process 12: Park and Fray Process, for precious metals, to get them from recovery to refining, doesn't act on other types of E-waste
+
+		Metals[12].information = "Park and Fray Process, hydrometallurgy, more info soon.";
+		Metals[12].type = 'P';
+		Metals[12].category = 0;
+		Metals[12].cost = 350000;
+		Metals[12].efficiency = 0.97;
+		Metals[12].maxefficiency = 0.9999;
+		Metals[12].economicfactors[0] = 1.2;
+		Metals[12].economicfactors[1] = 1.08;
+		Metals[12].amountinput[0] = 1.5;
+		Metals[12].amountinput[1] = 250;
+		Metals[12].carbonfootprint[0] = 40000;
+		Metals[12].carbonfootprint[1] = 60000;
+		Metals[12].stagefrom = 2;
+		Metals[12].stageto = 3;
+		Metals[12].othertypes.stagefrom = -1;
+		Metals[12].othertypes.stageto = -1;
+		Metals[12].othertypes.typeof = 'Z';
+		
+		//Process 13: Kogan Process, for base metals, to get them from recovery to refining, also makes hazardous metals go from recovery to refining
+
+		Metals[13].information = "Kogan Process, hydrometallurgy, more info soon.";
+		Metals[13].type = 'B';
+		Metals[13].category = 0;
+		Metals[13].cost = 750000;
+		Metals[13].efficiency = 0.85;
+		Metals[13].maxefficiency = 0.99;
+		Metals[13].economicfactors[0] = 1.01;
+		Metals[13].economicfactors[1] = 1.2;
+		Metals[13].amountinput[0] = 150;
+		Metals[13].amountinput[1] = 375;
+		Metals[13].carbonfootprint[0] = 35000;
+		Metals[13].carbonfootprint[1] = 80000;
+		Metals[13].stagefrom = 2;
+		Metals[13].stageto = 3;
+		Metals[13].othertypes.stagefrom = 2;
+		Metals[13].othertypes.stageto = 3;
+		Metals[13].othertypes.typeof = 'H';
+		
+		//Process 14: Unicore Process, for base metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
+
+		Metals[14].information = "Unicore Process, pyrometallurgy, more info soon.";
+		Metals[14].type = 'B';
+		Metals[14].category = 0;
+		Metals[14].cost = 600000;
+		Metals[14].efficiency = 0.95;
+		Metals[14].maxefficiency = 0.99;
+		Metals[14].economicfactors[0] = 1.001;
+		Metals[14].economicfactors[1] = 1.08;
+		Metals[14].amountinput[0] = 150;
+		Metals[14].amountinput[1] = 375;
+		Metals[14].carbonfootprint[0] = 35000;
+		Metals[14].carbonfootprint[1] = 80000;
+		Metals[14].stagefrom = 2;
+		Metals[14].stageto = 3;
+		Metals[14].othertypes.stagefrom = 2;
+		Metals[14].othertypes.stageto = 3;
+		Metals[14].othertypes.typeof = 'P';
+
+		//Process 15: Ronnskar Smetler process: for hazardous metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
+
+		Metals[15].information = "Ronnskar Smelter Process, pyrometallugry, more info soon.";
+		Metals[15].type = 'H';
+		Metals[15].category = 0;
+		Metals[15].cost = 700000;
+		Metals[15].efficiency = 0.97;
+		Metals[15].maxefficiency = 0.99;
+		Metals[15].economicfactors[0] = 1.04;
+		Metals[15].economicfactors[1] = 1.08;
+		Metals[15].amountinput[0] = 125;
+		Metals[15].amountinput[1] = 400;
+		Metals[15].carbonfootprint[0] = 45000;
+		Metals[15].carbonfootprint[1] = 65000;
+		Metals[15].stagefrom = 2;
+		Metals[15].stageto = 3;
+		Metals[15].othertypes.stagefrom = 2;
+		Metals[15].othertypes.stageto = 3;
+		Metals[15].othertypes.typeof = 'P';
+
+		//Process 16: Outotec Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
+
+		Metals[16].information = "Outotec Process, pyrometallurgy, more info soon.";
+		Metals[16].type = 'H';
+		Metals[16].category = 0;
+		Metals[16].cost = 450000;
+		Metals[16].efficiency = 0.90;
+		Metals[16].maxefficiency = 0.97;
+		Metals[16].economicfactors[0] = 1.01;
+		Metals[16].economicfactors[1] = 1.12;
+		Metals[16].amountinput[0] = 0.5;
+		Metals[16].amountinput[1] = 250;
+		Metals[16].carbonfootprint[0] = 55000;
+		Metals[16].carbonfootprint[1] = 90000;
+		Metals[16].stagefrom = 2;
+		Metals[16].stageto = 3;
+		Metals[16].othertypes.stagefrom = -1;
+		Metals[16].othertypes.stageto = -1;
+		Metals[16].othertypes.typeof = 'Z';
+
+		//Process 17: Mecucci and Scott Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
+
+		Metals[17].information = "Mecucci and Scott Process, hydrometallurgy, more info soon.";
+		Metals[17].type = 'H';
+		Metals[17].category = 0;
+		Metals[17].cost =  350000;
+		Metals[17].efficiency = 0.90;
+		Metals[17].maxefficiency = 0.95;
+		Metals[17].economicfactors[0] = 0.94;
+		Metals[17].economicfactors[1] = 1.1002;
+		Metals[17].amountinput[0] = 150;
+		Metals[17].amountinput[1] = 350;
+		Metals[17].carbonfootprint[0] = 45000;
+		Metals[17].carbonfootprint[1] = 60000;
+		Metals[17].stagefrom = 2;
+		Metals[17].stageto = 3;
+		Metals[17].othertypes.stagefrom = -1;
+		Metals[17].othertypes.stageto = -1;
+		Metals[17].othertypes.typeof = 'Z';
+
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		//Analysis part
@@ -437,6 +657,7 @@ namespace Analyze
 		typecost = TypeCost::preciousm;
 		type = 'P';
 		stage = 1;
+		category = 0;
 				
 		double points[3];
 		k = 0;
@@ -477,6 +698,7 @@ namespace Analyze
 			}
 
 		}
+
 	}
 
 
@@ -513,19 +735,20 @@ namespace Analyze
 		cout<<"and hence, it is advised to carefully read the approximate costs";
 		cout << " associated with various plant sizes as per the E-waste amount, and select what level of economic liberty this software can take when assessing your case.";
 		cout << "Note that the cost of opening up of plant will be amortized through the 10 years to get a uniform cost" << endl << endl;
-		cout << "Small plants:\n\nFor total E-waste upto about 200 kg per cycle, from about 15,000 users typically (per 2 years), carries an economic cost of about Rs. 36,00,000 per annum for 10 years\n\n";
+		cout << "Small plants:\n\nFor total E-waste of about 200 kg per cycle, from about 15,000 users typically (per 2 years), carries an economic cost of about Rs. 36,00,000 per annum for 10 years\n\n";
 		cout << "Each resident will pay about that cost Rs. 650 per annum.";
 		cout << endl << endl;
 		Sleep(100);
-		cout << "Medium sized plants:\n\nFor total E-waste upto about 3,500 kg per cycle, from about 2,40,000 users typically (per 2 years), carries an economic cost of about Rs. 5,40,00,000 per annum for 10 years\n\n";
+		cout << "Medium sized plants:\n\nFor total E-waste of about 3,500 kg per cycle, from about 2,40,000 users typically (per 2 years), carries an economic cost of about Rs. 5,40,00,000 per annum for 10 years\n\n";
 		cout << "Each Resident will pay about Rs. 250 per annum";
 		cout << endl << endl;
 		Sleep(100);
-		cout << "Large sized plants:\n\n For total E-waste upto about 20,000 kg per cycle, from about 15,00,000 users typically (per two years), carries an economic cost of about Rs. 40,00,000 per annum for 10 years\n\n";
+		cout << "Large sized plants:\n\n For total E-waste of about 20,000 kg per cycle, from about 15,00,000 users typically (per two years), carries an economic cost of about Rs. 40,00,000 per annum for 10 years\n\n";
 		cout << "Each Resident will pay about Rs. 250 per annum";
 		cout << endl << endl;
 		Sleep(100);
-		cout << "Please note that these are approximate values only, exact values will be determined during subsequent steps.\n\nSo what kind of economic liberty do you want to give to this software?" << endl << endl;
+		cout << "Please note that these are approximate values only, exact values will be determined during subsequent steps.\n\n";
+		cout<<"So what kind of economic liberty do you want to give to this software ? " << endl << endl;
 		Sleep(100);
 		cout << "1. Complete economic liberty: \n\nImplies high priority for environment. The software will focus on improving efficiency and assume it has almost unlimited economic resources, subject to only development constraints themselves. ";
 		cout << "This will certainly produce most efficient solutions. Carbon footprint would be least. But keep in mind that the cost can increase significantly, at times even more than 10 times the original!";
@@ -585,11 +808,45 @@ namespace Analyze
 		default: sidetreatment = 0;
 		}
 
-		economicpoints = (pow(ce, 3)*samount*typecost) / cc;
-		environmentalpoints = ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount);	
-		relativeprocesspoints = sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
-		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
+		economicpoints = fabs((pow(ce, 3)*samount*typecost) / cc);
+		while (economicpoints > 100)
+		{
+			economicpoints /= 10.0;
+		}
+		while (economicpoints < 10)
+		{
+			economicpoints *= 10;
+		}
 
+		environmentalpoints = fabs(ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount));	
+		while (environmentalpoints > 100)
+		{
+			environmentalpoints /= 10.0;
+		}
+		while (environmentalpoints < 10)
+		{
+			environmentalpoints *= 10.0;
+		}
+
+		relativeprocesspoints = fabs(sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2)));
+		while (relativeprocesspoints > 100)
+		{
+			relativeprocesspoints /= 10.0;
+		}
+		while (relativeprocesspoints < 10)
+		{
+			relativeprocesspoints *= 10;
+		}
+
+		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
+		while (totalpoints > 100)
+		{
+			totalpoints /= 10.0;
+		}
+		while (totalpoints < 10)
+		{
+			totalpoints *= 10;
+		}
 		return totalpoints;
 	}
 
@@ -764,7 +1021,7 @@ namespace Analyze
 		if (p.economicfactors[1] == 1)	return cit;
 
 		double ce=p.efficiency;
-		while (p.maxefficiency >= ce && cit <= 20)		//20 times the original cost is a manual override to limit program from going actually unlimited resources
+		while (p.maxefficiency >= ce && cit <= 20)		//20 times the original cost is an automatic override to limit program from going actually at unlimited resources
 		{			
 			cit++;
 			ce = (p.efficiency*(1 + init + 0.01*init*p.economicfactors[0])) / (init + 1);

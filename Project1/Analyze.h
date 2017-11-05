@@ -61,7 +61,9 @@ namespace Analyze
 									//types: B is for base metals, P is for precious metals, H is for hazardous heavy metals
 		int stagefrom;				//what stage the given process works from in case of specific e-waste
 		int stageto;					//what stage the given process takes the specific e-waste to
+
 										//stages: for metals: 1->Purification or Leaching, 2->Extraction or recovery, 3->Refining
+
 		struct OT					//if incase the process treats other types as well
 		{
 			char typeof;
