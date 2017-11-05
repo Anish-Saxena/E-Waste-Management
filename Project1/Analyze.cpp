@@ -719,7 +719,6 @@ namespace Analyze
 		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
-		cout << "\n\nCHECK 1\n\n";						//HERE!!!!!!!!!
 		for (i = 0; i < 3; i++)
 		{
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
@@ -732,11 +731,9 @@ namespace Analyze
 
 		}
 		tamount = GlobalData::totalewaste;
-		cout << "\n\nCHECK 2\n\n";						//HERE!!!!!!!!!
 
 		for (i = 0; i < 21; i++)
 		{
-			cout << "\n\nCHECK 3\n\n";						//HERE!!!!!!!!!
 
 			if (Metals[i].category != 0)	continue;
 			switch(Metals[i].type)
@@ -745,7 +742,6 @@ namespace Analyze
 			{
 				samount = GlobalData::preciousmetal[1];
 				typecost = TypeCost::preciousm;
-				cout << "\n\nCHECK 4\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -759,8 +755,7 @@ namespace Analyze
 				}
 				case 2:
 				{
-					cit = tempcit / 2;		cout << "\n\nCHECK whaattttttt\n\n";						//HERE!!!!!!!!!
-
+					cit = tempcit / 2;		
 					break;
 				}
 				case 3:
@@ -769,34 +764,35 @@ namespace Analyze
 					break;
 				}
 				}
-				cout << "\n\nCHECK CHECK CHECK\n\n";						//HERE!!!!!!!!!
 
 				switch (Metals[i].stagefrom)
 				{
 				case 1:
 				{
-					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit);
-					whatip1[p1] = i;		cout << "\n\nCHECK\n\n";						//HERE!!!!!!!!!
 
+					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit);
+					whatip1[p1] = i;		
 					p1++;
 					break;
 				}
 				case 2:
 				{
+
 					pointsp2[p2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 2, init, cit);
 					whatip2[p2] = i;
 					p2++;
+
 					break;
 				}
 				case 3:
 				{
+
 					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit);
 					whatip3[p3] = i;
 					p3++;
 					break;
 				}
 				}
-				cout << "\n\nCHECK MAYBEEEE\n\n";						//HERE!!!!!!!!!
 
 				break;
 			}
@@ -804,7 +800,6 @@ namespace Analyze
 			{
 				samount = GlobalData::hazardousmetal[1];
 				typecost = TypeCost::hazardousm;
-				cout << "\n\nCHECK 5\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -857,7 +852,6 @@ namespace Analyze
 			{
 				samount = GlobalData::basemetal[1];
 				typecost = TypeCost::basem;
-				cout << "\n\nCHECK 6\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -903,17 +897,14 @@ namespace Analyze
 					b3++;
 					break;
 				}
-				cout << "\n\nCHECK WORKS MAYBE\n\n";						//HERE!!!!!!!!!
-
 				}
+
 				break;
 			}
 			}
 		}
-		cout << "\n\nCHECK OUT\n\n";						//HERE!!!!!!!!!
 
-		cout << endl << endl << pointsp1[1];
-		/*int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
+		int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
 		maxip1 = HelperFunctions::Maxpoints(pointsp1);
 		maxip2 = HelperFunctions::Maxpoints(pointsp2);
 		maxip3 = HelperFunctions::Maxpoints(pointsp3);
@@ -933,16 +924,11 @@ namespace Analyze
 		processih3 = whatih3[maxih3];
 		processib1 = whatib1[maxib1];
 		processib2 = whatib2[maxib2];
-		processib3 = whatib3[maxib3];*/
-
-
-//double x = HelperFunctions::PointCalc(Metals[5], GlobalData::totalewaste, GlobalData::preciousmetal[1], TypeCost::preciousm, 'P', 1, 40, 2);
-//cout << endl << endl << endl << x;
-
-
+		processib3 = whatib3[maxib3];
+						
 		cout << endl << endl;
 		Sleep(1000);
-		cout << "Done!";
+		cout << "Done!\n\n";
 		cout << "Processing can be broken down into three 3 stages:\n\n";
 		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
 		Sleep(1000);
@@ -954,7 +940,7 @@ namespace Analyze
 		system("CLS");
 		cout << "STAGE 1: PURIFICATION OR LEACHING\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
-		//cout << Metals[processip1].information;
+		cout << Metals[processip1].information;
 		cout << endl << endl;
 	}
 
@@ -1028,7 +1014,7 @@ namespace Analyze
 	double HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init and cit from 0
 	{
 		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
-		
+
 		double ce = (s.efficiency*(1 + init + 0.01*init*s.economicfactors[0])) / (init + 1);
 		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
 		double cc;
@@ -1054,6 +1040,7 @@ namespace Analyze
 		{
 			sidetreatment = 200;
 			sideamount = GlobalData::preciousmetal[1];
+
 			break;
 		}
 		case 'H':
@@ -1066,15 +1053,18 @@ namespace Analyze
 		}
 
 		economicpoints = fabs((pow(ce, 3)*samount*typecost) / cc);
-		while (economicpoints > 100)
+		if (economicpoints != 0)
 		{
-			economicpoints /= 10.0;
-		}
-		while (economicpoints < 10)
-		{
-			economicpoints *= 10;
-		}
+			while (economicpoints > 100)
+			{
 
+				economicpoints /= 10.0;
+			}
+			while (economicpoints < 10)
+			{
+				economicpoints *= 10;
+			}
+		}
 		environmentalpoints = fabs(ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount));	
 		while (environmentalpoints > 100)
 		{
@@ -1086,24 +1076,33 @@ namespace Analyze
 		}
 
 		relativeprocesspoints = fabs(sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2)));
-		while (relativeprocesspoints > 100)
+		if (relativeprocesspoints != 0)
 		{
-			relativeprocesspoints /= 10.0;
+			while (relativeprocesspoints > 100)
+			{
+				
+				relativeprocesspoints /= 10.0;
+			}
+			while (relativeprocesspoints < 10)
+			{
+				
+				relativeprocesspoints *= 10;
+			}
 		}
-		while (relativeprocesspoints < 10)
-		{
-			relativeprocesspoints *= 10;
-		}
-
+		
 		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
-		while (totalpoints > 100)
+		if (totalpoints != 0)
 		{
-			totalpoints /= 10.0;
+			while (totalpoints > 100)
+			{
+				totalpoints /= 10.0;
+			}
+			while (totalpoints < 10)
+			{
+				totalpoints *= 10;
+			}
 		}
-		while (totalpoints < 10)
-		{
-			totalpoints *= 10;
-		}
+		
 		return totalpoints;
 	}
 
