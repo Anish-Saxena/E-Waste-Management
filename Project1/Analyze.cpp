@@ -719,7 +719,7 @@ namespace Analyze
 		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
-
+		cout << "\n\nCHECK 1\n\n";						//HERE!!!!!!!!!
 		for (i = 0; i < 3; i++)
 		{
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
@@ -732,19 +732,20 @@ namespace Analyze
 
 		}
 		tamount = GlobalData::totalewaste;
+		cout << "\n\nCHECK 2\n\n";						//HERE!!!!!!!!!
 
 		for (i = 0; i < 21; i++)
 		{
+			cout << "\n\nCHECK 3\n\n";						//HERE!!!!!!!!!
+
 			if (Metals[i].category != 0)	continue;
-			cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
 			switch(Metals[i].type)
 			{
 			case 'P':
 			{
-				cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
-
 				samount = GlobalData::preciousmetal[1];
 				typecost = TypeCost::preciousm;
+				cout << "\n\nCHECK 4\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -758,8 +759,7 @@ namespace Analyze
 				}
 				case 2:
 				{
-					cit = tempcit / 2;
-					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+					cit = tempcit / 2;		cout << "\n\nCHECK whaattttttt\n\n";						//HERE!!!!!!!!!
 
 					break;
 				}
@@ -769,13 +769,14 @@ namespace Analyze
 					break;
 				}
 				}
+				cout << "\n\nCHECK CHECK CHECK\n\n";						//HERE!!!!!!!!!
+
 				switch (Metals[i].stagefrom)
 				{
 				case 1:
 				{
 					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit);
-					whatip1[p1] = i;
-					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
+					whatip1[p1] = i;		cout << "\n\nCHECK\n\n";						//HERE!!!!!!!!!
 
 					p1++;
 					break;
@@ -791,18 +792,19 @@ namespace Analyze
 				{
 					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit);
 					whatip3[p3] = i;
-					cout << endl << endl << "CHECK" << endl << endl;					//HERE!!!!!!!!!!!!!!!!
-
 					p3++;
 					break;
 				}
 				}
+				cout << "\n\nCHECK MAYBEEEE\n\n";						//HERE!!!!!!!!!
+
 				break;
 			}
 			case 'H':
 			{
 				samount = GlobalData::hazardousmetal[1];
 				typecost = TypeCost::hazardousm;
+				cout << "\n\nCHECK 5\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -831,7 +833,7 @@ namespace Analyze
 				{
 					pointsh1[h1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 1, init, cit);
 					whatih1[h1] = i;
-					h1++;					
+					h1++;
 					break;
 				}
 				case 2:
@@ -855,6 +857,7 @@ namespace Analyze
 			{
 				samount = GlobalData::basemetal[1];
 				typecost = TypeCost::basem;
+				cout << "\n\nCHECK 6\n\n";						//HERE!!!!!!!!!
 
 				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
 				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
@@ -900,11 +903,14 @@ namespace Analyze
 					b3++;
 					break;
 				}
+				cout << "\n\nCHECK WORKS MAYBE\n\n";						//HERE!!!!!!!!!
+
 				}
 				break;
 			}
 			}
 		}
+		cout << "\n\nCHECK OUT\n\n";						//HERE!!!!!!!!!
 
 		cout << endl << endl << pointsp1[1];
 		/*int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
