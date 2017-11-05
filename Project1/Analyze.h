@@ -31,10 +31,11 @@ namespace Analyze
 	{
 	public:
 		static void WhatLevel(char);
+		static void OtherTypeInfo(struct Process);
 		static void ConvertperCycle();
 		static int GetInit(struct Process, double, double);
 		static int GetOverrideCit(struct Process, int);
-		static double PointCalc(struct Process, double , double , double, char , int, int, int);
+		static double PointCalc(struct Process, double , double , double, char , int, int, int, double x[][4], int);
 		static int Maxpoints(double a[]);
 	};
 

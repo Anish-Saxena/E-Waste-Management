@@ -279,7 +279,7 @@ namespace Analyze
 	void BestProcess::Metals(int level)
 	{
 		system("CLS");
-		cout << "Please wait, analysing..." << endl;
+		cout << "Please wait, analysing";
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -317,8 +317,8 @@ namespace Analyze
 		Metals[1].economicfactors[1] = 1.05;
 		Metals[1].amountinput[0] = 1.5;
 		Metals[1].amountinput[1] = 250;
-		Metals[1].carbonfootprint[0] = 2500;
-		Metals[1].carbonfootprint[1] = 15000;
+		Metals[1].carbonfootprint[0] = 25000;
+		Metals[1].carbonfootprint[1] = 65000;
 		Metals[1].stagefrom = 2;
 		Metals[1].stageto = 3;
 		Metals[1].othertypes.stagefrom = -1;
@@ -337,8 +337,8 @@ namespace Analyze
 		Metals[2].economicfactors[1] = 1.05;
 		Metals[2].amountinput[0] = 1.2;
 		Metals[2].amountinput[1] = 200;
-		Metals[2].carbonfootprint[0] = 1500;
-		Metals[2].carbonfootprint[1] = 13000;
+		Metals[2].carbonfootprint[0] = 35000;
+		Metals[2].carbonfootprint[1] = 60000;
 		Metals[2].stagefrom = 1;
 		Metals[2].stageto = 2;
 		Metals[2].othertypes.stagefrom = 1;
@@ -357,8 +357,8 @@ namespace Analyze
 		Metals[3].economicfactors[1] = 1;
 		Metals[3].amountinput[0] = 1.0;
 		Metals[3].amountinput[1] = 100;
-		Metals[3].carbonfootprint[0] = 2000;
-		Metals[3].carbonfootprint[1] = 5500;
+		Metals[3].carbonfootprint[0] = 30000;
+		Metals[3].carbonfootprint[1] = 60000;
 		Metals[3].stagefrom = 1;
 		Metals[3].stageto = 2;
 		Metals[3].othertypes.stagefrom = -1;
@@ -373,12 +373,12 @@ namespace Analyze
 		Metals[4].cost = 975000;		
 		Metals[4].efficiency = 0.95;
 		Metals[4].maxefficiency = 0.999;
-		Metals[4].economicfactors[0] = 1.005;
+		Metals[4].economicfactors[0] = 0.99;
 		Metals[4].economicfactors[1] = 1.05;
 		Metals[4].amountinput[0] = 1.5;
 		Metals[4].amountinput[1] = 250;
-		Metals[4].carbonfootprint[0] = 4000;
-		Metals[4].carbonfootprint[1] = 13000;
+		Metals[4].carbonfootprint[0] = 40000;
+		Metals[4].carbonfootprint[1] = 65000;
 		Metals[4].stagefrom = 1;
 		Metals[4].stageto = 2;
 		Metals[4].othertypes.stagefrom = 1;
@@ -413,7 +413,7 @@ namespace Analyze
 		Metals[6].cost = 620000;		
 		Metals[6].efficiency = 0.975;
 		Metals[6].maxefficiency = 0.9999;
-		Metals[6].economicfactors[0] = 1.01;
+		Metals[6].economicfactors[0] = 1.1;
 		Metals[6].economicfactors[1] = 1.01;
 		Metals[6].amountinput[0] = 150;
 		Metals[6].amountinput[1] = 375;
@@ -434,7 +434,7 @@ namespace Analyze
 		Metals[7].efficiency = 0.95;
 		Metals[7].maxefficiency = 0.99;
 		Metals[7].economicfactors[0] = 1.1;
-		Metals[7].economicfactors[1] = 1.08;
+		Metals[7].economicfactors[1] = 1.005;
 		Metals[7].amountinput[0] = 100;
 		Metals[7].amountinput[1] = 250;
 		Metals[7].carbonfootprint[0] = 45000;
@@ -454,7 +454,7 @@ namespace Analyze
 		Metals[8].efficiency = 0.97;
 		Metals[8].maxefficiency = 0.9999;
 		Metals[8].economicfactors[0] = 1.05;
-		Metals[8].economicfactors[1] = 1.1;
+		Metals[8].economicfactors[1] = 1.06;
 		Metals[8].amountinput[0] = 0.5;
 		Metals[8].amountinput[1] = 250;
 		Metals[8].carbonfootprint[0] = 60000;
@@ -474,7 +474,7 @@ namespace Analyze
 		Metals[9].efficiency = 0.92;
 		Metals[9].maxefficiency = 0.97;
 		Metals[9].economicfactors[0] = 1.01;
-		Metals[9].economicfactors[1] = 1.1;
+		Metals[9].economicfactors[1] = 1.029;
 		Metals[9].amountinput[0] = 0.6;
 		Metals[9].amountinput[1] = 225;
 		Metals[9].carbonfootprint[0] = 50000;
@@ -493,11 +493,11 @@ namespace Analyze
 		Metals[10].cost = 600000;
 		Metals[10].efficiency = 0.75;
 		Metals[10].maxefficiency = 0.95;
-		Metals[10].economicfactors[0] = 1.1;
-		Metals[10].economicfactors[1] = 1.1;
+		Metals[10].economicfactors[0] = 0.99;
+		Metals[10].economicfactors[1] = 1.042;
 		Metals[10].amountinput[0] = 0.5;
-		Metals[10].amountinput[1] = 500;
-		Metals[10].carbonfootprint[0] = 50000;
+		Metals[10].amountinput[1] = 240;
+		Metals[10].carbonfootprint[0] = 60000;
 		Metals[10].carbonfootprint[1] = 80000;
 		Metals[10].stagefrom = 1;
 		Metals[10].stageto = 2;
@@ -514,7 +514,7 @@ namespace Analyze
 		Metals[11].efficiency = 0.82;
 		Metals[11].maxefficiency = 0.96;
 		Metals[11].economicfactors[0] = 1.03;
-		Metals[11].economicfactors[1] = 1.07;
+		Metals[11].economicfactors[1] = 1.057;
 		Metals[11].amountinput[0] = 1.5;
 		Metals[11].amountinput[1] = 250;
 		Metals[11].carbonfootprint[0] = 35000;
@@ -595,7 +595,7 @@ namespace Analyze
 		Metals[15].maxefficiency = 0.99;
 		Metals[15].economicfactors[0] = 1.04;
 		Metals[15].economicfactors[1] = 1.08;
-		Metals[15].amountinput[0] = 125;
+		Metals[15].amountinput[0] = 0.25;
 		Metals[15].amountinput[1] = 400;
 		Metals[15].carbonfootprint[0] = 45000;
 		Metals[15].carbonfootprint[1] = 65000;
@@ -614,7 +614,7 @@ namespace Analyze
 		Metals[16].efficiency = 0.90;
 		Metals[16].maxefficiency = 0.97;
 		Metals[16].economicfactors[0] = 1.01;
-		Metals[16].economicfactors[1] = 1.12;
+		Metals[16].economicfactors[1] = 1.02;
 		Metals[16].amountinput[0] = 0.5;
 		Metals[16].amountinput[1] = 250;
 		Metals[16].carbonfootprint[0] = 55000;
@@ -634,8 +634,8 @@ namespace Analyze
 		Metals[17].efficiency = 0.90;
 		Metals[17].maxefficiency = 0.95;
 		Metals[17].economicfactors[0] = 0.94;
-		Metals[17].economicfactors[1] = 1.1002;
-		Metals[17].amountinput[0] = 150;
+		Metals[17].economicfactors[1] = 1.012;
+		Metals[17].amountinput[0] = 0.45;
 		Metals[17].amountinput[1] = 350;
 		Metals[17].carbonfootprint[0] = 45000;
 		Metals[17].carbonfootprint[1] = 60000;
@@ -655,7 +655,7 @@ namespace Analyze
 		Metals[18].maxefficiency = 0.99999;
 		Metals[18].economicfactors[0] = 1.01;
 		Metals[18].economicfactors[1] = 1.006;
-		Metals[18].amountinput[0] = 2;
+		Metals[18].amountinput[0] = 1.4;
 		Metals[18].amountinput[1] = 400;
 		Metals[18].carbonfootprint[0] = 40000;
 		Metals[18].carbonfootprint[1] = 100000;
@@ -674,8 +674,8 @@ namespace Analyze
 		Metals[19].efficiency = 0.94;
 		Metals[19].maxefficiency = 0.99;
 		Metals[19].economicfactors[0] = 1.01;
-		Metals[19].economicfactors[1] = 1.1;
-		Metals[19].amountinput[0] = 120;
+		Metals[19].economicfactors[1] = 1.09;
+		Metals[19].amountinput[0] = 1.8;
 		Metals[19].amountinput[1] = 240;
 		Metals[19].carbonfootprint[0] = 45000;
 		Metals[19].carbonfootprint[1] = 90000;
@@ -694,7 +694,7 @@ namespace Analyze
 		Metals[20].efficiency = 0.92;
 		Metals[20].maxefficiency = 0.98;
 		Metals[20].economicfactors[0] = 1.01;
-		Metals[20].economicfactors[1] = 1.12;
+		Metals[20].economicfactors[1] = 1.08;
 		Metals[20].amountinput[0] = 150;
 		Metals[20].amountinput[1] = 400;
 		Metals[20].carbonfootprint[0] = 55000;
@@ -719,6 +719,7 @@ namespace Analyze
 		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
+		double store[21][4] = { 0 };
 		for (i = 0; i < 3; i++)
 		{
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
@@ -734,7 +735,7 @@ namespace Analyze
 
 		for (i = 0; i < 21; i++)
 		{
-
+			if (i % 3 == 0 || i == 20)	cout << ".";
 			if (Metals[i].category != 0)	continue;
 			switch(Metals[i].type)
 			{
@@ -770,7 +771,7 @@ namespace Analyze
 				case 1:
 				{
 
-					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit);
+					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit, store, i);
 					whatip1[p1] = i;		
 					p1++;
 					break;
@@ -778,7 +779,7 @@ namespace Analyze
 				case 2:
 				{
 
-					pointsp2[p2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 2, init, cit);
+					pointsp2[p2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 2, init, cit, store, i);
 					whatip2[p2] = i;
 					p2++;
 
@@ -787,7 +788,7 @@ namespace Analyze
 				case 3:
 				{
 
-					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit);
+					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit, store, i);
 					whatip3[p3] = i;
 					p3++;
 					break;
@@ -826,21 +827,21 @@ namespace Analyze
 				{
 				case 1:
 				{
-					pointsh1[h1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 1, init, cit);
+					pointsh1[h1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 1, init, cit, store, i);
 					whatih1[h1] = i;
 					h1++;
 					break;
 				}
 				case 2:
 				{
-					pointsh2[h2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 2, init, cit);
+					pointsh2[h2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 2, init, cit, store, i);
 					whatih2[h2] = i;
 					h2++;
 					break;
 				}
 				case 3:
 				{
-					pointsh3[h3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 3, init, cit);
+					pointsh3[h3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 3, init, cit, store, i);
 					whatih3[h3] = i;
 					h3++;
 					break;
@@ -878,21 +879,21 @@ namespace Analyze
 				{
 				case 1:
 				{
-					pointsb1[b1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 1, init, cit);
+					pointsb1[b1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 1, init, cit, store, i);
 					whatib1[b1] = i;
 					b1++;
 					break;
 				}
 				case 2:
 				{
-					pointsb2[b2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 2, init, cit);
+					pointsb2[b2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 2, init, cit, store, i);
 					whatib2[b2] = i;
 					b2++;
 					break;
 				}
 				case 3:
 				{
-					pointsb3[b3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 3, init, cit);
+					pointsb3[b3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 3, init, cit, store, i);
 					whatib3[b3] = i;
 					b3++;
 					break;
@@ -928,13 +929,13 @@ namespace Analyze
 						
 		cout << endl << endl;
 		Sleep(1000);
-		cout << "Done!\n\n";
+		cout << "Done!\n\n";	Sleep(100);
 		cout << "Processing can be broken down into three 3 stages:\n\n";
 		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
 		Sleep(1000);
 		cout << "Also, the metals can be divied into, as before:\n\n1. Precious metals\n2. Base metals\n3. Hazardous heavy metals\n\n";
 		Sleep(1000);
-		cout << "After analysis, the software has come up with the following plan to treat metals in E-waste:\n\n\n";
+		cout << "After analysis, the software has come up with the following plan to treat metals in E-waste:\n\n";
 		cout << "Press any key to view the plan.";
 		_getche();
 		system("CLS");
@@ -942,6 +943,33 @@ namespace Analyze
 		cout << "FOR PRECIOUS METALS:\n\n";
 		cout << Metals[processip1].information;
 		cout << endl << endl;
+		double ce = store[processip1][0];
+		double cc = store[processip1][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n",Metals[processip1].carbonfootprint[0]*(1+store[processip1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processip1]);
+		cout << "\n\nFOR BASE METALS:\n\n";
+		cout << Metals[processib1].information;
+		cout << endl << endl;
+		ce = store[processib1][0];
+		cc = store[processib1][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[0] * (1 + store[processib1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processib1]);		
+		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
+		cout << Metals[processih1].information;
+		cout << endl << endl;
+		ce = store[processih1][0];
+		cc = store[processih1][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processih1]);
 	}
 
 
@@ -1011,7 +1039,7 @@ namespace Analyze
 	}
 
 		
-	double HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit /*normalize*/)	//start init and cit from 0
+	double HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit, double store[][4], int it /*normalize*/)	//start init and cit from 0
 	{
 		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
 
@@ -1027,7 +1055,13 @@ namespace Analyze
 		else
 			cc = s.cost*(1 + cit)*(1 + init / 4);
 
+		store[it][0] = ce;
+		store[it][1] = cc;
+		store[it][2] = init;
+		store[it][3] = cit;
+
 		double sidetreatment, sideamount;
+
 		switch (s.othertypes.typeof)
 		{
 		case 'B':
@@ -1049,60 +1083,39 @@ namespace Analyze
 			sideamount = GlobalData::hazardousmetal[1];
 			break;
 		}
-		default: sidetreatment = 0;
+		default: 
+		{
+			sideamount = 1;
+			sidetreatment = 1;
+		}
 		}
 
-		economicpoints = fabs((pow(ce, 3)*samount*typecost) / cc);
-		if (economicpoints != 0)
+		economicpoints = (ce*ce*ce*samount*typecost)*100000 / cc;
+		while (economicpoints > 100||economicpoints<10)
 		{
-			while (economicpoints > 100)
-			{
-
-				economicpoints /= 10.0;
-			}
-			while (economicpoints < 10)
-			{
-				economicpoints *= 10;
-			}
+			if (economicpoints > 100)	economicpoints /= 10.0;
+			if (economicpoints < 10)		economicpoints *= 10.0;
 		}
-		environmentalpoints = fabs(ce*s.carbonfootprint[1] * samount / s.carbonfootprint[0] + (samount / tamount));	
-		while (environmentalpoints > 100)
+		environmentalpoints = ce*s.carbonfootprint[1] * samount*(1+0.5*cit) / (s.carbonfootprint[0]*(1+init)) + (samount / tamount);	
+		while (environmentalpoints > 100 || environmentalpoints<10)
 		{
-			environmentalpoints /= 10.0;
-		}
-		while (environmentalpoints < 10)
-		{
-			environmentalpoints *= 10.0;
+			if (environmentalpoints > 100)	environmentalpoints /= 10.0;
+			if (environmentalpoints < 10)		environmentalpoints *= 10.0;
 		}
 
-		relativeprocesspoints = fabs(sidetreatment*sideamount*(pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2)));
-		if (relativeprocesspoints != 0)
+		relativeprocesspoints = sidetreatment*sideamount*(1+pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
+		while (relativeprocesspoints > 100 || relativeprocesspoints<10)
 		{
-			while (relativeprocesspoints > 100)
-			{
-				
-				relativeprocesspoints /= 10.0;
-			}
-			while (relativeprocesspoints < 10)
-			{
-				
-				relativeprocesspoints *= 10;
-			}
+			if (relativeprocesspoints > 100)	relativeprocesspoints /= 10.0;
+			if (relativeprocesspoints < 10)		relativeprocesspoints *= 10.0;
 		}
 		
-		double totalpoints = economicpoints + environmentalpoints + relativeprocesspoints;
-		if (totalpoints != 0)
+		double totalpoints = economicpoints+environmentalpoints+relativeprocesspoints;
+		while (totalpoints > 100 || totalpoints<10)
 		{
-			while (totalpoints > 100)
-			{
-				totalpoints /= 10.0;
-			}
-			while (totalpoints < 10)
-			{
-				totalpoints *= 10;
-			}
+			if (totalpoints > 100)	totalpoints /= 10.0;
+			if (totalpoints < 10)		totalpoints *= 10.0;
 		}
-		
 		return totalpoints;
 	}
 
@@ -1302,4 +1315,30 @@ namespace Analyze
 		return whati;
 	}
 	
+	void HelperFunctions::OtherTypeInfo(struct Process p)
+	{
+		switch (p.othertypes.typeof)
+		{
+		case 'B':
+		{
+			cout << "The given process also helps in treatment of base metals, specifically, it contributes in taking them from stage " << p.othertypes.stagefrom << " to stage " << p.othertypes.stageto << endl;
+			break;
+		}
+		case 'H':
+		{
+			cout << "The given process also helps in treatment of hazardous metals, specifically, it contributes in taking them from stage " << p.othertypes.stagefrom << " to stage " << p.othertypes.stageto << endl;
+			break;
+		}
+		case 'P':
+		{
+			cout << "The given process also helps in treatment of precious metals, specifically, it contributes in taking them from stage " << p.othertypes.stagefrom << " to stage " << p.othertypes.stageto << endl;
+			break;
+		}
+		default: 
+		{
+			cout << endl;
+			break;
+		}
+		}
+	}
 }

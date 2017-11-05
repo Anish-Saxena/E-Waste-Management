@@ -13,7 +13,7 @@ int main()
 {
 	//Welcome Screen
 	system("color B2");
-	Welcomescreen();
+	//Welcomescreen();
 	int choice = Choice(choice);
 	if (choice != 1)
 	{
