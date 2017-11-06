@@ -32,6 +32,7 @@ namespace Analyze
 
 	double GlobalData::totalewaste = 0;
 
+	int GlobalData::citmanualovveride = 20;
 
 	void GlobalData::SettingFactor(int factor)
 	{
@@ -970,6 +971,84 @@ namespace Analyze
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]));
 		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]));
 		HelperFunctions::OtherTypeInfo(Metals[processih1]);
+		cout << endl << endl;
+
+		cout << "Press any key to continue to stage 2.";
+		_getche();
+		system("CLS");
+		cout << "STAGE 2: EXTRACTION (ISOLATION) OR RECOVERY:\n\nSuggested routes are as follows:\n\n";
+		cout << "FOR PRECIOUS METALS:\n\n";
+		cout << Metals[processip2].information;
+		cout << endl << endl;
+		ce = store[processip2][0];
+		cc = store[processip2][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[0] * (1 + store[processip2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processip2]);
+		cout << "\n\nFOR BASE METALS:\n\n";
+		cout << Metals[processib2].information;
+		cout << endl << endl;
+		ce = store[processib2][0];
+		cc = store[processib2][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[0] * (1 + store[processib2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processib2]);
+		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
+		cout << Metals[processih2].information;
+		cout << endl << endl;
+		ce = store[processih2][0];
+		cc = store[processih2][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[0] * (1 + store[processih2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processih2]);
+		cout << endl << endl;
+
+
+		cout << "Press any key to continue to stage 3.";
+		_getche();
+		system("CLS");
+		cout << "STAGE 1: REFINING:\n\nSuggested routes are as follows:\n\n";
+		cout << "FOR PRECIOUS METALS:\n\n";
+		cout << Metals[processip3].information;
+		cout << endl << endl;
+		ce = store[processip3][0];
+		cc = store[processip3][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processip3]);
+		cout << "\n\nFOR BASE METALS:\n\n";
+		cout << Metals[processib3].information;
+		cout << endl << endl;
+		ce = store[processib3][0];
+		cc = store[processib3][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[0] * (1 + store[processib3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processib3]);
+		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
+		cout << "The Hazardous metals are refined along with precious metals:\n\n";
+		cout << Metals[processip3].information;
+		cout << endl << endl;
+		ce = store[processip3][0];
+		cc = store[processip3][1];
+		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
+		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]));
+		HelperFunctions::OtherTypeInfo(Metals[processip3]);
+		
+		cout << "Press any key to continue to view the analysis summary.\n\n";
+		_getche();
+		system("CLS");
 	}
 
 
@@ -1290,7 +1369,7 @@ namespace Analyze
 		if (p.economicfactors[1] == 1)	return cit;
 
 		double ce=p.efficiency;
-		while (p.maxefficiency >= ce && cit <= 20)		//20 times the original cost is an automatic override to limit program from going actually at unlimited resources
+		while (p.maxefficiency >= ce && cit <= GlobalData::citmanualovveride)		//20 times the original cost is an automatic override to limit program from going actually at unlimited resources
 		{			
 			cit++;
 			ce = (p.efficiency*(1 + init + 0.01*init*p.economicfactors[0])) / (init + 1);

@@ -57,10 +57,12 @@ namespace Welcome
 		system("Pause");
 		DataManip::ChecknSum();
 		DataManip::AggregateSum();
-		cout << endl << endl << "Would you like to now go to analysis and display section? Press 1 for yes" << endl << endl;
+		cout << endl << endl << "Where would you like to go?" << endl << endl;
+		cout << "1. Display and Analysis Section\n\n2. Settings\n\n";
 		int x;
 		cin >> x;
 		if (x == 1)	AnalysisnDisplay();
+		if (x == 2)	Settings();
 		_getche();
 	}
 
@@ -127,17 +129,34 @@ namespace Welcome
 
 	void Settings()
 	{
-		int inuser;
+		int inuser, limit;
 		system("CLS");
 		cout << "Note: the settings are runtime and hence temporary, so that one can evaluate various scenarios without affecting actual data. Still, be careful." << endl << endl;
 		cout << "Do you want to extrapolate current data by taking current survey users as a modal class for the whole targetted population and multiplying them with a factor of your choice?" << endl<<endl;
 		cout << "Press 1 for yes" << endl<<endl;
 		cin >> inuser;
-		cout << endl <<endl << "Enter the integral factor you want to multiply the current data with:\t";
+		if (inuser == 1)
+		{
+			cout << endl << endl << "Enter the integral factor you want to multiply the current data with:\t";
+			cin >> limit;
+			GlobalData::SettingFactor(limit);
+			Sleep(1000);
+			cout << endl << endl << "Done!\n\n\n" << endl << endl;
+		}
+		cout << "Do you want to set a manual override limit to cost multiplication factor during e-waste analysis?\n";
+		cout << "It is recommended to let this power be with software, otherwise solutions may have unnecessarily high costs. Do you still want to continue? Press 1 for yes\n\n";
 		cin >> inuser;
-		GlobalData::SettingFactor(inuser);
-		Sleep(1000);
-		cout << endl << endl <<"Done!" << endl << endl;
+		if (inuser == 1)
+		{
+			cout << "Enter the manual override limit to cost multiplication factor:\t";
+			cin >> limit;
+			if (limit < 201)	GlobalData::citmanualovveride = limit;
+			else
+			{
+				cout << "Too high a value! 200 is max limit and therefore has been set.\n\n";
+				GlobalData::citmanualovveride = 200;
+			}
+		}
 		cout << "Press any key to move on to analysis and display" << endl;
 		_getche();
 		AnalysisnDisplay();

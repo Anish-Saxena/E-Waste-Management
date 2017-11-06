@@ -23,7 +23,10 @@ namespace Analyze
 
 		static double basemetal[2], preciousmetal[2], hazardousmetal[2];					//var[0] for percentage, var[1] for total, of given substance
 
+		static int citmanualovveride;
+
 		static void SettingFactor(int);
+
 	};
 
 

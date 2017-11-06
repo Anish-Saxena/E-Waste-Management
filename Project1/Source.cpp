@@ -12,7 +12,7 @@ using namespace ManageData;
 int main()
 {
 	//Welcome Screen
-	system("color B2");
+	system("color F0");
 	//Welcomescreen();
 	int choice = Choice(choice);
 	if (choice != 1)
