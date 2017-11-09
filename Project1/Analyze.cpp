@@ -291,7 +291,7 @@ namespace Analyze
 
 		Process Metals[21];
 		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
-		Metals[0].information = "Ion Exchange process, Hydrometallurgy, more info soon.";
+		Metals[0].information = "Ion Exchange process, Hydrometallurgy.";
 		Metals[0].category = 0;
 		Metals[0].type = 'B';
 		Metals[0].cost = 750000;		
@@ -311,7 +311,7 @@ namespace Analyze
 
 		//Process 1: Adsorption, for Precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
 
-		Metals[1].information = "Adsorption process, Hydrometallury, more info soon.";
+		Metals[1].information = "Adsorption process, Hydrometallury.";
 		Metals[1].category = 0;
 		Metals[1].type = 'P';
 		Metals[1].cost = 500000;		
@@ -331,7 +331,7 @@ namespace Analyze
 
 		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
 
-		Metals[2].information = "Vat Leaching, Hydrometallurgy, more info soon.";
+		Metals[2].information = "Vat Leaching, Hydrometallurgy.";
 		Metals[2].type = 'P';
 		Metals[2].category = 0;
 		Metals[2].cost = 320000;		
@@ -351,7 +351,7 @@ namespace Analyze
 
 		//Process 3: Caustic Leaching, for Precious metals, to get them from leaching to extraction phase, doesn't act on other types of E-waste
 
-		Metals[3].information = "Caustic Leaching, Hydrometallurgy, more info soon.";
+		Metals[3].information = "Caustic Leaching, Hydrometallurgy.";
 		Metals[3].type = 'P';
 		Metals[3].category = 0;
 		Metals[3].cost = 270000;		
@@ -371,7 +371,7 @@ namespace Analyze
 
 		//Process 4: Autoclave leaching, for precious metals, to get them from leaching to extraction phase, also makes hazardous metals go from leaching to extraction
 
-		Metals[4].information = "Autoclave leaching, Hydrometallurgy, more info soon.";
+		Metals[4].information = "Autoclave leaching, Hydrometallurgy.";
 		Metals[4].type = 'P';
 		Metals[4].category = 0;
 		Metals[4].cost = 975000;		
@@ -391,7 +391,7 @@ namespace Analyze
 
 		//Process 5: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
 
-		Metals[5].information = "Shaft furnace calcination, pyrometallurgy, more info soon.";
+		Metals[5].information = "Shaft furnace calcination, pyrometallurgy.";
 		Metals[5].type = 'B';
 		Metals[5].category = 0;
 		Metals[5].cost = 500000;		
@@ -411,7 +411,7 @@ namespace Analyze
 
 		//Process 6: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
 
-		Metals[6].information = "Fluidized bed reactor, pyrometallurgy, more info soon.";
+		Metals[6].information = "Fluidized bed reactor, pyrometallurgy.";
 		Metals[6].type = 'B';
 		Metals[6].category = 0;
 		Metals[6].cost = 620000;		
@@ -431,7 +431,7 @@ namespace Analyze
 
 		//Process 7: Pyrolytic Extraction: for base metals, to get them from Purification to recovery, also makes hazardous metals go from purification to recovery
 
-		Metals[7].information = "Pyrolytic Extraction, pyrometallurgy, more info soon.";
+		Metals[7].information = "Pyrolytic Extraction, pyrometallurgy.";
 		Metals[7].type = 'B';
 		Metals[7].category = 0;
 		Metals[7].cost = 580000;
@@ -451,7 +451,7 @@ namespace Analyze
 
 		//Process 8: Parke's Process, for hazardous metals, to get them from Purification to recovery, also makes precious metals go from purification and recovery
 
-		Metals[8].information = "Parke's Process, pyrometallurgy, more info soon.";
+		Metals[8].information = "Parke's Process, pyrometallurgy.";
 		Metals[8].type = 'H';
 		Metals[8].category = 0;
 		Metals[8].cost = 450000;
@@ -471,7 +471,7 @@ namespace Analyze
 
 		//Process 9: Distillation process: for hazardous metals, to get them from Purification to recovery, doesn't act on other types of e-waste
 
-		Metals[9].information = "Distillation process, hydrometallurgy, more info soon.";
+		Metals[9].information = "Distillation process, hydrometallurgy.";
 		Metals[9].type = 'H';
 		Metals[9].category = 0;
 		Metals[9].cost = 400000;
@@ -491,7 +491,7 @@ namespace Analyze
 
 		//Process 10: Extractive Roasting: for hazardous metals, to get them from Purification to recovery, also makes base metals go from purification to recovery
 
-		Metals[10].information = "Extractive Roasting, pyrometallurgy, more info soon.";
+		Metals[10].information = "Extractive Roasting, pyrometallurgy.";
 		Metals[10].type = 'H';
 		Metals[10].category = 0;
 		Metals[10].cost = 600000;
@@ -511,7 +511,7 @@ namespace Analyze
 
 		//Process 11: Mertill-Crowe Process: for precious metals, to get them from Recovery to refining, doesn't act on other types of E-waste
 
-		Metals[11].information = "Merill-Crowe Process, hydrometallurgy, more info soon.";
+		Metals[11].information = "Merill-Crowe Process, hydrometallurgy.";
 		Metals[11].type = 'P';
 		Metals[11].category = 0;
 		Metals[11].cost = 400000;
@@ -531,7 +531,7 @@ namespace Analyze
 
 		//Process 12: Park and Fray Process, for precious metals, to get them from recovery to refining, doesn't act on other types of E-waste
 
-		Metals[12].information = "Park and Fray Process, hydrometallurgy, more info soon.";
+		Metals[12].information = "Park and Fray Process, hydrometallurgy.";
 		Metals[12].type = 'P';
 		Metals[12].category = 0;
 		Metals[12].cost = 350000;
@@ -551,7 +551,7 @@ namespace Analyze
 		
 		//Process 13: Kogan Process, for base metals, to get them from recovery to refining, also makes hazardous metals go from recovery to refining
 
-		Metals[13].information = "Kogan Process, hydrometallurgy, more info soon.";
+		Metals[13].information = "Kogan Process, hydrometallurgy.";
 		Metals[13].type = 'B';
 		Metals[13].category = 0;
 		Metals[13].cost = 750000;
@@ -571,7 +571,7 @@ namespace Analyze
 		
 		//Process 14: Unicore Process, for base metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
 
-		Metals[14].information = "Unicore Process, pyrometallurgy, more info soon.";
+		Metals[14].information = "Unicore Process, pyrometallurgy.";
 		Metals[14].type = 'B';
 		Metals[14].category = 0;
 		Metals[14].cost = 600000;
@@ -591,7 +591,7 @@ namespace Analyze
 
 		//Process 15: Ronnskar Smetler process: for hazardous metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
 
-		Metals[15].information = "Ronnskar Smelter Process, pyrometallugry, more info soon.";
+		Metals[15].information = "Ronnskar Smelter Process, pyrometallugry.";
 		Metals[15].type = 'H';
 		Metals[15].category = 0;
 		Metals[15].cost = 700000;
@@ -611,7 +611,7 @@ namespace Analyze
 
 		//Process 16: Outotec Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
 
-		Metals[16].information = "Outotec Process, pyrometallurgy, more info soon.";
+		Metals[16].information = "Outotec Process, pyrometallurgy.";
 		Metals[16].type = 'H';
 		Metals[16].category = 0;
 		Metals[16].cost = 450000;
@@ -631,7 +631,7 @@ namespace Analyze
 
 		//Process 17: Mecucci and Scott Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
 
-		Metals[17].information = "Mecucci and Scott Process, hydrometallurgy, more info soon.";
+		Metals[17].information = "Mecucci and Scott Process, hydrometallurgy.";
 		Metals[17].type = 'H';
 		Metals[17].category = 0;
 		Metals[17].cost =  350000;
@@ -651,7 +651,7 @@ namespace Analyze
 
 		//Process 18: Electrorefining process: for precious metals, to get them from refining phase to done!, also makes hazardous metals go from refining to done!
 
-		Metals[18].information = "Electrorefining Process, electrometallurgy, more info soon.";
+		Metals[18].information = "Electrorefining Process, electrometallurgy.";
 		Metals[18].type = 'P';
 		Metals[18].category = 0;
 		Metals[18].cost = 900000;
@@ -671,7 +671,7 @@ namespace Analyze
 
 		//Process 19: Noranda process: for precious metals, to get them from refining phase to done1, also makes hazardous metals go from refining to done!
 
-		Metals[19].information = "Noranda Process, pyrometallurgy, more info soon.";
+		Metals[19].information = "Noranda Process, pyrometallurgy.";
 		Metals[19].type = 'P';
 		Metals[19].category = 0;
 		Metals[19].cost = 800000;
@@ -691,7 +691,7 @@ namespace Analyze
 
 		//Process 20: Veit Process: for base metals, to get them from refining to done!, doesn't act onother types of E-waste
 
-		Metals[20].information = "Veit Process, hydrometallurgy, more info soon.";
+		Metals[20].information = "Veit Process, hydrometallurgy.";
 		Metals[20].type = 'B';
 		Metals[20].category = 0;
 		Metals[20].cost = 400000;
