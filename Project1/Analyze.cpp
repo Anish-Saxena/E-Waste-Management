@@ -1049,14 +1049,14 @@ namespace Analyze
 		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processip3]);
 
-		double cf = Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0)*1.5
-			+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0)
-			+ Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]) / (1 + store[processip1][3] / 2.0)
-			+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0)
-			+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0)
-			+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0)
-			+ Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0)
-			+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0);
+		double cf = Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]) / (1 + store[processip3][3]/2 )*1.5
+			+ Metals[processip2].carbonfootprint[0] * (1 + store[processip2][2]) / (1 + store[processip2][3]/2 )
+			+ Metals[processip1].carbonfootprint[0] * (1 + store[processip1][2]) / (1 + store[processip1][3]/2 )
+			+ Metals[processib3].carbonfootprint[0] * (1 + store[processib3][2]) / (1 + store[processib3][3]/2 )
+			+ Metals[processib2].carbonfootprint[0] * (1 + store[processib2][2]) / (1 + store[processib2][3]/2 )
+			+ Metals[processib1].carbonfootprint[0] * (1 + store[processib1][2]) / (1 + store[processib1][3]/2 )
+			+ Metals[processih2].carbonfootprint[0] * (1 + store[processih2][2]) / (1 + store[processih2][3]/2 )
+			+ Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]) / (1 + store[processih1][3]/2 );
 
 		cout << "Press any key to continue to view the non-metal analysis.\n\n";
 		_getche();
@@ -1073,8 +1073,20 @@ namespace Analyze
 		printf("Total costs per cycle of 2 years are:\tRs. %.0lf\n\n", ocost);
 		printf("Average cost per resident per year is:\tRs. %.0lf\n\n", ocost / (2 * GlobalData::surveytakers));		
 		cf += cf / 15;
+		double cforig = Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2])
+			+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2])
+			+ Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2])*1.5
+			+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2])
+			+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2])
+			+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2])
+			+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2])
+			+Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]);
 		printf("Total Equivalent Kgs of CO2 emitted per 2 years is: %.0lf kg\n\n", cf);
 		printf("This treatment process with current logistics is capable of handling %.0lf kg of E-waste per cycle of 4 days.\n\n", GlobalData::totalewaste);
+		printf("The plant will contribute to the protection of environment by saving %.0lf kg equivalents of CO2 from releasing into the environment every 2 years.\n\n", cforig-cf);
+		cout << "Analysis is done. Press any key to exit.\n\n";
+		_getche();
+		exit(0);
 	}
 
 
