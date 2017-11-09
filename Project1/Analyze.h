@@ -21,7 +21,7 @@ namespace Analyze
 
 		static double totalewaste, plastics[2], metal[2], nonmetal[2], glassnceramics[2];	 //var[0] for percentage, var[1] for total, of given substance
 
-		static double basemetal[2], preciousmetal[2], hazardousmetal[2];					//var[0] for percentage, var[1] for total, of given substance
+		static double basemetal[2], preciousmetal[2], hazardousmetal[2], carbon[2];					//var[0] for percentage, var[1] for total, of given substance
 
 		static int citmanualovveride;
 
@@ -47,7 +47,7 @@ namespace Analyze
 	{
 	public:		
 		static void Metals(int level);
-		static void NonMetals();		
+		static void NonMetals(double);		
 	};
 
 	//Defining the structure which'll provide skeleton for all process formats

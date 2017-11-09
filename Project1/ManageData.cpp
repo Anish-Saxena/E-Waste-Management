@@ -147,8 +147,9 @@ namespace ManageData
 		GlobalData::preciousmetal[1] = GlobalData::GD[0] + GlobalData::GD[10];	
 		GlobalData::basemetal[1] = GlobalData::GD[2] + GlobalData::GD[5] + GlobalData::GD[6] + GlobalData::GD[12] + GlobalData::GD[13];
 		GlobalData::hazardousmetal[1] = GlobalData::metal[1] - GlobalData::basemetal[1] - GlobalData::preciousmetal[1];
-
+		
 		GlobalData::plastics[1] = GlobalData::GD[3];
+		GlobalData::carbon[1] = GlobalData::nonmetal[1] - GlobalData::plastics[1] - GlobalData::glassnceramics[1];
 
 		GlobalData::metal[0] = GlobalData::metal[1] * 100 / GlobalData::totalewaste;
 		GlobalData::preciousmetal[0] = GlobalData::preciousmetal[1] * 100 / GlobalData::totalewaste;
@@ -157,6 +158,7 @@ namespace ManageData
 		GlobalData::nonmetal[0] = GlobalData::nonmetal[1] * 100 / GlobalData::totalewaste;		
 		GlobalData::glassnceramics[0] = GlobalData::glassnceramics[1] * 100 / GlobalData::totalewaste;
 		GlobalData::plastics[0] = GlobalData::plastics[1] * 100 / GlobalData::totalewaste;
+		GlobalData::carbon[0] = GlobalData::carbon[1] * 100 / GlobalData::totalewaste;
 	}
 	
 }

@@ -28,7 +28,7 @@ namespace Analyze
 		GlobalData::mobileshared[2] = { 0,0 }, GlobalData::laptopshared[2] = { 0,0 }, GlobalData::tabletshared[2] = { 0,0 }, GlobalData::pcshared[2] = { 0,0 };
 
 	double GlobalData::preciousmetal[2] = { 0,0 }, GlobalData::metal[2] = { 0,0 }, GlobalData::nonmetal[2] = { 0,0 }, GlobalData::glassnceramics[2] = { 0,0 },
-		 GlobalData::plastics[2] = { 0,0 }, GlobalData::basemetal[2] = { 0,0 }, GlobalData::hazardousmetal[2] = { 0,0 };
+		GlobalData::plastics[2] = { 0,0 }, GlobalData::basemetal[2] = { 0,0 }, GlobalData::hazardousmetal[2] = { 0,0 }, GlobalData::carbon[2] = { 0,0 };
 
 	double GlobalData::totalewaste = 0;
 
@@ -175,6 +175,7 @@ namespace Analyze
 		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	/*Sleep(100);*/
 		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	/*Sleep(100);*/
 		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Carbon-like non-metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::carbon[1], (GlobalData::carbon[0]), 37);	/*Sleep(100);*/
 		cout << "Press any key to continue." << endl;
 		_getche();
 		system("CLS");
@@ -195,6 +196,7 @@ namespace Analyze
 		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	/*Sleep(100);*/
 		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	/*Sleep(100);*/
 		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Carbon-like non-metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::carbon[1], (GlobalData::carbon[0]), 37);	/*Sleep(100);*/
 	}
 
 
@@ -932,7 +934,7 @@ namespace Analyze
 		cout << endl << endl;
 		/*Sleep(1000);*/
 		cout << "Done!\n\n";	/*Sleep(100);*/
-		cout << "Processing can be broken down into three 3 stages:\n\n";
+		cout << "METAL PROCESSING can be broken down into three 3 stages:\n\n";
 		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
 		/*Sleep(1000);*/
 		cout << "Also, the metals can be divied into, as before:\n\n1. Precious metals\n2. Base metals\n3. Hazardous heavy metals\n\n";
@@ -1046,31 +1048,46 @@ namespace Analyze
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
 		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processip3]);
-		
+
+		double cf = Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0)*1.5
+			+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0)
+			+ Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]) / (1 + store[processip1][3] / 2.0)
+			+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0)
+			+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0)
+			+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0)
+			+ Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0)
+			+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0);
+
+		cout << "Press any key to continue to view the non-metal analysis.\n\n";
+		_getche();
+		system("CLS");
+		BestProcess::NonMetals(cf);
+
+
 		cout << "Press any key to continue to view the analysis summary.\n\n";
 		_getche();
 		system("CLS");
 		cout << "ANALYSIS SUMMARY:\n\n\n";
 		double ocost = store[processip1][1] + store[processip2][1] + store[processip3][1] + store[processib1][1] + store[processib2][1] + store[processib3][1] +
-			store[processih1][1] + store[processih2][1];
+			store[processih1][1] + store[processih2][1]+ 400000 + (GlobalData::glassnceramics[1] / 25) * 120000;
 		printf("Total costs per cycle of 2 years are:\tRs. %.0lf\n\n", ocost);
-		printf("Average cost per resident per year is:\tRs. %.0lf\n\n", ocost / (2 * GlobalData::surveytakers));
-		double cf= Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0)*1.5
-		+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0)
-		+ Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]) / (1 + store[processip1][3] / 2.0)
-		+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0)
-		+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0)
-		+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0)
-		+ Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0)
-		+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0);
+		printf("Average cost per resident per year is:\tRs. %.0lf\n\n", ocost / (2 * GlobalData::surveytakers));		
+		cf += cf / 15;
 		printf("Total Equivalent Kgs of CO2 emitted per 2 years is: %.0lf kg\n\n", cf);
 		printf("This treatment process with current logistics is capable of handling %.0lf kg of E-waste per cycle of 4 days.\n\n", GlobalData::totalewaste);
 	}
 
 
-	void BestProcess::NonMetals()
+	void BestProcess::NonMetals(double cf)
 	{
-		;
+		cout << "NON METAL PROCESSING:\n\n\n";
+		cout << "1.GLASS AND CERAMICS:\n\nGlass is recycled in a fairly straightforward manner.";
+		cout << " The process of recycling glass essentially involves crushing it to bits, melting it and remoulding it per needs.\n\n";
+		double cfg, ocost;
+		ocost = 400000 + (GlobalData::glassnceramics[1] / 25) * 120000;
+		cfg = cf / 15;
+		printf("The cost of the process for given parametes is: Rs. %.0lf\n\n",ocost);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n\n", cfg);
 	}
 
 
@@ -1363,6 +1380,7 @@ namespace Analyze
 		GlobalData::glassnceramics[1] = GlobalData::glassnceramics[1] / 182.5;
 		GlobalData::plastics[1] = GlobalData::plastics[1] / 182.5;
 		GlobalData::basemetal[1] = GlobalData::basemetal[1] / 182.5;
+		GlobalData::carbon[1] = GlobalData::carbon[1] / 182.5;
 		GlobalData::preciousmetal[1] = GlobalData::preciousmetal[1] / 182.5;
 		GlobalData::hazardousmetal[1] = GlobalData::hazardousmetal[1] / 182.5;
 		GlobalData::totalewaste = GlobalData::totalewaste / 182.5;
