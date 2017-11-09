@@ -104,48 +104,48 @@ namespace Analyze
 		cout << "_____________________________________________" << endl;
 		for (i = 0; i < 2; i++)
 		{
-			Sleep(1000);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::laptopnumber[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::tabletnumber[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::pcnumber[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::mobilenumber[i] << endl << endl; ++gi;	Sleep(100);
-			Sleep(1000); gi = 0;
+			/*Sleep(1000);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::laptopnumber[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::tabletnumber[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::pcnumber[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " are " << GlobalData::mobilenumber[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			/*Sleep(1000);*/ gi = 0;
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of " << ord[i] << " electronic gadgets are: " << GlobalData::totalgadgets[i] << endl << endl;
 			cout << "_____________________________________________" << endl;
-			Sleep(1000);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::laptopshared[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::tabletshared[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::pcshared[i] << endl << endl; ++gi;	Sleep(100);
-			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::mobileshared[i] << endl << endl; ++gi;	Sleep(100);
-			Sleep(1000); gi = 0;
+			/*Sleep(1000);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::laptopshared[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::tabletshared[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::pcshared[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " " << ltpm[gi] << " shared are " << GlobalData::mobileshared[i] << endl << endl; ++gi;	/*Sleep(100);*/
+			/*Sleep(1000);*/ gi = 0;
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of " << ord[i] << " electronic gadgets shared are: " << GlobalData::totalshared[i] << endl << endl;
 			cout << "_____________________________________________" << endl;
-			Sleep(1000);
+			/*Sleep(1000);*/
 			cout << "The average number of various electronic equipments " << ord[i] << " per person are:" << endl << endl;
 			cout << "_____________________________________________" << endl;
-			Sleep(1000);
+			/*Sleep(1000);*/
 			//I've assumed that each electronic item marked as shared is on average shared b/w 2 persons
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::laptopnumber[i] / (GlobalData::surveytakers + GlobalData::laptopshared[i])) << endl << endl; ++gi;	Sleep(100);
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::tabletnumber[i] / (GlobalData::surveytakers + GlobalData::tabletshared[i])) << endl << endl; ++gi;	Sleep(100);
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::pcnumber[i] / (GlobalData::surveytakers + GlobalData::pcshared[i])) << endl << endl; ++gi;	Sleep(100);
-			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::mobilenumber[i] / (GlobalData::surveytakers + GlobalData::mobileshared[i])) << endl << endl; ++gi;	Sleep(100);
-			Sleep(1000); gi = 0;
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::laptopnumber[i] / (GlobalData::surveytakers + GlobalData::laptopshared[i])) << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::tabletnumber[i] / (GlobalData::surveytakers + GlobalData::tabletshared[i])) << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::pcnumber[i] / (GlobalData::surveytakers + GlobalData::pcshared[i])) << endl << endl; ++gi;	/*Sleep(100);*/
+			cout << ltpm[gi] << ": " << std::setprecision(2) << ((float)GlobalData::mobilenumber[i] / (GlobalData::surveytakers + GlobalData::mobileshared[i])) << endl << endl; ++gi;	/*Sleep(100);*/
+			/*Sleep(1000);*/ gi = 0;
 			cout << "_____________________________________________" << endl;
-			cout << "The number of " << ord[i] << " Headphones are " << GlobalData::headphonenumber[i] << endl << endl;	Sleep(100);
-			cout << "The number of " << ord[i] << " Scanners are " << GlobalData::scannernumber[i] << endl << endl;	Sleep(100);
-			cout << "The number of " << ord[i] << " Prineter are " << GlobalData::printernumber[i] << endl << endl;	Sleep(100);
-			cout << "The number of " << ord[i] << " Joysticks are " << GlobalData::joysticknumber[i] << endl << endl;	Sleep(100);
-			cout << "The number of " << ord[i] << " Webcams are " << GlobalData::webcamnumber[i] << endl << endl;	Sleep(100);
-			cout << "The number of " << ord[i] << " Smartwatches are " << GlobalData::smartwatchnumber[i] << endl << endl;	Sleep(100);
-			Sleep(1000);
+			cout << "The number of " << ord[i] << " Headphones are " << GlobalData::headphonenumber[i] << endl << endl;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " Scanners are " << GlobalData::scannernumber[i] << endl << endl;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " Prineter are " << GlobalData::printernumber[i] << endl << endl;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " Joysticks are " << GlobalData::joysticknumber[i] << endl << endl;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " Webcams are " << GlobalData::webcamnumber[i] << endl << endl;	/*Sleep(100);*/
+			cout << "The number of " << ord[i] << " Smartwatches are " << GlobalData::smartwatchnumber[i] << endl << endl;	/*Sleep(100);*/
+			/*Sleep(1000);*/
 			cout << "_____________________________________________" << endl;
 			cout << "The total number of " << ord[i] << " peripherals are: " << GlobalData::totalperipherals[i] << endl << endl;
 			cout << "_____________________________________________" << endl;
 
 		}
-		Sleep(1000);
+		/*Sleep(1000);*/
 
 	}
 
@@ -159,22 +159,22 @@ namespace Analyze
 		string substance[16] = { "Gold","Mercury","Copper","Plastics","Ceramics","Steel","Lithium","Lead","Carbon","Glass","Silver","Nickel","Aluminum","Magnesium","Electrolyte","Silicon" };
 
 		int i;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		for (i = 0; i < 16; i++)
 		{
-			Sleep(100);
+			/*Sleep(100);*/
 			printf("%-30s%6.3lf\tkg\n", substance[i].c_str(), GlobalData::GD[i]);
 
 		}
 		printf("\n%.4lf kg of total E-waste has been produced collectively in this survey", GlobalData::totalewaste);
 		cout << endl << endl << "The E-Waste contains: " << endl << endl;
-		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	/*Sleep(100);*/
 		cout << "Press any key to continue." << endl;
 		_getche();
 		system("CLS");
@@ -183,31 +183,32 @@ namespace Analyze
 		cout << "Obviously, the plant works on a cycle basis of approximately 4 days each, to conduct all the processes involved for all substances present.";
 		cout << " Given the plant gets a steady stream of regularly collected E-waste, it will run for about 360 cycles in our survey period of 2 years." << endl;
 		HelperFunctions::ConvertperCycle();
+		HelperFunctions::Limits();
 		*flag = 0;
 		cout << "Hence, the amount of E-waste produced in the given survey per cycle is as follows:\n\n";
 		printf("\n%.4lf kg of total E-waste has been produced collectively in this survey per cycle", GlobalData::totalewaste);
 		cout << endl << endl << "The E-Waste contains: " << endl << endl;
-		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	Sleep(100);
-		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	Sleep(100);
+		printf("%.4lf kg of Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::metal[1], (GlobalData::metal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Precious Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::preciousmetal[1], (GlobalData::preciousmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Base Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::basemetal[1], (GlobalData::basemetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Hazardous Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::hazardousmetal[1], (GlobalData::hazardousmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Non Metals, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::nonmetal[1], (GlobalData::nonmetal[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Glass and ceramics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::glassnceramics[1], (GlobalData::glassnceramics[0]), 37);	/*Sleep(100);*/
+		printf("%.4lf kg of Plastics, that is, %.2lf%c of total E-waste per cycle\n\n", GlobalData::plastics[1], (GlobalData::plastics[0]), 37);	/*Sleep(100);*/
 	}
 
 
 	void Display::PreProcessing()
 	{
 		cout << "Preprocessing of e-waste is one of the most important steps in the E-waste treatment chain." << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << " The non-usable components are dismantled at the collection facilities prior to sending to the treatment plant.";
 		cout << " Mechanical processing is an integrated part of this stage where E-waste scrap is shredded into pieces using hammer mills.";
 		cout << " Metals and non-metals are separated during this stage using techniques similar to that used in the";
 		cout << "	mineral dressing, e.g., screening, magnetic, eddy current and density separation techniques" << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "Since this project aims to manage the E-waste from the time it is collected, the first crucial step, Preprocessing, has been illustrated. It involves the following steps:" << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "Sorting and Dismantling\t------>\tSeperation of Re-usable parts" << endl;
 		int i;
 		for (i = 0; i < 10; ++i)
@@ -258,20 +259,20 @@ namespace Analyze
 	void Display::GeneralProcessing()
 	{
 		cout << "This software will try to project solutions based on 3 major conditions:\n\n1. Inputs Provided\n2. Economic factors\n3. Environmental factors";
-		cout << endl << endl;	Sleep(1000);
+		cout << endl << endl;	/*Sleep(1000);*/
 		cout << "Let's now analyze the contents of given E-waste:\n\n";
 		cout << "Checking the level of various substances in given E-waste:\n\n";
 		char MNPRGBH[] = { 'M','N','P','R','G','B','H' };
 		int i = 0;
 		while (i < 7)
 		{
-			HelperFunctions::WhatLevel(MNPRGBH[i]);	Sleep(1000);
+			HelperFunctions::WhatLevel(MNPRGBH[i]);	/*Sleep(1000);*/
 			i++;
 		}
 		cout << "Knowing about presence levels of various substance, it's time to move on to determine best of course of action for specific type of substances, keeping in mind the 3 conditions." << endl;
 		cout << "\nPress any key to move on the specific processing section.\n\n";
 		_getche();
-		Sleep(100);
+		/*Sleep(100);*/
 		system("CLS");
 		Display::Processing();		
 	}
@@ -929,13 +930,13 @@ namespace Analyze
 		processib3 = whatib3[maxib3];
 						
 		cout << endl << endl;
-		Sleep(1000);
-		cout << "Done!\n\n";	Sleep(100);
+		/*Sleep(1000);*/
+		cout << "Done!\n\n";	/*Sleep(100);*/
 		cout << "Processing can be broken down into three 3 stages:\n\n";
 		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "Also, the metals can be divied into, as before:\n\n1. Precious metals\n2. Base metals\n3. Hazardous heavy metals\n\n";
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "After analysis, the software has come up with the following plan to treat metals in E-waste:\n\n";
 		cout << "Press any key to view the plan.";
 		_getche();
@@ -948,7 +949,7 @@ namespace Analyze
 		double cc = store[processip1][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n",Metals[processip1].carbonfootprint[0]*(1+store[processip1][2]));
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n",Metals[processip1].carbonfootprint[0]*(1+store[processip1][2])/(1+store[processip1][3]/2.0));
 		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]));
 		HelperFunctions::OtherTypeInfo(Metals[processip1]);
 		cout << "\n\nFOR BASE METALS:\n\n";
@@ -959,7 +960,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[0] * (1 + store[processib1][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processib1]);		
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
 		cout << Metals[processih1].information;
@@ -969,7 +970,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processih1]);
 		cout << endl << endl;
 
@@ -985,7 +986,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[0] * (1 + store[processip2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processip2]);
 		cout << "\n\nFOR BASE METALS:\n\n";
 		cout << Metals[processib2].information;
@@ -995,7 +996,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[0] * (1 + store[processib2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processib2]);
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
 		cout << Metals[processih2].information;
@@ -1005,7 +1006,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[0] * (1 + store[processih2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processih2]);
 		cout << endl << endl;
 
@@ -1022,7 +1023,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processip3]);
 		cout << "\n\nFOR BASE METALS:\n\n";
 		cout << Metals[processib3].information;
@@ -1032,7 +1033,7 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[0] * (1 + store[processib3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processib3]);
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
 		cout << "The Hazardous metals are refined along with precious metals:\n\n";
@@ -1043,12 +1044,27 @@ namespace Analyze
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(Metals[processip3]);
 		
 		cout << "Press any key to continue to view the analysis summary.\n\n";
 		_getche();
 		system("CLS");
+		cout << "ANALYSIS SUMMARY:\n\n\n";
+		double ocost = store[processip1][1] + store[processip2][1] + store[processip3][1] + store[processib1][1] + store[processib2][1] + store[processib3][1] +
+			store[processih1][1] + store[processih2][1];
+		printf("Total costs per cycle of 2 years are:\tRs. %.0lf\n\n", ocost);
+		printf("Average cost per resident per year is:\tRs. %.0lf\n\n", ocost / (2 * GlobalData::surveytakers));
+		double cf= Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0)*1.5
+		+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0)
+		+ Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]) / (1 + store[processip1][3] / 2.0)
+		+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0)
+		+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0)
+		+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0)
+		+ Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0)
+		+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0);
+		printf("Total Equivalent Kgs of CO2 emitted per 2 years is: %.0lf kg\n\n", cf);
+		printf("This treatment process with current logistics is capable of handling %.0lf kg of E-waste per cycle of 4 days.\n\n", GlobalData::totalewaste);
 	}
 
 
@@ -1068,18 +1084,20 @@ namespace Analyze
 		cout << " (for example electrorefining or electrowinning) for selected metal separation and recovery.";
 		cout << " Currently, there are only limited laboratory studies for e-waste processing through biometallurgical routes,";
 		cout << " e.g., bioleaching of metals from e-waste. Nevertheless, this route has a potential for further development.";
-		cout << " This project focusses on efficient treatment of E-waste using hydrometallurgical and pyrometallurgical processes." << endl << endl;
-		Sleep(1000);
+		cout << " This project focusses on efficient treatment of E-waste using hydrometallurgical, electrometallurgical and pyrometallurgical processes." << endl << endl;
+		/*Sleep(1000);*/
 		cout << " The preprocessing of E-waste is not always required for pyrometallurgical routes.";
 		cout << " However for hydrometallurgical routes, preprocessing is required to separate metal fractions from other fractions.";
 		cout << " This will enhance the efficiency of each step associated with hydrometallurgical routes.";
 		cout << " Each route has advantages and disadvantages and this project will try to select the best combinations of both routes to both reduce costs";
 		cout << " and have minimum carbon footprint as well, so as to create as much efficient design as possible." << endl << endl;
-		Sleep(1000);
+		cout << "It should also be noted that metal processing techniques basically determine the non metal processes as metals are of high economic value.";
+		cout << "Most of the economic benefits of E-waste come from metals, while environmental benefits are about equal from both components of E-waste.\n\n";
+		/*Sleep(1000);*/
 		cout << "Before delving into the in-depth analysis, some of the parameters must be specified by the administrator who is is calling for this analysis";
 		cout << " as per the economic and environmental situation of the locality the survey was taken in. These parameters will be fundamental to determining";
 		cout << " the best way to manage the E-waste at hand." << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "Press any key to continue." << endl << endl;	_getche();	system("CLS");
 		cout << "It is assumed that the cost of opening up and running the E-waste management plant would be born by the locality (through addition in maintainance costs or taxes) ";
 		cout<<"and hence, it is advised to carefully read the approximate costs";
@@ -1088,32 +1106,37 @@ namespace Analyze
 		cout << "Small plants:\n\nFor total E-waste of about 200 kg per cycle, from about 15,000 users typically (per 2 years), carries an economic cost of about Rs. 36,00,000 per annum for 10 years\n\n";
 		cout << "Each resident will pay about that cost Rs. 650 per annum.";
 		cout << endl << endl;
-		Sleep(100);
+		/*Sleep(100);*/
 		cout << "Medium sized plants:\n\nFor total E-waste of about 3,500 kg per cycle, from about 2,40,000 users typically (per 2 years), carries an economic cost of about Rs. 5,40,00,000 per annum for 10 years\n\n";
 		cout << "Each Resident will pay about Rs. 250 per annum";
 		cout << endl << endl;
-		Sleep(100);
-		cout << "Large sized plants:\n\n For total E-waste of about 20,000 kg per cycle, from about 15,00,000 users typically (per two years), carries an economic cost of about Rs. 40,00,000 per annum for 10 years\n\n";
+		/*Sleep(100);*/
+		cout << "Large sized plants:\n\n For total E-waste of about 25,000 kg per cycle, from about 15,00,000 users typically (per two years), carries an economic cost of about Rs. 40,00,000 per annum for 10 years\n\n";
 		cout << "Each Resident will pay about Rs. 250 per annum";
 		cout << endl << endl;
-		Sleep(100);
+		/*Sleep(100);*/
 		cout << "Please note that these are approximate values only, exact values will be determined during subsequent steps.\n\n";
 		cout<<"So what kind of economic liberty do you want to give to this software ? " << endl << endl;
-		Sleep(100);
+		/*Sleep(100);*/
 		cout << "1. Complete economic liberty: \n\nImplies high priority for environment. The software will focus on improving efficiency and assume it has almost unlimited economic resources, subject to only development constraints themselves. ";
 		cout << "This will certainly produce most efficient solutions. Carbon footprint would be least. But keep in mind that the cost can increase significantly, at times even more than 10 times the original!";
 		cout << endl << endl << endl;
-		Sleep(100);
+		/*Sleep(100);*/
 		cout << "2. Constrained economic liberty:\n\nImplies moderate priority for environment. The software will make sure the costs do not sky rocket while efficiency is also maintained. It will provide a well-balanced solution. Recommended in most cases.";
 		cout << endl << endl << endl;
-		Sleep(100);
+		/*Sleep(100);*/
 		cout << "3. No economic liberty:\n\nImplies low prioirty for environment. The software will try to make sure all the E-waste is treated, without worrying much about the efficiency. The cost will clearly be least, but bear in mind ";
 		cout << "this method will never provide most eco-friendly solutions. Carbon footprint would be on the higher side.To be used only when budget is tight.";
 		cout << endl << endl<<endl;
 		cout << "What is your choice?\t";
 		cin >> level;
 		//Call best process functions.
-		Sleep(100);		
+		if (level < 1 || level>3)
+		{
+			cout << "\n\nInvalid level detected! Setting level as 2 by default.";
+			level = 2;
+		}
+		/*Sleep(100);*/		
 		BestProcess::Metals(level);
 	}
 
@@ -1420,4 +1443,21 @@ namespace Analyze
 		}
 		}
 	}
+
+	void HelperFunctions::Limits()
+	{
+		if (GlobalData::surveytakers > 5000000 || GlobalData::totalewaste > 100000)
+		{
+			system("CLS");
+			cout << "ERROR:\n\n";
+			cout << "The current set of data (either users are more than 50,00,000 or total E-waste per 4 day cycle is more than 1,00,000 kg) is too high for proper analysis.\n\n";
+			cout << "Even the biggest E-waste plants on the planet right now will struggle to combat such amounts of e-waste, it is highly recommended to set up multiple plants in this scenario.\n\n";
+			cout << "For now, you might want to decrease the multiplication factor of your representative data from Settings, if that's what you've done.\n\n";
+			cout << "Press any key to exit the software.\n\n";
+			_getche();
+			exit(0);
+		}
+		else return;
+	}
+
 }

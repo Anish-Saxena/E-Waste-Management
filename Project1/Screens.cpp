@@ -20,18 +20,18 @@ namespace Welcome
 	void Welcomescreen()
 	{
 		cout << setw(45) << "Welcome!" << endl << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << setw(55) << "ESC101 Advanced Track Project" << endl << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << setw(53) << "E-Waste Management System" << endl << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout.width(6);
 		cout << setw(80) << "By Anish Saxena" << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << setw(80) << "Roll no. 170118" << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << setw(80) << "Y17 Chemical Engineering" << endl << endl << endl;
-		Sleep(1000);
+		/*Sleep(1000);*/
 		cout << "Press any key to continue" << endl;
 		_getch();
 		system("CLS");
@@ -69,7 +69,7 @@ namespace Welcome
 	void AnalysisnDisplay()
 	{
 		int option;		
-		Sleep(100);
+		/*/*Sleep(100);*/
 		system("CLS");
 		cout << "What would you like to see?" << endl << endl;
 		cout << "1. The General results from the survey regarding quantity of E-waste generated" << endl << endl;
@@ -82,7 +82,11 @@ namespace Welcome
 		for (; option >0; option++)
 		{
 			u = option;
-			if (option >= 3 && flag != 0)	HelperFunctions::ConvertperCycle();
+			if (option >= 3 && flag != 0)
+			{
+				HelperFunctions::ConvertperCycle();
+				HelperFunctions::Limits();
+			}
 			switch (option)
 			{
 			case 1:
@@ -92,7 +96,7 @@ namespace Welcome
 				cout << endl << endl << "Would you like to continue to \"Subtance wise breakup of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
 				cin >> u;
 				if (u < 1)	option = -1;
-				Sleep(100);
+				/*Sleep(100);*/
 				break;
 			}
 			case 2:
@@ -102,7 +106,7 @@ namespace Welcome
 				cout << endl << endl << "Would you like to continue to \"Pre-processing of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
 				cin >> u;
 				if (u < 1)	option = -1;
-				Sleep(100);
+				/*/*Sleep(100);*/
 				break;
 			}
 			case 3:
@@ -112,7 +116,7 @@ namespace Welcome
 				cout << endl << endl << "Would you like to continue to \"Processing of E-waste generated\" or exit? Enter 1 to continue and 0 to exit" << endl << endl;
 				cin >> u;
 				if (u < 1)	option = -1;
-				Sleep(100);
+				/*/*Sleep(100);*/
 				break;
 			}
 			case 4:
@@ -138,12 +142,12 @@ namespace Welcome
 		if (inuser == 1)
 		{
 			cout << endl << endl << "Enter the integral factor you want to multiply the current data with:\t";
-			cin >> limit;
+			cin >> limit;			
 			GlobalData::SettingFactor(limit);
-			Sleep(1000);
+			/*Sleep(1000);*/
 			cout << endl << endl << "Done!\n\n\n" << endl << endl;
 		}
-		cout << "Do you want to set a manual override limit to cost multiplication factor during e-waste analysis?\n";
+		cout << "Do you want to set a manual override limit to cost multiplication factor during e-waste analysis?\n\n";
 		cout << "It is recommended to let this power be with software, otherwise solutions may have unnecessarily high costs. Do you still want to continue? Press 1 for yes\n\n";
 		cin >> inuser;
 		if (inuser == 1)
@@ -153,11 +157,11 @@ namespace Welcome
 			if (limit < 201)	GlobalData::citmanualovveride = limit;
 			else
 			{
-				cout << "Too high a value! 200 is max limit and therefore has been set.\n\n";
+				cout << "Too high a value! 200 is max limit and therefore has been set.";
 				GlobalData::citmanualovveride = 200;
 			}
 		}
-		cout << "Press any key to move on to analysis and display" << endl;
+		cout << "\n\nPress any key to move on to analysis and display" << endl;
 		_getche();
 		AnalysisnDisplay();
 	}

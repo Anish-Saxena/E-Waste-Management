@@ -40,6 +40,7 @@ namespace Analyze
 		static int GetOverrideCit(struct Process, int);
 		static double PointCalc(struct Process, double , double , double, char , int, int, int, double x[][4], int);
 		static int Maxpoints(double a[]);
+		static void Limits();
 	};
 
 	class BestProcess
