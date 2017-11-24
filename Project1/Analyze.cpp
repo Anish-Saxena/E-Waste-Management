@@ -9,9 +9,11 @@
 #include<string>
 #include<stdio.h>
 #include<math.h>
+#include"Processes.h"
 
 using namespace std;
 using namespace ManageData;
+using namespace Processes;
 
 namespace Analyze
 {
@@ -284,438 +286,10 @@ namespace Analyze
 	{
 		system("CLS");
 		cout << "Please wait, analysing";
-		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-		//Now defining processes for metals
-
-		Process Metals[21];
-		//Process 0: Ion Exchange, for Base metals, to get them from Extraction to refining phase, also makes Precious metals go from leaching to extraction
-		Metals[0].information = "Ion Exchange process, Hydrometallurgy.";
-		Metals[0].category = 0;
-		Metals[0].type = 'B';
-		Metals[0].cost = 750000;		
-		Metals[0].efficiency = 0.92;
-		Metals[0].maxefficiency = 0.99;
-		Metals[0].economicfactors[0] = 1.05;
-		Metals[0].economicfactors[1] = 1.05;
-		Metals[0].amountinput[0] = 100;
-		Metals[0].amountinput[1] = 250;
-		Metals[0].carbonfootprint[0] = 55000;
-		Metals[0].carbonfootprint[1] = 80000;
-		Metals[0].stagefrom = 2;
-		Metals[0].stageto = 3;
-		Metals[0].othertypes.stagefrom = 2;
-		Metals[0].othertypes.stageto = 3;
-		Metals[0].othertypes.typeof = 'P';
-
-		//Process 1: Adsorption, for Precious metals, to get them from extraction to refining phase, doesn't act on other types of E-waste
-
-		Metals[1].information = "Adsorption process, Hydrometallury.";
-		Metals[1].category = 0;
-		Metals[1].type = 'P';
-		Metals[1].cost = 500000;		
-		Metals[1].efficiency = 0.97;
-		Metals[1].maxefficiency = 0.99;
-		Metals[1].economicfactors[0] = 0.98;
-		Metals[1].economicfactors[1] = 1.05;
-		Metals[1].amountinput[0] = 1.5;
-		Metals[1].amountinput[1] = 250;
-		Metals[1].carbonfootprint[0] = 25000;
-		Metals[1].carbonfootprint[1] = 65000;
-		Metals[1].stagefrom = 2;
-		Metals[1].stageto = 3;
-		Metals[1].othertypes.stagefrom = -1;
-		Metals[1].othertypes.stageto = -1;
-		Metals[1].othertypes.typeof = 'Z';
-
-		//Process 2: Vat Leaching, for Precious metals, to get them from leaching to extraction phase, also makes base metals go from leaching to extraction
-
-		Metals[2].information = "Vat Leaching, Hydrometallurgy.";
-		Metals[2].type = 'P';
-		Metals[2].category = 0;
-		Metals[2].cost = 320000;		
-		Metals[2].efficiency = 0.85;
-		Metals[2].maxefficiency = 0.90;
-		Metals[2].economicfactors[0] = 0.95;
-		Metals[2].economicfactors[1] = 1.05;
-		Metals[2].amountinput[0] = 1.2;
-		Metals[2].amountinput[1] = 200;
-		Metals[2].carbonfootprint[0] = 35000;
-		Metals[2].carbonfootprint[1] = 60000;
-		Metals[2].stagefrom = 1;
-		Metals[2].stageto = 2;
-		Metals[2].othertypes.stagefrom = 1;
-		Metals[2].othertypes.stageto = 2;
-		Metals[2].othertypes.typeof = 'B';
-
-		//Process 3: Caustic Leaching, for Precious metals, to get them from leaching to extraction phase, doesn't act on other types of E-waste
-
-		Metals[3].information = "Caustic Leaching, Hydrometallurgy.";
-		Metals[3].type = 'P';
-		Metals[3].category = 0;
-		Metals[3].cost = 270000;		
-		Metals[3].efficiency = 0.80;
-		Metals[3].maxefficiency = 0.90;
-		Metals[3].economicfactors[0] = 0.90;
-		Metals[3].economicfactors[1] = 1;
-		Metals[3].amountinput[0] = 1.0;
-		Metals[3].amountinput[1] = 100;
-		Metals[3].carbonfootprint[0] = 30000;
-		Metals[3].carbonfootprint[1] = 60000;
-		Metals[3].stagefrom = 1;
-		Metals[3].stageto = 2;
-		Metals[3].othertypes.stagefrom = -1;
-		Metals[3].othertypes.stageto = -1;
-		Metals[3].othertypes.typeof = 'Z';
-
-		//Process 4: Autoclave leaching, for precious metals, to get them from leaching to extraction phase, also makes hazardous metals go from leaching to extraction
-
-		Metals[4].information = "Autoclave leaching, Hydrometallurgy.";
-		Metals[4].type = 'P';
-		Metals[4].category = 0;
-		Metals[4].cost = 975000;		
-		Metals[4].efficiency = 0.95;
-		Metals[4].maxefficiency = 0.999;
-		Metals[4].economicfactors[0] = 0.99;
-		Metals[4].economicfactors[1] = 1.05;
-		Metals[4].amountinput[0] = 1.5;
-		Metals[4].amountinput[1] = 250;
-		Metals[4].carbonfootprint[0] = 40000;
-		Metals[4].carbonfootprint[1] = 65000;
-		Metals[4].stagefrom = 1;
-		Metals[4].stageto = 2;
-		Metals[4].othertypes.stagefrom = 1;
-		Metals[4].othertypes.stageto = 2;
-		Metals[4].othertypes.typeof = 'H';
-
-		//Process 5: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
-
-		Metals[5].information = "Shaft furnace calcination, pyrometallurgy.";
-		Metals[5].type = 'B';
-		Metals[5].category = 0;
-		Metals[5].cost = 500000;		
-		Metals[5].efficiency = 0.97;
-		Metals[5].maxefficiency = 0.9999;
-		Metals[5].economicfactors[0] = 1.05;
-		Metals[5].economicfactors[1] = 1;
-		Metals[5].amountinput[0] = 120;
-		Metals[5].amountinput[1] = 300;
-		Metals[5].carbonfootprint[0] = 25000;
-		Metals[5].carbonfootprint[1] = 65000;
-		Metals[5].stagefrom = 1;
-		Metals[5].stageto = 2;
-		Metals[5].othertypes.stagefrom = 1;
-		Metals[5].othertypes.stageto = 2;
-		Metals[5].othertypes.typeof = 'H';
-
-		//Process 6: Shaft Furnace calcination, for base metals, to get them from Purification to recovery, also makes hazardous metals go from purifcation to recovery
-
-		Metals[6].information = "Fluidized bed reactor, pyrometallurgy.";
-		Metals[6].type = 'B';
-		Metals[6].category = 0;
-		Metals[6].cost = 620000;		
-		Metals[6].efficiency = 0.975;
-		Metals[6].maxefficiency = 0.9999;
-		Metals[6].economicfactors[0] = 1.1;
-		Metals[6].economicfactors[1] = 1.01;
-		Metals[6].amountinput[0] = 150;
-		Metals[6].amountinput[1] = 375;
-		Metals[6].carbonfootprint[0] = 40000;
-		Metals[6].carbonfootprint[1] = 50000;
-		Metals[6].stagefrom = 1;
-		Metals[6].stageto = 2;
-		Metals[6].othertypes.stagefrom = 1;
-		Metals[6].othertypes.stageto = 2;
-		Metals[6].othertypes.typeof = 'H';
-
-		//Process 7: Pyrolytic Extraction: for base metals, to get them from Purification to recovery, also makes hazardous metals go from purification to recovery
-
-		Metals[7].information = "Pyrolytic Extraction, pyrometallurgy.";
-		Metals[7].type = 'B';
-		Metals[7].category = 0;
-		Metals[7].cost = 580000;
-		Metals[7].efficiency = 0.95;
-		Metals[7].maxefficiency = 0.99;
-		Metals[7].economicfactors[0] = 1.1;
-		Metals[7].economicfactors[1] = 1.005;
-		Metals[7].amountinput[0] = 100;
-		Metals[7].amountinput[1] = 250;
-		Metals[7].carbonfootprint[0] = 45000;
-		Metals[7].carbonfootprint[1] = 50000;
-		Metals[7].stagefrom = 1;
-		Metals[7].stageto = 2;
-		Metals[7].othertypes.stagefrom = 1;
-		Metals[7].othertypes.stageto = 2;
-		Metals[7].othertypes.typeof = 'H';
-
-		//Process 8: Parke's Process, for hazardous metals, to get them from Purification to recovery, also makes precious metals go from purification and recovery
-
-		Metals[8].information = "Parke's Process, pyrometallurgy.";
-		Metals[8].type = 'H';
-		Metals[8].category = 0;
-		Metals[8].cost = 450000;
-		Metals[8].efficiency = 0.97;
-		Metals[8].maxefficiency = 0.9999;
-		Metals[8].economicfactors[0] = 1.05;
-		Metals[8].economicfactors[1] = 1.06;
-		Metals[8].amountinput[0] = 0.5;
-		Metals[8].amountinput[1] = 250;
-		Metals[8].carbonfootprint[0] = 60000;
-		Metals[8].carbonfootprint[1] = 80000;
-		Metals[8].stagefrom = 1;
-		Metals[8].stageto = 2;
-		Metals[8].othertypes.stagefrom = 1;
-		Metals[8].othertypes.stageto = 2;
-		Metals[8].othertypes.typeof = 'P';
-
-		//Process 9: Distillation process: for hazardous metals, to get them from Purification to recovery, doesn't act on other types of e-waste
-
-		Metals[9].information = "Distillation process, hydrometallurgy.";
-		Metals[9].type = 'H';
-		Metals[9].category = 0;
-		Metals[9].cost = 400000;
-		Metals[9].efficiency = 0.92;
-		Metals[9].maxefficiency = 0.97;
-		Metals[9].economicfactors[0] = 1.01;
-		Metals[9].economicfactors[1] = 1.029;
-		Metals[9].amountinput[0] = 0.6;
-		Metals[9].amountinput[1] = 225;
-		Metals[9].carbonfootprint[0] = 50000;
-		Metals[9].carbonfootprint[1] = 75000;
-		Metals[9].stagefrom = 1;
-		Metals[9].stageto = 2;
-		Metals[9].othertypes.stagefrom = -1;
-		Metals[9].othertypes.stageto = -1;
-		Metals[9].othertypes.typeof = 'Z';
-
-		//Process 10: Extractive Roasting: for hazardous metals, to get them from Purification to recovery, also makes base metals go from purification to recovery
-
-		Metals[10].information = "Extractive Roasting, pyrometallurgy.";
-		Metals[10].type = 'H';
-		Metals[10].category = 0;
-		Metals[10].cost = 600000;
-		Metals[10].efficiency = 0.75;
-		Metals[10].maxefficiency = 0.95;
-		Metals[10].economicfactors[0] = 0.99;
-		Metals[10].economicfactors[1] = 1.042;
-		Metals[10].amountinput[0] = 0.5;
-		Metals[10].amountinput[1] = 240;
-		Metals[10].carbonfootprint[0] = 60000;
-		Metals[10].carbonfootprint[1] = 80000;
-		Metals[10].stagefrom = 1;
-		Metals[10].stageto = 2;
-		Metals[10].othertypes.stagefrom = 1;
-		Metals[10].othertypes.stageto = 2;
-		Metals[10].othertypes.typeof = 'B';
-
-		//Process 11: Mertill-Crowe Process: for precious metals, to get them from Recovery to refining, doesn't act on other types of E-waste
-
-		Metals[11].information = "Merill-Crowe Process, hydrometallurgy.";
-		Metals[11].type = 'P';
-		Metals[11].category = 0;
-		Metals[11].cost = 400000;
-		Metals[11].efficiency = 0.82;
-		Metals[11].maxefficiency = 0.96;
-		Metals[11].economicfactors[0] = 1.03;
-		Metals[11].economicfactors[1] = 1.057;
-		Metals[11].amountinput[0] = 1.5;
-		Metals[11].amountinput[1] = 250;
-		Metals[11].carbonfootprint[0] = 35000;
-		Metals[11].carbonfootprint[1] = 60000;
-		Metals[11].stagefrom = 2;
-		Metals[11].stageto = 3;
-		Metals[11].othertypes.stagefrom = -1;
-		Metals[11].othertypes.stageto = -1;
-		Metals[11].othertypes.typeof = 'Z';
-
-		//Process 12: Park and Fray Process, for precious metals, to get them from recovery to refining, doesn't act on other types of E-waste
-
-		Metals[12].information = "Park and Fray Process, hydrometallurgy.";
-		Metals[12].type = 'P';
-		Metals[12].category = 0;
-		Metals[12].cost = 350000;
-		Metals[12].efficiency = 0.97;
-		Metals[12].maxefficiency = 0.9999;
-		Metals[12].economicfactors[0] = 1.2;
-		Metals[12].economicfactors[1] = 1.08;
-		Metals[12].amountinput[0] = 1.5;
-		Metals[12].amountinput[1] = 250;
-		Metals[12].carbonfootprint[0] = 40000;
-		Metals[12].carbonfootprint[1] = 60000;
-		Metals[12].stagefrom = 2;
-		Metals[12].stageto = 3;
-		Metals[12].othertypes.stagefrom = -1;
-		Metals[12].othertypes.stageto = -1;
-		Metals[12].othertypes.typeof = 'Z';
-		
-		//Process 13: Kogan Process, for base metals, to get them from recovery to refining, also makes hazardous metals go from recovery to refining
-
-		Metals[13].information = "Kogan Process, hydrometallurgy.";
-		Metals[13].type = 'B';
-		Metals[13].category = 0;
-		Metals[13].cost = 750000;
-		Metals[13].efficiency = 0.85;
-		Metals[13].maxefficiency = 0.99;
-		Metals[13].economicfactors[0] = 1.01;
-		Metals[13].economicfactors[1] = 1.2;
-		Metals[13].amountinput[0] = 150;
-		Metals[13].amountinput[1] = 375;
-		Metals[13].carbonfootprint[0] = 35000;
-		Metals[13].carbonfootprint[1] = 80000;
-		Metals[13].stagefrom = 2;
-		Metals[13].stageto = 3;
-		Metals[13].othertypes.stagefrom = 2;
-		Metals[13].othertypes.stageto = 3;
-		Metals[13].othertypes.typeof = 'H';
-		
-		//Process 14: Unicore Process, for base metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
-
-		Metals[14].information = "Unicore Process, pyrometallurgy.";
-		Metals[14].type = 'B';
-		Metals[14].category = 0;
-		Metals[14].cost = 600000;
-		Metals[14].efficiency = 0.95;
-		Metals[14].maxefficiency = 0.99;
-		Metals[14].economicfactors[0] = 1.001;
-		Metals[14].economicfactors[1] = 1.08;
-		Metals[14].amountinput[0] = 150;
-		Metals[14].amountinput[1] = 375;
-		Metals[14].carbonfootprint[0] = 35000;
-		Metals[14].carbonfootprint[1] = 80000;
-		Metals[14].stagefrom = 2;
-		Metals[14].stageto = 3;
-		Metals[14].othertypes.stagefrom = 2;
-		Metals[14].othertypes.stageto = 3;
-		Metals[14].othertypes.typeof = 'P';
-
-		//Process 15: Ronnskar Smetler process: for hazardous metals, to get them from recovery to refining, also makes precious metals go from recovery to refining
-
-		Metals[15].information = "Ronnskar Smelter Process, pyrometallugry.";
-		Metals[15].type = 'H';
-		Metals[15].category = 0;
-		Metals[15].cost = 700000;
-		Metals[15].efficiency = 0.97;
-		Metals[15].maxefficiency = 0.99;
-		Metals[15].economicfactors[0] = 1.04;
-		Metals[15].economicfactors[1] = 1.08;
-		Metals[15].amountinput[0] = 0.25;
-		Metals[15].amountinput[1] = 400;
-		Metals[15].carbonfootprint[0] = 45000;
-		Metals[15].carbonfootprint[1] = 65000;
-		Metals[15].stagefrom = 2;
-		Metals[15].stageto = 3;
-		Metals[15].othertypes.stagefrom = 2;
-		Metals[15].othertypes.stageto = 3;
-		Metals[15].othertypes.typeof = 'P';
-
-		//Process 16: Outotec Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
-
-		Metals[16].information = "Outotec Process, pyrometallurgy.";
-		Metals[16].type = 'H';
-		Metals[16].category = 0;
-		Metals[16].cost = 450000;
-		Metals[16].efficiency = 0.90;
-		Metals[16].maxefficiency = 0.97;
-		Metals[16].economicfactors[0] = 1.01;
-		Metals[16].economicfactors[1] = 1.02;
-		Metals[16].amountinput[0] = 0.5;
-		Metals[16].amountinput[1] = 250;
-		Metals[16].carbonfootprint[0] = 55000;
-		Metals[16].carbonfootprint[1] = 90000;
-		Metals[16].stagefrom = 2;
-		Metals[16].stageto = 3;
-		Metals[16].othertypes.stagefrom = -1;
-		Metals[16].othertypes.stageto = -1;
-		Metals[16].othertypes.typeof = 'Z';
-
-		//Process 17: Mecucci and Scott Process, for hazardous metals, to get them from recovery to refining, doesn't act on other types of E-waste
-
-		Metals[17].information = "Mecucci and Scott Process, hydrometallurgy.";
-		Metals[17].type = 'H';
-		Metals[17].category = 0;
-		Metals[17].cost =  350000;
-		Metals[17].efficiency = 0.90;
-		Metals[17].maxefficiency = 0.95;
-		Metals[17].economicfactors[0] = 0.94;
-		Metals[17].economicfactors[1] = 1.012;
-		Metals[17].amountinput[0] = 0.45;
-		Metals[17].amountinput[1] = 350;
-		Metals[17].carbonfootprint[0] = 45000;
-		Metals[17].carbonfootprint[1] = 60000;
-		Metals[17].stagefrom = 2;
-		Metals[17].stageto = 3;
-		Metals[17].othertypes.stagefrom = -1;
-		Metals[17].othertypes.stageto = -1;
-		Metals[17].othertypes.typeof = 'Z';
-
-		//Process 18: Electrorefining process: for precious metals, to get them from refining phase to done!, also makes hazardous metals go from refining to done!
-
-		Metals[18].information = "Electrorefining Process, electrometallurgy.";
-		Metals[18].type = 'P';
-		Metals[18].category = 0;
-		Metals[18].cost = 900000;
-		Metals[18].efficiency = 0.98;
-		Metals[18].maxefficiency = 0.99999;
-		Metals[18].economicfactors[0] = 1.01;
-		Metals[18].economicfactors[1] = 1.006;
-		Metals[18].amountinput[0] = 1.4;
-		Metals[18].amountinput[1] = 400;
-		Metals[18].carbonfootprint[0] = 40000;
-		Metals[18].carbonfootprint[1] = 100000;
-		Metals[18].stagefrom = 3;
-		Metals[18].stageto = 4;
-		Metals[18].othertypes.stagefrom = 3;
-		Metals[18].othertypes.stageto = 4;
-		Metals[18].othertypes.typeof = 'H';
-
-		//Process 19: Noranda process: for precious metals, to get them from refining phase to done1, also makes hazardous metals go from refining to done!
-
-		Metals[19].information = "Noranda Process, pyrometallurgy.";
-		Metals[19].type = 'P';
-		Metals[19].category = 0;
-		Metals[19].cost = 800000;
-		Metals[19].efficiency = 0.94;
-		Metals[19].maxefficiency = 0.99;
-		Metals[19].economicfactors[0] = 1.01;
-		Metals[19].economicfactors[1] = 1.09;
-		Metals[19].amountinput[0] = 1.8;
-		Metals[19].amountinput[1] = 240;
-		Metals[19].carbonfootprint[0] = 45000;
-		Metals[19].carbonfootprint[1] = 90000;
-		Metals[19].stagefrom = 3;
-		Metals[19].stageto = 4;
-		Metals[19].othertypes.stagefrom = 3;
-		Metals[19].othertypes.stageto = 4;
-		Metals[19].othertypes.typeof = 'H';
-
-		//Process 20: Veit Process: for base metals, to get them from refining to done!, doesn't act onother types of E-waste
-
-		Metals[20].information = "Veit Process, hydrometallurgy.";
-		Metals[20].type = 'B';
-		Metals[20].category = 0;
-		Metals[20].cost = 400000;
-		Metals[20].efficiency = 0.92;
-		Metals[20].maxefficiency = 0.98;
-		Metals[20].economicfactors[0] = 1.01;
-		Metals[20].economicfactors[1] = 1.08;
-		Metals[20].amountinput[0] = 150;
-		Metals[20].amountinput[1] = 400;
-		Metals[20].carbonfootprint[0] = 55000;
-		Metals[20].carbonfootprint[1] = 75000;
-		Metals[20].stagefrom = 3;
-		Metals[20].stageto = 4;
-		Metals[20].othertypes.stagefrom = -1;
-		Metals[20].othertypes.stageto = -1;
-		Metals[20].othertypes.typeof = 'Z';
-
-		//Refining of hazardous metals is done along with their recovery, software will take care of that
-
-
-		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-		//Analysis part
+		//Analysis begins
+		Process MetalProcess[21];
+		Metaldef(MetalProcess);
 
 		double samount, tamount, typecost;
 		int init, tempcit, cit, i;
@@ -724,6 +298,7 @@ namespace Analyze
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
 		double store[21][4] = { 0 };
+
 		for (i = 0; i < 3; i++)
 		{
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
@@ -735,21 +310,22 @@ namespace Analyze
 			whatih1[i] = -1;	whatih2[i] = -1;	whatih3[i] = -1;
 
 		}
+
 		tamount = GlobalData::totalewaste;
 
 		for (i = 0; i < 21; i++)
 		{
 			if (i % 3 == 0 || i == 20)	cout << ".";
-			if (Metals[i].category != 0)	continue;
-			switch(Metals[i].type)
+			if ((MetalProcess[i]).category != 0)	continue;
+			switch(MetalProcess[i].type)
 			{
 			case 'P':
 			{
 				samount = GlobalData::preciousmetal[1];
 				typecost = TypeCost::preciousm;
 
-				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
-				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+				init = HelperFunctions::GetInit(MetalProcess[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(MetalProcess[i], init);
 
 				switch (level)
 				{
@@ -770,12 +346,12 @@ namespace Analyze
 				}
 				}
 
-				switch (Metals[i].stagefrom)
+				switch (MetalProcess[i].stagefrom)
 				{
 				case 1:
 				{
 
-					pointsp1[p1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 1, init, cit, store, i);
+					pointsp1[p1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, cit, store, i);
 					whatip1[p1] = i;		
 					p1++;
 					break;
@@ -783,7 +359,7 @@ namespace Analyze
 				case 2:
 				{
 
-					pointsp2[p2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 2, init, cit, store, i);
+					pointsp2[p2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, cit, store, i);
 					whatip2[p2] = i;
 					p2++;
 
@@ -792,7 +368,7 @@ namespace Analyze
 				case 3:
 				{
 
-					pointsp3[p3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'P', 3, init, cit, store, i);
+					pointsp3[p3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, cit, store, i);
 					whatip3[p3] = i;
 					p3++;
 					break;
@@ -806,8 +382,8 @@ namespace Analyze
 				samount = GlobalData::hazardousmetal[1];
 				typecost = TypeCost::hazardousm;
 
-				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
-				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+				init = HelperFunctions::GetInit(MetalProcess[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(MetalProcess[i], init);
 
 				switch (level)
 				{
@@ -827,25 +403,25 @@ namespace Analyze
 					break;
 				}
 				}
-				switch (Metals[i].stagefrom)
+				switch (MetalProcess[i].stagefrom)
 				{
 				case 1:
 				{
-					pointsh1[h1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 1, init, cit, store, i);
+					pointsh1[h1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, cit, store, i);
 					whatih1[h1] = i;
 					h1++;
 					break;
 				}
 				case 2:
 				{
-					pointsh2[h2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 2, init, cit, store, i);
+					pointsh2[h2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, cit, store, i);
 					whatih2[h2] = i;
 					h2++;
 					break;
 				}
 				case 3:
 				{
-					pointsh3[h3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'H', 3, init, cit, store, i);
+					pointsh3[h3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, cit, store, i);
 					whatih3[h3] = i;
 					h3++;
 					break;
@@ -858,8 +434,8 @@ namespace Analyze
 				samount = GlobalData::basemetal[1];
 				typecost = TypeCost::basem;
 
-				init = HelperFunctions::GetInit(Metals[i], samount, tamount);
-				tempcit = HelperFunctions::GetOverrideCit(Metals[i], init);
+				init = HelperFunctions::GetInit(MetalProcess[i], samount, tamount);
+				tempcit = HelperFunctions::GetOverrideCit(MetalProcess[i], init);
 
 				switch (level)
 				{
@@ -879,25 +455,25 @@ namespace Analyze
 					break;
 				}
 				}
-				switch (Metals[i].stagefrom)
+				switch (MetalProcess[i].stagefrom)
 				{
 				case 1:
 				{
-					pointsb1[b1] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 1, init, cit, store, i);
+					pointsb1[b1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, cit, store, i);
 					whatib1[b1] = i;
 					b1++;
 					break;
 				}
 				case 2:
 				{
-					pointsb2[b2] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 2, init, cit, store, i);
+					pointsb2[b2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, cit, store, i);
 					whatib2[b2] = i;
 					b2++;
 					break;
 				}
 				case 3:
 				{
-					pointsb3[b3] = HelperFunctions::PointCalc(Metals[i], tamount, samount, typecost, 'B', 3, init, cit, store, i);
+					pointsb3[b3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, cit, store, i);
 					whatib3[b3] = i;
 					b3++;
 					break;
@@ -910,6 +486,7 @@ namespace Analyze
 		}
 
 		int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
+
 		maxip1 = HelperFunctions::Maxpoints(pointsp1);
 		maxip2 = HelperFunctions::Maxpoints(pointsp2);
 		maxip3 = HelperFunctions::Maxpoints(pointsp3);
@@ -921,6 +498,7 @@ namespace Analyze
 		maxib3 = HelperFunctions::Maxpoints(pointsb3);
 
 		int processip1, processip2, processip3, processih1, processih2, processih3, processib1, processib2, processib3;
+
 		processip1 = whatip1[maxip1];
 		processip2 = whatip2[maxip2];
 		processip3 = whatip3[maxip3];
@@ -945,35 +523,35 @@ namespace Analyze
 		system("CLS");
 		cout << "STAGE 1: PURIFICATION OR LEACHING\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
-		cout << Metals[processip1].information;
+		cout << MetalProcess[processip1].information;
 		cout << endl << endl;
 		double ce = store[processip1][0];
 		double cc = store[processip1][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n",Metals[processip1].carbonfootprint[0]*(1+store[processip1][2])/(1+store[processip1][3]/2.0));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2]));
-		HelperFunctions::OtherTypeInfo(Metals[processip1]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n",MetalProcess[processip1].carbonfootprint[0]*(1+store[processip1][2])/(1+store[processip1][3]/2.0));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip1].carbonfootprint[1] * (1 + store[processip1][2]));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processip1]);
 		cout << "\n\nFOR BASE METALS:\n\n";
-		cout << Metals[processib1].information;
+		cout << MetalProcess[processib1].information;
 		cout << endl << endl;
 		ce = store[processib1][0];
 		cc = store[processib1][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[0] * (1 + store[processib1][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processib1]);		
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib1].carbonfootprint[0] * (1 + store[processib1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib1].carbonfootprint[1] * (1 + store[processib1][2]) / (1 + store[processib1][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processib1]);		
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
-		cout << Metals[processih1].information;
+		cout << MetalProcess[processih1].information;
 		cout << endl << endl;
 		ce = store[processih1][0];
 		cc = store[processih1][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce,37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processih1]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processih1].carbonfootprint[0] * (1 + store[processih1][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processih1].carbonfootprint[1] * (1 + store[processih1][2]) / (1 + store[processih1][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processih1]);
 		cout << endl << endl;
 
 		cout << "Press any key to continue to stage 2.";
@@ -981,35 +559,35 @@ namespace Analyze
 		system("CLS");
 		cout << "STAGE 2: EXTRACTION (ISOLATION) OR RECOVERY:\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
-		cout << Metals[processip2].information;
+		cout << MetalProcess[processip2].information;
 		cout << endl << endl;
 		ce = store[processip2][0];
 		cc = store[processip2][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[0] * (1 + store[processip2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processip2]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip2].carbonfootprint[0] * (1 + store[processip2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip2].carbonfootprint[1] * (1 + store[processip2][2]) / (1 + store[processip2][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processip2]);
 		cout << "\n\nFOR BASE METALS:\n\n";
-		cout << Metals[processib2].information;
+		cout << MetalProcess[processib2].information;
 		cout << endl << endl;
 		ce = store[processib2][0];
 		cc = store[processib2][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[0] * (1 + store[processib2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processib2]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib2].carbonfootprint[0] * (1 + store[processib2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib2].carbonfootprint[1] * (1 + store[processib2][2]) / (1 + store[processib2][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processib2]);
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
-		cout << Metals[processih2].information;
+		cout << MetalProcess[processih2].information;
 		cout << endl << endl;
 		ce = store[processih2][0];
 		cc = store[processih2][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[0] * (1 + store[processih2][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processih2]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processih2].carbonfootprint[0] * (1 + store[processih2][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processih2].carbonfootprint[1] * (1 + store[processih2][2]) / (1 + store[processih2][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processih2]);
 		cout << endl << endl;
 
 
@@ -1018,45 +596,45 @@ namespace Analyze
 		system("CLS");
 		cout << "STAGE 1: REFINING:\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
-		cout << Metals[processip3].information;
+		cout << MetalProcess[processip3].information;
 		cout << endl << endl;
 		ce = store[processip3][0];
 		cc = store[processip3][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processip3]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processip3]);
 		cout << "\n\nFOR BASE METALS:\n\n";
-		cout << Metals[processib3].information;
+		cout << MetalProcess[processib3].information;
 		cout << endl << endl;
 		ce = store[processib3][0];
 		cc = store[processib3][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[0] * (1 + store[processib3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processib3]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib3].carbonfootprint[0] * (1 + store[processib3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processib3].carbonfootprint[1] * (1 + store[processib3][2]) / (1 + store[processib3][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processib3]);
 		cout << "\n\nFOR HAZARDOUS METALS:\n\n";
 		cout << "The Hazardous metals are refined along with precious metals:\n\n";
-		cout << Metals[processip3].information;
+		cout << MetalProcess[processip3].information;
 		cout << endl << endl;
 		ce = store[processip3][0];
 		cc = store[processip3][1];
 		printf("The current efficiency of this process is: %3.2lf%c\n", ce, 37);
 		printf("The current cost per two years of this process is: Rs. %.2lf\n", cc);
-		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
-		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
-		HelperFunctions::OtherTypeInfo(Metals[processip3]);
+		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
+		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
+		HelperFunctions::OtherTypeInfo(MetalProcess[processip3]);
 
-		double cf = Metals[processip3].carbonfootprint[0] * (1 + store[processip3][2]) / (1 + store[processip3][3]/2 )*1.5
-			+ Metals[processip2].carbonfootprint[0] * (1 + store[processip2][2]) / (1 + store[processip2][3]/2 )
-			+ Metals[processip1].carbonfootprint[0] * (1 + store[processip1][2]) / (1 + store[processip1][3]/2 )
-			+ Metals[processib3].carbonfootprint[0] * (1 + store[processib3][2]) / (1 + store[processib3][3]/2 )
-			+ Metals[processib2].carbonfootprint[0] * (1 + store[processib2][2]) / (1 + store[processib2][3]/2 )
-			+ Metals[processib1].carbonfootprint[0] * (1 + store[processib1][2]) / (1 + store[processib1][3]/2 )
-			+ Metals[processih2].carbonfootprint[0] * (1 + store[processih2][2]) / (1 + store[processih2][3]/2 )
-			+ Metals[processih1].carbonfootprint[0] * (1 + store[processih1][2]) / (1 + store[processih1][3]/2 );
+		double cf = MetalProcess[processip3].carbonfootprint[0] * (1 + store[processip3][2]) / (1 + store[processip3][3]/2 )*1.5
+			+ MetalProcess[processip2].carbonfootprint[0] * (1 + store[processip2][2]) / (1 + store[processip2][3]/2 )
+			+ MetalProcess[processip1].carbonfootprint[0] * (1 + store[processip1][2]) / (1 + store[processip1][3]/2 )
+			+ MetalProcess[processib3].carbonfootprint[0] * (1 + store[processib3][2]) / (1 + store[processib3][3]/2 )
+			+ MetalProcess[processib2].carbonfootprint[0] * (1 + store[processib2][2]) / (1 + store[processib2][3]/2 )
+			+ MetalProcess[processib1].carbonfootprint[0] * (1 + store[processib1][2]) / (1 + store[processib1][3]/2 )
+			+ MetalProcess[processih2].carbonfootprint[0] * (1 + store[processih2][2]) / (1 + store[processih2][3]/2 )
+			+ MetalProcess[processih1].carbonfootprint[0] * (1 + store[processih1][2]) / (1 + store[processih1][3]/2 );
 
 		cout << "Press any key to continue to view the non-metal analysis.\n\n";
 		_getche();
@@ -1073,14 +651,14 @@ namespace Analyze
 		printf("Total costs per cycle of 2 years are:\tRs. %.0lf\n\n", ocost);
 		printf("Average cost per resident per year is:\tRs. %.0lf\n\n", ocost / (2 * GlobalData::surveytakers));		
 		cf += cf / 15;
-		double cforig = Metals[processip1].carbonfootprint[1] * (1 + store[processip1][2])
-			+ Metals[processip2].carbonfootprint[1] * (1 + store[processip2][2])
-			+ Metals[processip3].carbonfootprint[1] * (1 + store[processip3][2])*1.5
-			+ Metals[processib1].carbonfootprint[1] * (1 + store[processib1][2])
-			+ Metals[processib2].carbonfootprint[1] * (1 + store[processib2][2])
-			+ Metals[processib3].carbonfootprint[1] * (1 + store[processib3][2])
-			+ Metals[processih1].carbonfootprint[1] * (1 + store[processih1][2])
-			+Metals[processih2].carbonfootprint[1] * (1 + store[processih2][2]);
+		double cforig = MetalProcess[processip1].carbonfootprint[1] * (1 + store[processip1][2])
+			+ MetalProcess[processip2].carbonfootprint[1] * (1 + store[processip2][2])
+			+ MetalProcess[processip3].carbonfootprint[1] * (1 + store[processip3][2])*1.5
+			+ MetalProcess[processib1].carbonfootprint[1] * (1 + store[processib1][2])
+			+ MetalProcess[processib2].carbonfootprint[1] * (1 + store[processib2][2])
+			+ MetalProcess[processib3].carbonfootprint[1] * (1 + store[processib3][2])
+			+ MetalProcess[processih1].carbonfootprint[1] * (1 + store[processih1][2])
+			+MetalProcess[processih2].carbonfootprint[1] * (1 + store[processih2][2]);
 		printf("Total Equivalent Kgs of CO2 emitted per 2 years is: %.0lf kg\n\n", cf);
 		printf("This treatment process with current logistics is capable of handling %.0lf kg of E-waste per cycle of 4 days.\n\n", GlobalData::totalewaste);
 		printf("The plant will contribute to the protection of environment by saving %.0lf kg equivalents of CO2 from releasing into the environment every 2 years.\n\n", cforig-cf);
