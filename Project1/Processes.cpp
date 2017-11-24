@@ -427,6 +427,26 @@ namespace Processes
 		p[20].othertypes.stageto = -1;
 		p[20].othertypes.typeof = 'Z';
 
+		//Process 21: Fire refining: for base Metalss, to get them from refining to done!, doesn't act onother types of E-waste
+
+		p[21].information = "Fire refining, pyrometallurgy.";
+		p[21].type = 'B';
+		p[21].category = 0;
+		p[21].cost = 520000;
+		p[21].efficiency = 0.94;
+		p[21].maxefficiency = 0.99;
+		p[21].economicfactors[0] = 1.001;
+		p[21].economicfactors[1] = 1.06;
+		p[21].amountinput[0] = 175;
+		p[21].amountinput[1] = 300;
+		p[21].carbonfootprint[0] = 50000;
+		p[21].carbonfootprint[1] = 60000;
+		p[21].stagefrom = 3;
+		p[21].stageto = 4;
+		p[21].othertypes.stagefrom = -1;
+		p[21].othertypes.stageto = -1;
+		p[21].othertypes.typeof = 'Z';
+
 		//Refining of hazardous Metalss is done along with their recovery, software will take care of that
 	}
 }

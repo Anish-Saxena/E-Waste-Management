@@ -288,6 +288,7 @@ namespace Analyze
 		cout << "Please wait, analysing";
 
 		//Analysis begins
+
 		Process MetalProcess[21];
 		Metaldef(MetalProcess);
 
@@ -295,9 +296,17 @@ namespace Analyze
 		int init, tempcit, cit, i;
 								
 		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
+		double ecopointsp1[3], ecopointsp2[3], ecopointsp3[3], ecopointsb1[3], ecopointsb2[3], ecopointsb3[3], ecopointsh1[3], ecopointsh2[3], ecopointsh3[3];		
+		double envopointsp1[3], envopointsp2[3], envopointsp3[3], envopointsb1[3], envopointsb2[3], envopointsb3[3], envopointsh1[3], envopointsh2[3], envopointsh3[3];
+		double relpointsp1[3], relpointsp2[3], relpointsp3[3], relpointsb1[3], relpointsb2[3], relpointsb3[3], relpointsh1[3], relpointsh2[3], relpointsh3[3];
+
 		double sumpointsp[3], sumpointsb[3], sumpointsh[3];		//0->stage 1,1->stage 2, 2->stage 3
 		double sumecopointsp[3], sumenvopointsp[3], sumrelpointsp[3];
-		double tempmaxpoints=0;
+		double sumecopointsh[3], sumenvopointsh[3], sumrelpointsh[3];
+		double sumecopointsb[3], sumenvopointsb[3], sumrelpointsb[3];
+
+		double tempmaxpoints[4] = { 0,0,0,0 };
+
 		int tempiteration=0;
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
@@ -308,10 +317,24 @@ namespace Analyze
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
 			pointsp1[i] = 0;	pointsp2[i] = 0;	pointsp3[i] = 0;
 			pointsh1[i] = 0;	pointsh2[i] = 0;	pointsh3[i] = 0;
-
+			///////////////////////////////////////////////////////////////////////////////////////
+			ecopointsb1[i] = 0;	ecopointsb2[i] = 0;	ecopointsb3[i] = 0;
+			ecopointsp1[i] = 0;	ecopointsp2[i] = 0;	ecopointsp3[i] = 0;
+			ecopointsh1[i] = 0;	ecopointsh2[i] = 0;	ecopointsh3[i] = 0;
+			///////////////////////////////////////////////////////////////////////////////////////
+			envopointsb1[i] = 0;	envopointsb2[i] = 0;	envopointsb3[i] = 0;
+			envopointsp1[i] = 0;	envopointsp2[i] = 0;	envopointsp3[i] = 0;
+			envopointsh1[i] = 0;	envopointsh2[i] = 0;	envopointsh3[i] = 0;
+			///////////////////////////////////////////////////////////////////////////////////////
+			relpointsb1[i] = 0;	relpointsb2[i] = 0;	relpointsb3[i] = 0;
+			relpointsp1[i] = 0;	relpointsp2[i] = 0;	relpointsp3[i] = 0;
+			relpointsh1[i] = 0;	relpointsh2[i] = 0;	relpointsh3[i] = 0;
+			///////////////////////////////////////////////////////////////////////////////////////
 			sumecopointsp[i] = 0; sumenvopointsp[i] = 0; sumrelpointsp[i]=0;
+			sumecopointsh[i] = 0; sumenvopointsh[i] = 0; sumrelpointsh[i] = 0;
+			sumecopointsb[i] = 0; sumenvopointsb[i] = 0; sumrelpointsb[i] = 0;
 			sumpointsb[i] = 0;	sumpointsh[i] = 0;	sumpointsp[i] = 0;
-
+			///////////////////////////////////////////////////////////////////////////////////////
 			whatib1[i] = -1;	whatib2[i] = -1;	whatib3[i] = -1;
 			whatip1[i] = -1;	whatip2[i] = -1;	whatip3[i] = -1;
 			whatih1[i] = -1;	whatih2[i] = -1;	whatih3[i] = -1;
@@ -320,7 +343,7 @@ namespace Analyze
 
 		tamount = GlobalData::totalewaste;
 
-		for (i = 0; i < 21; i++)
+		for (i = 0; i < 22; i++)
 		{
 			if (i % 3 == 0 || i == 20)	cout << ".";
 			if ((MetalProcess[i]).category != 0)	continue;
@@ -358,24 +381,46 @@ namespace Analyze
 				case 1:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;						
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, tempiteration, store, i)+3);							
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, tempiteration, store, i);							
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 						
 					}
 
-					if (flag)	pointsp1[p1] = tempmaxpoints;
-					else	pointsp1[p1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsp1[p1] = tempmaxpoints[3];
+						ecopointsp1[p1] = tempmaxpoints[0];
+						envopointsp1[p1] = tempmaxpoints[1];
+						relpointsp1[p1] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, cit, store, i);
+						pointsp1[p1] = comp[3];
+						ecopointsp1[p1] = comp[0];
+						envopointsp1[p1] = comp[1];
+						relpointsp1[p1] = comp[2];						
+					}
+					sumecopointsp[0] += ecopointsp1[p1];
+					sumenvopointsp[0] += envopointsp1[p1];
+					sumrelpointsp[0] += relpointsp1[p1];
 					sumpointsp[0] += pointsp1[p1];
 					whatip1[p1] = i;		
 					p1++;
@@ -384,51 +429,94 @@ namespace Analyze
 				case 2:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsp2[p2] = tempmaxpoints;
-					else	pointsp2[p2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsp2[p2] = tempmaxpoints[3];
+						ecopointsp2[p2] = tempmaxpoints[0];
+						envopointsp2[p2] = tempmaxpoints[1];
+						relpointsp2[p2] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, cit, store, i);
+						pointsp2[p2] = comp[3];
+						ecopointsp2[p2] = comp[0];
+						envopointsp2[p2] = comp[1];
+						relpointsp2[p2] = comp[2];
+					}
+					sumecopointsp[1] += ecopointsp2[p2];
+					sumenvopointsp[1] += envopointsp2[p2];
+					sumrelpointsp[1] += relpointsp2[p2];
 					sumpointsp[1] += pointsp2[p2];
 					whatip2[p2] = i;
 					p2++;
-
 					break;
 				}
 				case 3:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsp3[p3] = tempmaxpoints;
-					else	pointsp3[p3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsp3[p3] = tempmaxpoints[3];
+						ecopointsp3[p3] = tempmaxpoints[0];
+						envopointsp3[p3] = tempmaxpoints[1];
+						relpointsp3[p3] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, cit, store, i);
+						pointsp3[p3] = comp[3];
+						ecopointsp3[p3] = comp[0];
+						envopointsp3[p3] = comp[1];
+						relpointsp3[p3] = comp[2];
+					}
+					sumecopointsp[2] += ecopointsp3[p3];
+					sumenvopointsp[2] += envopointsp3[p3];
+					sumrelpointsp[2] += relpointsp3[p3];
 					sumpointsp[2] += pointsp3[p3];
 					whatip3[p3] = i;
 					p3++;
@@ -469,24 +557,46 @@ namespace Analyze
 				case 1:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsh1[h1] = tempmaxpoints;
-					else	pointsh1[h1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsh1[h1] = tempmaxpoints[3];
+						ecopointsh1[h1] = tempmaxpoints[0];
+						envopointsh1[h1] = tempmaxpoints[1];
+						relpointsh1[h1] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, cit, store, i);
+						pointsh1[h1] = comp[3];
+						ecopointsh1[h1] = comp[0];
+						envopointsh1[h1] = comp[1];
+						relpointsh1[h1] = comp[2];
+					}
+					sumecopointsh[0] += ecopointsh1[h1];
+					sumenvopointsh[0] += envopointsh1[h1];
+					sumrelpointsh[0] += relpointsh1[h1];
 					sumpointsh[0] += pointsh1[h1];
 					whatih1[h1] = i;
 					h1++;
@@ -495,24 +605,46 @@ namespace Analyze
 				case 2:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsh2[h2] = tempmaxpoints;
-					else	pointsh2[h2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsh2[h2] = tempmaxpoints[3];
+						ecopointsh2[h2] = tempmaxpoints[0];
+						envopointsh2[h2] = tempmaxpoints[1];
+						relpointsh2[h2] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, cit, store, i);
+						pointsh2[h2] = comp[3];
+						ecopointsh2[h2] = comp[0];
+						envopointsh2[h2] = comp[1];
+						relpointsh2[h2] = comp[2];
+					}
+					sumecopointsh[1] += ecopointsh2[h2];
+					sumenvopointsh[1] += envopointsh2[h2];
+					sumrelpointsh[1] += relpointsh2[h2];
 					sumpointsh[1] += pointsh2[h2];
 					whatih2[h2] = i;
 					h2++;
@@ -521,24 +653,46 @@ namespace Analyze
 				case 3:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsh3[h3] = tempmaxpoints;
-					else	pointsh3[h3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsh3[h3] = tempmaxpoints[3];
+						ecopointsh3[h3] = tempmaxpoints[0];
+						envopointsh3[h3] = tempmaxpoints[1];
+						relpointsh3[h3] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, cit, store, i);
+						pointsh3[h3] = comp[3];
+						ecopointsh3[h3] = comp[0];
+						envopointsh3[h3] = comp[1];
+						relpointsh3[h3] = comp[2];
+					}
+					sumecopointsh[2] += ecopointsh3[h3];
+					sumenvopointsh[2] += envopointsh3[h3];
+					sumrelpointsh[2] += relpointsh3[h3];
 					sumpointsh[2] += pointsh3[h3];
 					whatih3[h3] = i;
 					h3++;
@@ -578,24 +732,46 @@ namespace Analyze
 				case 1:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsb1[b1] = tempmaxpoints;
-					else	pointsb1[b1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsb1[b1] = tempmaxpoints[3];
+						ecopointsb1[b1] = tempmaxpoints[0];
+						envopointsb1[b1] = tempmaxpoints[1];
+						relpointsb1[b1] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, cit, store, i);
+						pointsb1[b1] = comp[3];
+						ecopointsb1[b1] = comp[0];
+						envopointsb1[b1] = comp[1];
+						relpointsb1[b1] = comp[2];
+					}
+					sumecopointsb[0] += ecopointsb1[b1];
+					sumenvopointsb[0] += envopointsb1[b1];
+					sumrelpointsb[0] += relpointsb1[b1];
 					sumpointsb[0] += pointsb1[b1];
 					whatib1[b1] = i;
 					b1++;
@@ -604,24 +780,46 @@ namespace Analyze
 				case 2:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsb2[b2] = tempmaxpoints;
-					else	pointsb2[b2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsb2[b2] = tempmaxpoints[3];
+						ecopointsb2[b2] = tempmaxpoints[0];
+						envopointsb2[b2] = tempmaxpoints[1];
+						relpointsb2[b2] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, cit, store, i);
+						pointsb2[b2] = comp[3];
+						ecopointsb2[b2] = comp[0];
+						envopointsb2[b2] = comp[1];
+						relpointsb2[b2] = comp[2];
+					}
+					sumecopointsb[1] += ecopointsb2[b2];
+					sumenvopointsb[1] += envopointsb2[b2];
+					sumrelpointsb[1] += relpointsb2[b2];
 					sumpointsb[1] += pointsb2[b2];
 					whatib2[b2] = i;
 					b2++;
@@ -630,24 +828,46 @@ namespace Analyze
 				case 3:
 				{
 					int flag = 0;
-
+					double *comp;
 					if (level == 2)
 					{
 						flag = 1;
-						tempmaxpoints = 0;
+						tempmaxpoints[0] = 0;
+						tempmaxpoints[1] = 0;
+						tempmaxpoints[2] = 0;
+						tempmaxpoints[3] = 0;
 						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
 						{
-							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, tempiteration, store, i)+3);
-							if (comp > tempmaxpoints)
+							comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, tempiteration, store, i);
+							if (comp[3] > tempmaxpoints[3])
 							{
-								tempmaxpoints = comp;
+								tempmaxpoints[3] = comp[3];
+								tempmaxpoints[0] = comp[0];
+								tempmaxpoints[1] = comp[1];
+								tempmaxpoints[2] = comp[2];
 							}
 						}
 
 					}
 
-					if (flag)	pointsb3[b3] = tempmaxpoints;
-					else	pointsb3[b3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, cit, store, i)+3);
+					if (flag)
+					{
+						pointsb3[b3] = tempmaxpoints[3];
+						ecopointsb3[b3] = tempmaxpoints[0];
+						envopointsb3[b3] = tempmaxpoints[1];
+						relpointsb3[b3] = tempmaxpoints[2];
+					}
+					else
+					{
+						comp = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, cit, store, i);
+						pointsb3[b3] = comp[3];
+						ecopointsb3[b3] = comp[0];
+						envopointsb3[b3] = comp[1];
+						relpointsb3[b3] = comp[2];
+					}
+					sumecopointsb[2] += ecopointsb3[b3];
+					sumenvopointsb[2] += envopointsb3[b3];
+					sumrelpointsb[2] += relpointsb3[b3];
 					sumpointsb[2] += pointsb3[b3];
 					whatib3[b3] = i;
 					b3++;
@@ -665,19 +885,114 @@ namespace Analyze
 			sumpointsb[i] /= 3.0;
 			sumpointsh[i] /= 3.0;
 			sumpointsp[i] /= 3.0;
+			///////////////////////////////////////////////////////////////////////////////////////
+			sumecopointsb[i] /= 3.0;
+			sumecopointsh[i] /= 3.0;
+			sumecopointsp[i] /= 3.0;
+			///////////////////////////////////////////////////////////////////////////////////////
+			sumenvopointsb[i] /= 3.0;
+			sumenvopointsh[i] /= 3.0;
+			sumenvopointsp[i] /= 3.0;
+			///////////////////////////////////////////////////////////////////////////////////////
+			sumrelpointsb[i] /= 3.0;
+			sumrelpointsh[i] /= 3.0;
+			sumrelpointsp[i] /= 3.0;
 		}
+
 		for (i = 0; i < 3; i++)
 		{
-			pointsp1[i] /= sumpointsp[0];
-			pointsp2[i] /= sumpointsp[1];
-			pointsp3[i] /= sumpointsp[2];
-			pointsb1[i] /= sumpointsb[0];
-			pointsb2[i] /= sumpointsb[1];
-			pointsb3[i] /= sumpointsb[2];
-			pointsh1[i] /= sumpointsh[0];
-			pointsh2[i] /= sumpointsh[1];
-			pointsh3[i] /= sumpointsh[2];			
+			ecopointsp1[i] /= sumecopointsp[0]*0.01;
+			envopointsp1[i] /= sumenvopointsp[0]*0.01;
+			relpointsp1[i] /= sumrelpointsp[0]*0.01;
+			
+			ecopointsp2[i] /= sumecopointsp[1]*0.01;
+			envopointsp2[i] /= sumenvopointsp[1]*0.01;
+			relpointsp2[i] /= sumrelpointsp[1]*0.01;
+
+			ecopointsp3[i] /= sumecopointsp[2]*0.01;
+			envopointsp3[i] /= sumenvopointsp[2]*0.01;
+			relpointsp3[i] /= sumrelpointsp[2]*0.01;
+
+			///////////////////////////////////////////////////////////////////////////////////////
+
+			ecopointsb1[i] /= sumecopointsb[0]*0.01;
+			envopointsb1[i] /= sumenvopointsb[0]*0.01;
+			relpointsb1[i] /= sumrelpointsb[0]*0.01;
+
+			ecopointsb2[i] /= sumecopointsb[1]*0.01;
+			envopointsb2[i] /= sumenvopointsb[1]*0.01;
+			relpointsb2[i] /= sumrelpointsb[1]*0.01;
+
+			ecopointsb3[i] /= sumecopointsb[2]*0.01;
+			envopointsb3[i] /= sumenvopointsb[2]*0.01;
+			relpointsb3[i] /= sumrelpointsb[2]*0.01;
+
+			///////////////////////////////////////////////////////////////////////////////////////
+
+			ecopointsh1[i] /= sumecopointsh[0]*0.01;
+			envopointsh1[i] /= sumenvopointsh[0]*0.01;
+			relpointsh1[i] /= sumrelpointsh[0]*0.01;
+
+			ecopointsh2[i] /= sumecopointsh[1]*0.01;
+			envopointsh2[i] /= sumenvopointsh[1]*0.01;
+			relpointsh2[i] /= sumrelpointsh[1]*0.01;
+
+			ecopointsh3[i] /= sumecopointsh[2]*0.01;
+			envopointsh3[i] /= sumenvopointsh[2]*0.01;
+			relpointsh3[i] /= sumrelpointsh[2]*0.01;
+
+
+			switch (level)
+			{
+			case 1:
+			{
+				pointsp1[i] = 0.5*ecopointsp1[i] + 3 * envopointsp1[i] + 0.5*relpointsp1[i];
+				pointsp2[i] = 0.5*ecopointsp2[i] + 3 * envopointsp2[i] + 0.5*relpointsp2[i];
+				pointsp3[i] = 0.5*ecopointsp3[i] + 3 * envopointsp3[i] + 0.5*relpointsp3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsb1[i] = 0.5*ecopointsb1[i] + 3 * envopointsb1[i] + 0.5*relpointsb1[i];
+				pointsb2[i] = 0.5*ecopointsb2[i] + 3 * envopointsb2[i] + 0.5*relpointsb2[i];
+				pointsb3[i] = 0.5*ecopointsb3[i] + 3 * envopointsb3[i] + 0.5*relpointsb3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsh1[i] = 0.5*ecopointsh1[i] + 3 * envopointsh1[i] + 0.5*relpointsh1[i];
+				pointsh2[i] = 0.5*ecopointsh2[i] + 3 * envopointsh2[i] + 0.5*relpointsh2[i];
+				pointsh3[i] = 0.5*ecopointsh3[i] + 3 * envopointsh3[i] + 0.5*relpointsh3[i];
+				break;
+			}
+			case 2:
+			{
+				pointsp1[i] = 1.5*ecopointsp1[i] + 2 * envopointsp1[i] + 1*relpointsp1[i];
+				pointsp2[i] = 1.5*ecopointsp2[i] + 2 * envopointsp2[i] + 1*relpointsp2[i];
+				pointsp3[i] = 1.5*ecopointsp3[i] + 2 * envopointsp3[i] + 1*relpointsp3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsb1[i] = 1.5*ecopointsb1[i] + 2 * envopointsb1[i] + 1*relpointsb1[i];
+				pointsb2[i] = 1.5*ecopointsb2[i] + 2 * envopointsb2[i] + 1*relpointsb2[i];
+				pointsb3[i] = 1.5*ecopointsb3[i] + 2 * envopointsb3[i] + 1*relpointsb3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsh1[i] = 1.5*ecopointsh1[i] + 2 * envopointsh1[i] + 1*relpointsh1[i];
+				pointsh2[i] = 1.5*ecopointsh2[i] + 2 * envopointsh2[i] + 1*relpointsh2[i];
+				pointsh3[i] = 1.5*ecopointsh3[i] + 2 * envopointsh3[i] + 1*relpointsh3[i];
+				break;
+			}
+			case 3:
+			{
+				pointsp1[i] = 2.5*ecopointsp1[i] + 0.5 * envopointsp1[i] + 0.5*relpointsp1[i];
+				pointsp2[i] = 2.5*ecopointsp2[i] + 0.5 * envopointsp2[i] + 0.5*relpointsp2[i];
+				pointsp3[i] = 2.5*ecopointsp3[i] + 0.5 * envopointsp3[i] + 0.5*relpointsp3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsb1[i] = 2.5*ecopointsb1[i] + 0.5 * envopointsb1[i] + 0.5*relpointsb1[i];
+				pointsb2[i] = 2.5*ecopointsb2[i] + 0.5 * envopointsb2[i] + 0.5*relpointsb2[i];
+				pointsb3[i] = 2.5*ecopointsb3[i] + 0.5 * envopointsb3[i] + 0.5*relpointsb3[i];
+				///////////////////////////////////////////////////////////////////////////////////////
+				pointsh1[i] = 2.5*ecopointsh1[i] + 0.5 * envopointsh1[i] + 0.5*relpointsh1[i];
+				pointsh2[i] = 2.5*ecopointsh2[i] + 0.5 * envopointsh2[i] + 0.5*relpointsh2[i];
+				pointsh3[i] = 2.5*ecopointsh3[i] + 0.5 * envopointsh3[i] + 0.5*relpointsh3[i];
+			}
+			}
 		}
+
+		
+
 		int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
 
 		maxip1 = HelperFunctions::Maxpoints(pointsp1);
@@ -705,6 +1020,7 @@ namespace Analyze
 		cout << endl << endl;
 		/*Sleep(1000);*/
 		cout << "Done!\n\n";	/*Sleep(100);*/
+
 		cout << "METAL PROCESSING can be broken down into three 3 stages:\n\n";
 		cout << "1. Purification or Leaching or preprocessed substances\n2. Recovery or Isolation of metal of interest\n3. Refining of metal to get best yields\n\n";
 		/*Sleep(1000);*/
@@ -712,8 +1028,10 @@ namespace Analyze
 		/*Sleep(1000);*/
 		cout << "After analysis, the software has come up with the following plan to treat metals in E-waste:\n\n";
 		cout << "Press any key to view the plan.";
+
 		_getche();
 		system("CLS");
+
 		cout << "STAGE 1: PURIFICATION OR LEACHING\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
 		cout << MetalProcess[processip1].information;
@@ -747,9 +1065,12 @@ namespace Analyze
 		HelperFunctions::OtherTypeInfo(MetalProcess[processih1]);
 		cout << endl << endl;
 
+
 		cout << "Press any key to continue to stage 2.";
 		_getche();
 		system("CLS");
+
+
 		cout << "STAGE 2: EXTRACTION (ISOLATION) OR RECOVERY:\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
 		cout << MetalProcess[processip2].information;
@@ -787,6 +1108,8 @@ namespace Analyze
 		cout << "Press any key to continue to stage 3.";
 		_getche();
 		system("CLS");
+
+
 		cout << "STAGE 3: REFINING:\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
 		cout << MetalProcess[processip3].information;
@@ -819,6 +1142,7 @@ namespace Analyze
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[0] * (1 + store[processip3][2]));
 		printf("The Carbon footprint of conducting this process while mining the ore is: %10.2lf kg equivalents of CO2\n", MetalProcess[processip3].carbonfootprint[1] * (1 + store[processip3][2]) / (1 + store[processip3][3] / 2.0));
 		HelperFunctions::OtherTypeInfo(MetalProcess[processip3]);
+
 
 		double cf = MetalProcess[processip3].carbonfootprint[0] * (1 + store[processip3][2]) / (1 + store[processip3][3]/2 )*1.5
 			+ MetalProcess[processip2].carbonfootprint[0] * (1 + store[processip2][2]) / (1 + store[processip2][3]/2 )
@@ -997,39 +1321,17 @@ namespace Analyze
 
 		economicpoints = (ce*ce*ce*samount*typecost)*100000 / cc;
 		points[0] = economicpoints;
-		/*while (economicpoints > 100||economicpoints<10)
-		{
-			if (economicpoints > 100)	economicpoints /= 10.0;
-			if (economicpoints < 10)		economicpoints *= 10.0;
-		}*/
+		
 		environmentalpoints = ce*s.carbonfootprint[1] * samount*(1+0.5*cit) / (s.carbonfootprint[0]*(1+init)) + (samount / tamount);	
 		points[1] = environmentalpoints;
-		/*while (environmentalpoints > 100 || environmentalpoints<10)
-		{
-			if (environmentalpoints > 100)	environmentalpoints /= 10.0;
-			if (environmentalpoints < 10)		environmentalpoints *= 10.0;
-		}*/
+		
 
 		relativeprocesspoints = sidetreatment*sideamount*(1+pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
 		points[2] = relativeprocesspoints;
-		/*while (relativeprocesspoints > 100 || relativeprocesspoints<10)
-		{
-			if (relativeprocesspoints > 100)	relativeprocesspoints /= 10.0;
-			if (relativeprocesspoints < 10)		relativeprocesspoints *= 10.0;
-		}
-		*/
+		
 		double totalpoints = economicpoints+environmentalpoints+relativeprocesspoints;
 		points[3] = totalpoints;
-		/*while (totalpoints > 100 || totalpoints<10)
-		{
-			if (totalpoints > 100)	totalpoints /= 10.0;
-			if (totalpoints < 10)		totalpoints *= 10.0;
-		}*/
-		/*cout <<endl<< s.information << endl;
-		cout << "Type:\t"<<s.type << endl;
-		cout << "Economic:\t" << economicpoints << endl;
-		cout << "Eco-friendly:\t" << environmentalpoints << endl;
-		cout << "Relative:\t" << relativeprocesspoints << endl;*/
+		
 		return points;
 	}
 
