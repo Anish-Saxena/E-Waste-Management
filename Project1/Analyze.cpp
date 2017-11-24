@@ -295,6 +295,10 @@ namespace Analyze
 		int init, tempcit, cit, i;
 								
 		double pointsp1[3], pointsp2[3],pointsp3[3],pointsb1[3],pointsb2[3],pointsb3[3],pointsh1[3],pointsh2[3],pointsh3[3];
+		double sumpointsp[3], sumpointsb[3], sumpointsh[3];		//0->stage 1,1->stage 2, 2->stage 3
+		double sumecopointsp[3], sumenvopointsp[3], sumrelpointsp[3];
+		double tempmaxpoints=0;
+		int tempiteration=0;
 		int whatip1[3], whatip2[3], whatip3[3], whatib1[3], whatib2[3], whatib3[3], whatih1[3], whatih2[3], whatih3[3];
 		int p1 = 0, p2 = 0, p3 = 0, b1 = 0, b2 = 0, b3 = 0, h1 = 0, h2 = 0, h3 = 0;
 		double store[21][4] = { 0 };
@@ -304,6 +308,9 @@ namespace Analyze
 			pointsb1[i] = 0;	pointsb2[i] = 0;	pointsb3[i] = 0;
 			pointsp1[i] = 0;	pointsp2[i] = 0;	pointsp3[i] = 0;
 			pointsh1[i] = 0;	pointsh2[i] = 0;	pointsh3[i] = 0;
+
+			sumecopointsp[i] = 0; sumenvopointsp[i] = 0; sumrelpointsp[i]=0;
+			sumpointsb[i] = 0;	sumpointsh[i] = 0;	sumpointsp[i] = 0;
 
 			whatib1[i] = -1;	whatib2[i] = -1;	whatib3[i] = -1;
 			whatip1[i] = -1;	whatip2[i] = -1;	whatip3[i] = -1;
@@ -350,16 +357,52 @@ namespace Analyze
 				{
 				case 1:
 				{
+					int flag = 0;
 
-					pointsp1[p1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, cit, store, i);
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, tempiteration, store, i)+3);							
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+						
+					}
+
+					if (flag)	pointsp1[p1] = tempmaxpoints;
+					else	pointsp1[p1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 1, init, cit, store, i)+3);
+					sumpointsp[0] += pointsp1[p1];
 					whatip1[p1] = i;		
 					p1++;
 					break;
 				}
 				case 2:
 				{
+					int flag = 0;
 
-					pointsp2[p2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, cit, store, i);
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsp2[p2] = tempmaxpoints;
+					else	pointsp2[p2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 2, init, cit, store, i)+3);
+					sumpointsp[1] += pointsp2[p2];
 					whatip2[p2] = i;
 					p2++;
 
@@ -367,8 +410,26 @@ namespace Analyze
 				}
 				case 3:
 				{
+					int flag = 0;
 
-					pointsp3[p3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, cit, store, i);
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsp3[p3] = tempmaxpoints;
+					else	pointsp3[p3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'P', 3, init, cit, store, i)+3);
+					sumpointsp[2] += pointsp3[p3];
 					whatip3[p3] = i;
 					p3++;
 					break;
@@ -407,21 +468,78 @@ namespace Analyze
 				{
 				case 1:
 				{
-					pointsh1[h1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsh1[h1] = tempmaxpoints;
+					else	pointsh1[h1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 1, init, cit, store, i)+3);
+					sumpointsh[0] += pointsh1[h1];
 					whatih1[h1] = i;
 					h1++;
 					break;
 				}
 				case 2:
 				{
-					pointsh2[h2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsh2[h2] = tempmaxpoints;
+					else	pointsh2[h2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 2, init, cit, store, i)+3);
+					sumpointsh[1] += pointsh2[h2];
 					whatih2[h2] = i;
 					h2++;
 					break;
 				}
 				case 3:
 				{
-					pointsh3[h3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsh3[h3] = tempmaxpoints;
+					else	pointsh3[h3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'H', 3, init, cit, store, i)+3);
+					sumpointsh[2] += pointsh3[h3];
 					whatih3[h3] = i;
 					h3++;
 					break;
@@ -459,21 +577,78 @@ namespace Analyze
 				{
 				case 1:
 				{
-					pointsb1[b1] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsb1[b1] = tempmaxpoints;
+					else	pointsb1[b1] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 1, init, cit, store, i)+3);
+					sumpointsb[0] += pointsb1[b1];
 					whatib1[b1] = i;
 					b1++;
 					break;
 				}
 				case 2:
 				{
-					pointsb2[b2] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsb2[b2] = tempmaxpoints;
+					else	pointsb2[b2] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 2, init, cit, store, i)+3);
+					sumpointsb[1] += pointsb2[b2];
 					whatib2[b2] = i;
 					b2++;
 					break;
 				}
 				case 3:
 				{
-					pointsb3[b3] = HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, cit, store, i);
+					int flag = 0;
+
+					if (level == 2)
+					{
+						flag = 1;
+						tempmaxpoints = 0;
+						for (tempiteration = 0; tempiteration <= cit; tempiteration++)
+						{
+							double comp = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, tempiteration, store, i)+3);
+							if (comp > tempmaxpoints)
+							{
+								tempmaxpoints = comp;
+							}
+						}
+
+					}
+
+					if (flag)	pointsb3[b3] = tempmaxpoints;
+					else	pointsb3[b3] = *(HelperFunctions::PointCalc(MetalProcess[i], tamount, samount, typecost, 'B', 3, init, cit, store, i)+3);
+					sumpointsb[2] += pointsb3[b3];
 					whatib3[b3] = i;
 					b3++;
 					break;
@@ -485,6 +660,24 @@ namespace Analyze
 			}
 		}
 
+		for (i = 0; i < 3; i++)
+		{
+			sumpointsb[i] /= 3.0;
+			sumpointsh[i] /= 3.0;
+			sumpointsp[i] /= 3.0;
+		}
+		for (i = 0; i < 3; i++)
+		{
+			pointsp1[i] /= sumpointsp[0];
+			pointsp2[i] /= sumpointsp[1];
+			pointsp3[i] /= sumpointsp[2];
+			pointsb1[i] /= sumpointsb[0];
+			pointsb2[i] /= sumpointsb[1];
+			pointsb3[i] /= sumpointsb[2];
+			pointsh1[i] /= sumpointsh[0];
+			pointsh2[i] /= sumpointsh[1];
+			pointsh3[i] /= sumpointsh[2];			
+		}
 		int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
 
 		maxip1 = HelperFunctions::Maxpoints(pointsp1);
@@ -594,7 +787,7 @@ namespace Analyze
 		cout << "Press any key to continue to stage 3.";
 		_getche();
 		system("CLS");
-		cout << "STAGE 1: REFINING:\n\nSuggested routes are as follows:\n\n";
+		cout << "STAGE 3: REFINING:\n\nSuggested routes are as follows:\n\n";
 		cout << "FOR PRECIOUS METALS:\n\n";
 		cout << MetalProcess[processip3].information;
 		cout << endl << endl;
@@ -676,7 +869,7 @@ namespace Analyze
 		double cfg, ocost;
 		ocost = 400000 + (GlobalData::glassnceramics[1] / 25) * 120000;
 		cfg = cf / 15;
-		printf("The cost of the process for given parametes is: Rs. %.0lf\n\n",ocost);
+		printf("The cost of the process for given parameters is: Rs. %.0lf\n\n",ocost);
 		printf("The Carbon footprint of this process is: %10.2lf kg equivalents of CO2\n\n", cfg);
 	}
 
@@ -748,9 +941,12 @@ namespace Analyze
 	}
 
 		
-	double HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit, double store[][4], int it /*normalize*/)	//start init and cit from 0
+	double* HelperFunctions::PointCalc(struct Process s, double tamount, double samount, double typecost, char type, int stage, int init, int cit, double store[][4], int it /*normalize*/)	//start init and cit from 0
 	{
 		double economicpoints, environmentalpoints, relativeprocesspoints;		//Remember to normalize the points
+
+		double *points;
+		points = (double*)malloc(4 * sizeof(double));
 
 		double ce = (s.efficiency*(1 + init + 0.01*init*s.economicfactors[0])) / (init + 1);
 		ce = ce*(1 + cit*s.economicfactors[1]) / (cit + 1);
@@ -800,32 +996,41 @@ namespace Analyze
 		}
 
 		economicpoints = (ce*ce*ce*samount*typecost)*100000 / cc;
-		while (economicpoints > 100||economicpoints<10)
+		points[0] = economicpoints;
+		/*while (economicpoints > 100||economicpoints<10)
 		{
 			if (economicpoints > 100)	economicpoints /= 10.0;
 			if (economicpoints < 10)		economicpoints *= 10.0;
-		}
+		}*/
 		environmentalpoints = ce*s.carbonfootprint[1] * samount*(1+0.5*cit) / (s.carbonfootprint[0]*(1+init)) + (samount / tamount);	
-		while (environmentalpoints > 100 || environmentalpoints<10)
+		points[1] = environmentalpoints;
+		/*while (environmentalpoints > 100 || environmentalpoints<10)
 		{
 			if (environmentalpoints > 100)	environmentalpoints /= 10.0;
 			if (environmentalpoints < 10)		environmentalpoints *= 10.0;
-		}
+		}*/
 
 		relativeprocesspoints = sidetreatment*sideamount*(1+pow(s.othertypes.stageto, 2) - pow(s.othertypes.stagefrom, 2));
-		while (relativeprocesspoints > 100 || relativeprocesspoints<10)
+		points[2] = relativeprocesspoints;
+		/*while (relativeprocesspoints > 100 || relativeprocesspoints<10)
 		{
 			if (relativeprocesspoints > 100)	relativeprocesspoints /= 10.0;
 			if (relativeprocesspoints < 10)		relativeprocesspoints *= 10.0;
 		}
-		
+		*/
 		double totalpoints = economicpoints+environmentalpoints+relativeprocesspoints;
-		while (totalpoints > 100 || totalpoints<10)
+		points[3] = totalpoints;
+		/*while (totalpoints > 100 || totalpoints<10)
 		{
 			if (totalpoints > 100)	totalpoints /= 10.0;
 			if (totalpoints < 10)		totalpoints *= 10.0;
-		}
-		return totalpoints;
+		}*/
+		/*cout <<endl<< s.information << endl;
+		cout << "Type:\t"<<s.type << endl;
+		cout << "Economic:\t" << economicpoints << endl;
+		cout << "Eco-friendly:\t" << environmentalpoints << endl;
+		cout << "Relative:\t" << relativeprocesspoints << endl;*/
+		return points;
 	}
 
 	
@@ -1009,12 +1214,13 @@ namespace Analyze
 		return (cit - 1);
 	}
 
+
 	int HelperFunctions::Maxpoints(double a[])
 	{
 		int i;
 		double max = a[0];
 		int whati = 0;
-		for (i = 1; i < 3; i++)
+		for (i = 0; i < 3; i++)
 		{
 			if (max < a[i])
 			{
@@ -1025,6 +1231,7 @@ namespace Analyze
 		return whati;
 	}
 	
+
 	void HelperFunctions::OtherTypeInfo(struct Process p)
 	{
 		switch (p.othertypes.typeof)
@@ -1051,6 +1258,7 @@ namespace Analyze
 		}
 		}
 	}
+
 
 	void HelperFunctions::Limits()
 	{
