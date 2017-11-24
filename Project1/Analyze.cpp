@@ -343,9 +343,13 @@ namespace Analyze
 
 		tamount = GlobalData::totalewaste;
 
-		for (i = 0; i < 22; i++)
+		for (i = 0; i < 21; i++)
 		{
-			if (i % 3 == 0 || i == 20)	cout << ".";
+			if (i % 3 == 0 || i == 20)
+			{
+				Sleep(150);
+				cout << ".";
+			}
 			if ((MetalProcess[i]).category != 0)	continue;
 			switch(MetalProcess[i].type)
 			{
@@ -987,12 +991,11 @@ namespace Analyze
 				pointsh1[i] = 2.5*ecopointsh1[i] + 0.5 * envopointsh1[i] + 0.5*relpointsh1[i];
 				pointsh2[i] = 2.5*ecopointsh2[i] + 0.5 * envopointsh2[i] + 0.5*relpointsh2[i];
 				pointsh3[i] = 2.5*ecopointsh3[i] + 0.5 * envopointsh3[i] + 0.5*relpointsh3[i];
+				break;
 			}
 			}
 		}
-
-		
-
+				
 		int maxip1, maxip2, maxip3, maxih1, maxih2, maxih3, maxib1, maxib2, maxib3;
 
 		maxip1 = HelperFunctions::Maxpoints(pointsp1);
@@ -1018,7 +1021,7 @@ namespace Analyze
 		processib3 = whatib3[maxib3];
 						
 		cout << endl << endl;
-		/*Sleep(1000);*/
+		Sleep(150);
 		cout << "Done!\n\n";	/*Sleep(100);*/
 
 		cout << "METAL PROCESSING can be broken down into three 3 stages:\n\n";
